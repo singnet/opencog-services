@@ -1,0 +1,4 @@
+{"test-cases": [
+{"input": "1 2", "output": "t1.txt"},
+{"input": "\"\\\"foo\"\\\" \"\\\"bar\"\\\"", "output": "t2.txt"}
+]}

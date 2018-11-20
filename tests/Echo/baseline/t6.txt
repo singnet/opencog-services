@@ -1,0 +1,2 @@
+Usage: client sync|async <command> <args>
+(0 to 5 args)

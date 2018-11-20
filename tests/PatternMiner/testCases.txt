@@ -1,0 +1,3 @@
+{"test-cases": [
+{"input": "https://raw.githubusercontent.com/singnet/opencog/master/opencog/learning/PatternMiner/ugly_male_soda-drinker_corpus.scm", "output": "uglymalesoda-drinkers.txt"}
+]}

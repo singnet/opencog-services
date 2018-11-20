@@ -1,0 +1,13 @@
+(InheritanceLink )
+  (PatternVariableNode $var_1)
+  (ConceptNode man)
+
+(InheritanceLink )
+  (PatternVariableNode $var_1)
+  (ConceptNode soda drinker)
+
+(InheritanceLink )
+  (PatternVariableNode $var_1)
+  (ConceptNode ugly)
+
+

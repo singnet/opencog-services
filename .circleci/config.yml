@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  service_up:
+    filters:
+      branches:
+        only: master
+    docker:
+    - image: circleci/python:3.6.6-node
+    working_directory: ~/singnet
+    environment:
+      ORG: singnet
+      DOCKER_ORG: singularitynet
+      DOCKER_SOURCE: https://raw.githubusercontent.com/andre-senna/opencog-services/master/Docker/Dockerfile
+      DOCKER_IMAGE_NAME: senna_opencog_services
+      DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
+      REPO_NAME: opencog-services
+      SERVICE_NAME: opencog
+      SERVICE_RUN_SCRIPT: bin/server
+      TEST_SCRIPT: bin/runTests
+      SNETD_PORT: 7031
+    steps:
+    - run:
+        name: Build Docker container
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            docker stop $DOCKER_CONTAINER_NAME || true
+            docker rm $DOCKER_CONTAINER_NAME || true 
+            docker build -t $DOCKER_IMAGE_NAME $DOCKER_SOURCE
+          EOF
+    - run:
+        name: Start Service
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            docker run --name $DOCKER_CONTAINER_NAME \
+              --restart unless-stopped \
+              -p $SNETD_PORT:$SNETD_PORT \
+              -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+          EOF
+    - run:
+        name: Execute regression tests
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            docker exec -i $DOCKER_CONTAINER_NAME $TEST_SCRIPT
+          EOF
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - service_up

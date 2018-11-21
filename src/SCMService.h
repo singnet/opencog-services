@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 OpenCog Foundation
+ * Copyright (C) 2018 OpenCog Foundation
  *
  * Author: Andre Senna <https://github.com/andre-senna>
  *

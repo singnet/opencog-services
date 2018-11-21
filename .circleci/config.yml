@@ -10,7 +10,7 @@ jobs:
     environment:
       ORG: singnet
       DOCKER_ORG: singularitynet
-      DOCKER_SOURCE: https://raw.githubusercontent.com/andre-senna/opencog-services/master/Docker/Dockerfile
+      DOCKER_SOURCE: https://raw.githubusercontent.com/singnet/opencog-services/master/Docker/Dockerfile
       DOCKER_IMAGE_NAME: senna_opencog_services
       DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
       REPO_NAME: opencog-services

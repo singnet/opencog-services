@@ -12,7 +12,7 @@ RUN apt update && \
 RUN mkdir -p $SINGNET_INSTALL
 
 RUN cd ${SINGNET_INSTALL} && \
-    git clone https://github.com/andre-senna/opencog-services.git && \
+    git clone https://github.com/singnet/opencog-services.git && \
     cd opencog-services && \
     ./scripts/install_prerequisites.sh ${SINGNET_INSTALL}
 
@@ -20,7 +20,7 @@ RUN cd ${SINGNET_INSTALL}/opencog-services && \
     cp lib/libPatternMiner.so /usr/local/lib/opencog
 
 RUN cd ${SINGNET_INSTALL}/opencog-services && \
-    ./build.sh
+    ./scripts/build.sh
 
 WORKDIR ${SINGNET_INSTALL}/opencog-services
 

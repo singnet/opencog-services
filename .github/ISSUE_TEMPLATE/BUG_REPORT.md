@@ -6,8 +6,11 @@ about: Report a problem with the project itself.
 
 <!--
 - Please follow the issue template below for bug reports.
-- Tickets opened without any of these pieces of information will be **closed** without any explanation.
 -->
+
+##### **Opencog service**
+
+<!-- Which Opencog service presented the error -->
 
 ##### **Brief description**
 

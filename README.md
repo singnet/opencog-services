@@ -3,9 +3,9 @@
 [singularitynet-home]: https://www.singularitynet.io
 [issue-template]: ../../issues/new?template=BUG_REPORT.md
 [feature-template]: ../../issues/new?template=FEATURE_REQUEST.md
-[contribution-guidelines]: https://github.com/singnet/wiki/tree/master/guidelines/CONTRIBUTING.md
+[contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 [cpp-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
-[opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
+[opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
 [opencog-pattern-miner]: https://wiki.opencog.org/w/Pattern_miner
 
 [![CircleCI](https://circleci.com/gh/singnet/opencog-services.svg?style=svg)](https://circleci.com/gh/singnet/opencog-services)
@@ -22,9 +22,9 @@ to understand how SingularityNET C++ services work.
 C++ and Scheme services are implemented in `src/cpp-services` and
 `src/scm-services` respectively.
 
-- [Echo](doc/Echo.md) - a simple 'echo' which just outputs its input, used to test the architecture and to serve as example.
-- [EchoScheme](doc/EchoScheme.md) - the same, but written in `Scheme`.
-- [PatternMiner](doc/PatternMiner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
+- [Echo](docs/Echo.md) - a simple 'echo' which just outputs its input, used to test the architecture and to serve as example.
+- [EchoScheme](docs/EchoScheme.md) - the same, but written in `Scheme`.
+- [PatternMiner](docs/PatternMiner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
 
 ## Getting Started
 

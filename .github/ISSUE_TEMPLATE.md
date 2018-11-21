@@ -1,7 +1,10 @@
 <!--
 - Please follow the issue template below for bug reports and feature requests.
-- Tickets opened without any of these pieces of information will be **closed** without any explanation.
 -->
+
+##### **Opencog service**
+
+<!-- Which Opencog service presented the error -->
 
 ##### **Brief description**
 

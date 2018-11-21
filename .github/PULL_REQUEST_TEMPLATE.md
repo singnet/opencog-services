@@ -2,7 +2,8 @@
 
 -   [ ] Always make your pull request to `staging` branch (never to `master`)
 -   [ ] Regression tests are added to tests/ for each new service
--   [ ] Documentation is added/updated where necessary
+-   [ ] Explanatory MyServiceName.md is added to docs/ for each new service
+-   [ ] README.md of the repository is updated to list each new service
 -   [ ] General coding rules & commit guidelines as per our [CONTRIBUTING.md](https://github.com/singnet/wiki/tree/master/guidelines/CONTRIBUTING.md) document are followed
 
 <!--

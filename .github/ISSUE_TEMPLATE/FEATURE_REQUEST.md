@@ -4,6 +4,10 @@ about: Suggest an improvement.
 
 ---
 
+##### **Opencog service**
+
+<!-- Which Opencog service you want to request a feature to -->
+
 ##### **Overview of the feature request**
 
 <!-- Explain the feature request -->

@@ -3,6 +3,7 @@ name: 🐛 Bug report
 about: Report a problem with the project itself.
 
 ---
+<!-- Click "Preview" for a nicer view! -->
 
 <!--
 - Please follow the issue template below for bug reports.
@@ -38,8 +39,3 @@ Which version of project are you using, is it a regression?
 ##### **Browsers and Operating System**
 
 <!-- What OS are you on? -->
-
-<!-- We primarily use GitHub as an issue tracker, if your issue is not a **bug** or **feature request** then sorry you are not in the right place :wink:. -->
-<!-- Click "Preview" for a nicer view! -->
-
-

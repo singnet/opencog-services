@@ -9,9 +9,7 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/opencog:/usr/local/lib/openc
 RUN mkdir -p $SINGNET_INSTALL
 
 RUN cd ${SINGNET_INSTALL} && \
-    git clone https://github.com/singnet/opencog-services.git && \
-    cd opencog-services && \
-    ./scripts/install_prerequisites.sh ${SINGNET_INSTALL}
+    git clone https://github.com/singnet/opencog-services.git
 
 RUN cd ${SINGNET_INSTALL}/opencog-services && \
     cp lib/libPatternMiner.so /usr/local/lib/opencog

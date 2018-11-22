@@ -10,7 +10,7 @@ jobs:
     environment:
       ORG: singnet
       DOCKER_ORG: singularitynet
-      DOCKER_CONTEXT: https://github.com/singnet/opencog-services
+      DOCKER_CONTEXT: https://github.com/singnet/opencog-services.git
       DOCKER_IMAGE_NAME: senna_opencog_services
       DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
       DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
@@ -25,16 +25,7 @@ jobs:
         name: Build basic docker image
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker build -t $DOCKER_BASIC_IMAGE_NAME - << EOD
-                FROM opencog/opencog-dev:cli
-                ENV SINGNET_INSTALL=/opt/singnet
-                ENV GOPATH=${SINGNET_INSTALL}/go
-                ENV PATH=$PATH:${SINGNET_INSTALL}/go/bin:/usr/lib/go-1.10/bin
-                RUN apt update && apt install -y apt-utils git
-                RUN mkdir -p $SINGNET_INSTALL
-                ADD https://raw.githubusercontent.com/singnet/opencog-services/master/scripts/install_prerequisites.sh ${SINGNET_INSTALL}
-                RUN cd ${SINGNET_INSTALL} && ./install_prerequisites.sh ${SINGNET_INSTALL}
-            EOD
+            docker image build -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/.circleci/basic_dockerfile
           EOF
     - run:
         name: Build Docker container

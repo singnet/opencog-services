@@ -52,6 +52,7 @@ LDFLAGS += $(shell ls /usr/local/lib/opencog | grep "\.so" | sed "s/lib/-l/" | s
 LDFLAGS += $(shell ls /usr/local/lib/opencog/modules | grep "\.so" | sed "s/lib/-l/" | sed "s/\.so//")
 LDFLAGS += -lcogutil
 LDFLAGS += $(shell curl-config --libs)
+SERVICES = $(shell ls cpp-services/*.cc | sed "s/\.cc/\.o/")
 
 #################################################################################
 #
@@ -61,7 +62,7 @@ LDFLAGS += $(shell curl-config --libs)
 
 all: server client runTests
 
-server: cpp-services/PatternMiner.o cpp-services/Echo.o OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o opencog.pb.o opencog.grpc.pb.o server.o
+server: $(SERVICES) OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o opencog.pb.o opencog.grpc.pb.o server.o
 	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
 
 client: opencog.pb.o opencog.grpc.pb.o client.o
@@ -71,7 +72,7 @@ runTests: runTests.o
 	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
 
 clean:
-	rm -f *.o cpp-services/*.o *.pb.cc *.pb.h ../bin/server ../bin/client ../bin/runTests
+	rm -f *.o $(SERVICES) *.pb.cc *.pb.h ../bin/server ../bin/client ../bin/runTests
 
 #################################################################################
 #

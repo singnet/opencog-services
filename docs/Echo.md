@@ -4,13 +4,13 @@
 [general-guide]: ./opencog-services.md
 [dap]: http://alpha.singularitynet.io/
 
-![singnetlogo](../assets/singnet-logo.jpg?raw=true 'SingularityNET')
+![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
 # Echo
 
 This service "echoes" its arguments.
 
-It is part of our [Opencog Services](opencog-services-repo).
+It is part of our [Opencog Services][opencog-services-repo].
 
 ### Welcome
 
@@ -22,7 +22,7 @@ The service is meant to illustrate the implementation of a C++ Opencog service. 
 
 ### How does it work?
 
-You can use this service from [SingularityNET DApp](dap), clicking on `SNET/Opencog`.
+You can use this service from [SingularityNET DApp][dap], clicking on `SNET/Opencog`.
 
 You can also call the service from SingularityNET CLI (`snet`):
 

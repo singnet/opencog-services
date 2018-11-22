@@ -16,7 +16,7 @@ This repository contains a number of SingularityNET services which uses Opencog 
 
 Actually, we have one single C++ gRPC service which is used to call any of the
 implemented services passing a command name and a list of arguments. See
-this [tutorial][cpp-tutorial].
+this [tutorial][opencog-tutorial].
 to understand how SingularityNET C++ services work.
 
 C++ and Scheme services are implemented in `src/cpp-services` and
@@ -87,8 +87,8 @@ deleted.
 
 Please read our [guidelines][contribution-guidelines] before
 submitting issues or pull requests. If your issue is a bug, please use the bug template
-[here][issue-template]. For feature requests and queries you can
-use [this template][feature-template].
+[here](issue-template). For feature requests and queries you can
+use [this template](feature-template).
 
 
 ## Authors

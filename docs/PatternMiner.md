@@ -11,13 +11,13 @@
 [echo]: Echo.md
 
 
-![singnetlogo](../assets/singnet-logo.jpg?raw=true 'SingularityNET')
+![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
 # PatternMiner
 
-This service loads a knowledge base into an instance of [Opencog](opencog) and run
+This service loads a knowledge base into an instance of [Opencog][opencog] and run
 [Opencog's PatternMiner][opencog-pattern-miner]. The best ranked results are
-returned as a list of atoms in [Atomese](Atomese).
+returned as a list of atoms in [Atomese][Atomese].
 
 It's part of our [Opencog Services](opencog-services-repo).
 
@@ -27,9 +27,9 @@ The service expects an URL to an Atomese knowledge base. Optionally a second
 parameter may be provided passing a JSON hash with values to Opencog's
 configuration parameters.
 
-A simple example of knowledge base is presented [here](soda-drinkers).
+A simple example of knowledge base is presented [here][soda-drinkers].
 
-A list of all relevant parameters to Opencog and the Pattern Miner is presented [here](opencog-parameters)
+A list of all relevant parameters to Opencog and the Pattern Miner is presented [here][opencog-parameters]
 
 ### What’s the point?
 
@@ -39,7 +39,7 @@ some relevant Opencog processing.
 
 ### How does it work?
 
-You can use this service from [SingularityNET DApp](dap), clicking on `SNET/Opencog`.
+You can use this service from [SingularityNET DApp][dap], clicking on `SNET/Opencog`.
 
 You can also call the service from SingularityNET CLI (`snet`):
 
@@ -51,7 +51,7 @@ $ snet client call execute PatternMiner KNOWLEDGE_BASE_URL
 ```
 
 A JSON hash can optionally be passed to set parameters. The following command
-line will call the Pattern Miner on the [Ugly male soda-drinkers](soda-drinkers) knowledge base setting `Max_thread_num = 8` and `Pattern_Max_Gram = 3`.
+line will call the Pattern Miner on the [Ugly male soda-drinkers][soda-drinkers] knowledge base setting `Max_thread_num = 8` and `Pattern_Max_Gram = 3`.
 
 ```
 $ snet client call execute PatternMiner https://github.com/singnet/opencog/blob/master/opencog/learning/PatternMiner/ugly_male_soda-drinker_corpus.scm '{"Max_thread_num": "8", "Pattern_Max_Gram": "3"}'
@@ -77,7 +77,7 @@ soon as they are available. Results will remain available for a limited time
 
 ### What to expect from this service?
 
-For the [Ugly male soda-drinkers](soda-drinkers) knowledge base, Pattern Miner (with defauklt parameters) should outpu:
+For the [Ugly male soda-drinkers][soda-drinkers] knowledge base, Pattern Miner (with default parameters) should outpu:
 
 ```
 (InheritanceLink )

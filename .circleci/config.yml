@@ -10,22 +10,39 @@ jobs:
     environment:
       ORG: singnet
       DOCKER_ORG: singularitynet
-      DOCKER_SOURCE: https://raw.githubusercontent.com/singnet/opencog-services/master/Docker/Dockerfile
+      DOCKER_CONTEXT: https://github.com/singnet/opencog-services
       DOCKER_IMAGE_NAME: senna_opencog_services
+      DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
       DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
       REPO_NAME: opencog-services
       SERVICE_NAME: opencog
       SERVICE_RUN_SCRIPT: bin/server
       TEST_SCRIPT: bin/runTests
+      COMPLIANCE_CHECK_SCRIPT: scripts/compliance_check.sh
       SNETD_PORT: 7031
     steps:
+    - run:
+        name: Build basic docker image
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            docker build -t $DOCKER_BASIC_IMAGE_NAME - << EOD
+                FROM opencog/opencog-dev:cli
+                ENV SINGNET_INSTALL=/opt/singnet
+                ENV GOPATH=${SINGNET_INSTALL}/go
+                ENV PATH=$PATH:${SINGNET_INSTALL}/go/bin:/usr/lib/go-1.10/bin
+                RUN apt update && apt install -y apt-utils git
+                RUN mkdir -p $SINGNET_INSTALL
+                ADD https://raw.githubusercontent.com/singnet/opencog-services/master/scripts/install_prerequisites.sh ${SINGNET_INSTALL}
+                RUN cd ${SINGNET_INSTALL} && ./install_prerequisites.sh ${SINGNET_INSTALL}
+            EOD
+          EOF
     - run:
         name: Build Docker container
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker stop $DOCKER_CONTAINER_NAME || true
             docker rm $DOCKER_CONTAINER_NAME || true 
-            docker build -t $DOCKER_IMAGE_NAME $DOCKER_SOURCE
+            docker build --no-cache -t $DOCKER_IMAGE_NAME $DOCKER_CONTEXT
           EOF
     - run:
         name: Start Service
@@ -35,6 +52,12 @@ jobs:
               --restart unless-stopped \
               -p $SNETD_PORT:$SNETD_PORT \
               -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+          EOF
+    - run:
+        name: Execute compliance check
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            docker exec -i $DOCKER_CONTAINER_NAME $COMPLIANCE_CHECK_SCRIPT
           EOF
     - run:
         name: Execute regression tests

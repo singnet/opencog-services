@@ -1,12 +1,11 @@
 ![singnetlogo](assets/singnet-logo.jpg 'SingularityNET')
 
 [singularitynet-home]: https://www.singularitynet.io
-[issue-template]: ../../issues/new?template=BUG_REPORT.md
-[feature-template]: ../../issues/new?template=FEATURE_REQUEST.md
 [contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 [cpp-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
 [opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
 [opencog-pattern-miner]: https://wiki.opencog.org/w/Pattern_miner
+
 
 [![CircleCI](https://circleci.com/gh/singnet/opencog-services.svg?style=svg)](https://circleci.com/gh/singnet/opencog-services)
 
@@ -14,10 +13,8 @@
 
 This repository contains a number of SingularityNET services which uses Opencog resources.
 
-Actually, we have one single C++ gRPC service which is used to call any of the
-implemented services passing a command name and a list of arguments. See
-this [tutorial][opencog-tutorial].
-to understand how SingularityNET C++ services work.
+Actually, we have only one C++ gRPC service which is used to call any of the
+implemented services passing a command name and a list of arguments.
 
 C++ and Scheme services are implemented in `src/cpp-services` and
 `src/scm-services` respectively.
@@ -86,9 +83,7 @@ deleted.
 ### Contributing and Reporting Issues
 
 Please read our [guidelines][contribution-guidelines] before
-submitting issues or pull requests. If your issue is a bug, please use the bug template
-[here](issue-template). For feature requests and queries you can
-use [this template](feature-template).
+submitting issues or pull requests. 
 
 
 ## Authors

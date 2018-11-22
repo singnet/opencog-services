@@ -1,15 +1,16 @@
-[issue-template]: ../../../issues/new?template=BUG_REPORT.md
-[feature-template]: ../../../issues/new?template=FEATURE_REQUEST.md
 [opencog-services-repo]: https://github.com/singnet/opencog-services
-[general-guide]: ./opencog-services.md
 [dap]: http://alpha.singularitynet.io/
 [opencog-pattern-miner]: https://wiki.opencog.org/w/Pattern_miner
+[pattern-miner-repo]: https://github.com/opencog/opencog/tree/master/opencog/learning/PatternMiner
 [opencog]: https://opencog.org/
 [atomese]: https://wiki.opencog.org/w/Atomese
 [soda-drinkers]: https://github.com/singnet/opencog/blob/master/opencog/learning/PatternMiner/ugly_male_soda-drinker_corpus.scm
 [opencog-parameters]: https://github.com/singnet/opencog/blob/master/lib/opencog_patternminer.conf
-[echo]: Echo.md
+[opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
+[singularitynet-home]: https://www.singularitynet.io
+[contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 
+[echo]: Echo.md
 
 ![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
@@ -93,6 +94,13 @@ For the [Ugly male soda-drinkers][soda-drinkers] knowledge base, Pattern Miner (
   (ConceptNode ugly)
 ```
 
-### Issues and feature requests
+### Contributing and Reporting Issues
 
-Issues can be reported [here](issue-template). New features can be requested [here](feature-template).
+Please read our [guidelines][contribution-guidelines] before
+submitting issues or pull requests.
+
+
+## Authors
+
+* SNET service - **Andre Senna** - *Maintainer* - [SingularityNET][singularitynet-home]
+* Opencog's Pattern Miner - see [here][pattern-miner-repo]

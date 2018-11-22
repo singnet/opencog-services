@@ -24,7 +24,6 @@ check_service() {
     fi
 
     if [ $STATUS = "NOK" ] ; then
-        echo "ERROR"
         exit 1
     fi
 }

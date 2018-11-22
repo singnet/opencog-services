@@ -1,9 +1,9 @@
-[issue-template]: ../../../issues/new?template=BUG_REPORT.md
-[feature-template]: ../../../issues/new?template=FEATURE_REQUEST.md
 [opencog-services-repo]: https://github.com/singnet/opencog-services
-[general-guide]: ./opencog-services.md
 [dap]: http://alpha.singularitynet.io/
 [scheme]: https://wiki.opencog.org/wikihome/index.php/Scheme
+[opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
+[singularitynet-home]: https://www.singularitynet.io
+[contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 
 ![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
@@ -11,11 +11,11 @@
 
 This service "echoes" its arguments.
 
-It is part of our [Opencog Services][opencog-services-repo].
+It's part of our [Opencog Services][opencog-services-repo].
 
 ### Welcome
 
-The service expects 0 to n arguments (n is limited as described [here](general-guide)) and simply outputs a list of them in [Scheme][scheme] syntax.
+The service expects 0 to n arguments (n is limited as described [here](opencog-tutorial)) and simply outputs a list of them in [Scheme][scheme] syntax.
 
 ### What’s the point?
 
@@ -45,6 +45,12 @@ $ snet client call asynchronousTask Echo 1 2
 
 In this case the command output is an URL where you can find the results as soon as they are available.
 
-### Issues and feature requests
+### Contributing and Reporting Issues
 
-Issues can be reported [here](issue-template). New features can be requested [here](feature-template).
+Please read our [guidelines][contribution-guidelines] before
+submitting issues or pull requests.
+
+
+## Authors
+
+* **Andre Senna** - *Maintainer* - [SingularityNET][singularitynet-home]

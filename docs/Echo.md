@@ -4,7 +4,7 @@
 [general-guide]: ./opencog-services.md
 [dap]: http://alpha.singularitynet.io/
 
-![singnetlogo](../assets/singnet-logo.jpg?raw=true 'SingularityNET')
+![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
 # Echo
 
@@ -14,7 +14,7 @@ It is part of our [Opencog Services][opencog-services-repo].
 
 ### Welcome
 
-The service expects 0 to n arguments (n is limited as described [here][general-guide]) and simply outputs then separated by single spaces.
+The service expects 0 to n arguments (n is limited as described [here](general-guide)) and simply outputs then separated by single spaces.
 
 ### What’s the point?
 
@@ -46,4 +46,4 @@ In this case the command output is an URL where you can find the results as soon
 
 ### Issues and feature requests
 
-Issues can be reported [here][issue-template]. New features can be requested [here][feature-template].
+Issues can be reported [here](issue-template). New features can be requested [here](feature-template).

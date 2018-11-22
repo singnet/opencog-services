@@ -11,7 +11,7 @@
 [echo]: Echo.md
 
 
-![singnetlogo](../assets/singnet-logo.jpg?raw=true 'SingularityNET')
+![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
 # PatternMiner
 
@@ -34,7 +34,7 @@ A list of all relevant parameters to Opencog and the Pattern Miner is presented 
 ### What’s the point?
 
 The service is meant to illustrate the implementation of an actual Opencog
-service. Unlike other example services (like [echo][Echo]), this service does
+service. Unlike other example services (like [echo](Echo)), this service does
 some relevant Opencog processing.
 
 ### How does it work?
@@ -73,7 +73,7 @@ $ snet client call asynchronousTask PatternMiner KNOWLEDGE_BASE_URL
 
 In this case the command output is an URL where you can find the results as
 soon as they are available. Results will remain available for a limited time
-(see [general-guide][Opencog Services documentation] for details).
+(see [general-guide](Opencog Services documentation) for details).
 
 ### What to expect from this service?
 
@@ -95,4 +95,4 @@ For the [Ugly male soda-drinkers][soda-drinkers] knowledge base, Pattern Miner (
 
 ### Issues and feature requests
 
-Issues can be reported [here][issue-template]. New features can be requested [here][feature-template].
+Issues can be reported [here](issue-template). New features can be requested [here](feature-template).

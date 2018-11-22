@@ -16,7 +16,7 @@ build_service_index() {
 
     if [ $2 = CPP ] ; then
         SRC_DIR=cpp-services
-        EXT=cpp
+        EXT=cc
     else
         SRC_DIR=scm-services
         EXT=scm

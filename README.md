@@ -87,8 +87,8 @@ deleted.
 
 Please read our [guidelines][contribution-guidelines] before
 submitting issues or pull requests. If your issue is a bug, please use the bug template
-[here][issue-template]. For feature requests and queries you can
-use [this template][feature-template].
+[here](issue-template). For feature requests and queries you can
+use [this template](feature-template).
 
 
 ## Authors

@@ -33,16 +33,13 @@ code and scripts required to build and deploy the Opencog services.
 
 ### Building and testing services locally (without blockchain)
 
-We suggest you to build in a docker container with all the required packages using `Docker/Dockerfile`
-
-```
-$ docker build -t opencog_services_image https://raw.githubusercontent.com/singnet/opencog-services/master/Docker/Dockerfile
-```
-
+We suggest you to build in a docker container with all the required packages using `Docker/Dockerfile`.
 Then run container and continue from its prompt.
 
 ```
-$ docker run --name opencog_services_container -ti opencog_services_image /bin/bash
+$ git clone https://github.com/singnet/opencog-services.git
+$ docker build -t opencog_service_dev opencog-services/Docker/
+$ docker run --name OPENCOG_SERVICE_DEV -ti opencog_service_dev /bin/bash
 ```
 
 Find `server` and `client` executables in `bin/`

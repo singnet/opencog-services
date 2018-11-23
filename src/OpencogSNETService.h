@@ -65,7 +65,7 @@ public:
     /*
      * Fetches the contents of the passed URL (which is supposed to be a .scm file
      * with an Atomese knowledge base) and load it in 'atomSpace' (a public
-     * AtomSpace field).
+     * AtomSpace field). Any errors are reported in errorMessage.
      *
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
@@ -83,6 +83,10 @@ public:
      */
     void evaluateScheme(std::string &output, const std::string &scmLine);
 
+    /*
+     * Use the passed JSON hash to set Opencog's configuration parameters (e.g.
+     * `{"Max_thread_num": "8", "Pattern_Max_Gram": "3"}`)
+     */
     void setConfigurationParameters(const std::string jsonString);
 
     opencog::AtomSpace atomSpace;

@@ -5,6 +5,7 @@ using namespace std;
 
 PatternMiner::PatternMiner() 
 {
+    // Loads default Pattern Miner configuration
     opencog::config().load("./config/opencog_patternminer_nlp.conf");
 }
 

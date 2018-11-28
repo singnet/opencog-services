@@ -1,9 +1,6 @@
 version: 2
 jobs:
   service_up:
-    filters:
-      branches:
-        only: master
     docker:
     - image: circleci/python:3.6.6-node
     working_directory: ~/singnet
@@ -11,15 +8,14 @@ jobs:
       ORG: singnet
       DOCKER_ORG: singularitynet
       DOCKER_CONTEXT: https://github.com/singnet/opencog-services.git
-      DOCKER_IMAGE_NAME: senna_opencog_services
       DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
-      DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
+      DOCKER_IMAGE_NAME: _opencog_services_staging
+      DOCKER_CONTAINER_NAME: _OPENCOG_SERVICES_STAGING
       REPO_NAME: opencog-services
       SERVICE_NAME: opencog
       SERVICE_RUN_SCRIPT: bin/server
       TEST_SCRIPT: bin/runTests
       COMPLIANCE_CHECK_SCRIPT: scripts/compliance_check.sh
-      SNETD_PORT: 7031
     steps:
     - run:
         name: Build basic docker image
@@ -31,30 +27,49 @@ jobs:
         name: Build Docker container
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker stop $DOCKER_CONTAINER_NAME || true
-            docker rm $DOCKER_CONTAINER_NAME || true 
-            docker build --no-cache -t $DOCKER_IMAGE_NAME $DOCKER_CONTEXT
+            docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME || true
+            docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME || true 
+            docker build --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME $DOCKER_CONTEXT
           EOF
     - run:
         name: Start Service
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker run --name $DOCKER_CONTAINER_NAME \
-              --restart unless-stopped \
-              -p $SNETD_PORT:$SNETD_PORT \
-              -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+            docker run --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME \
+              -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
           EOF
     - run:
         name: Execute compliance check
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker exec -i $DOCKER_CONTAINER_NAME $COMPLIANCE_CHECK_SCRIPT
+            docker exec -i $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME $COMPLIANCE_CHECK_SCRIPT
           EOF
     - run:
         name: Execute regression tests
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker exec -i $DOCKER_CONTAINER_NAME $TEST_SCRIPT
+            docker exec -i $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME $TEST_SCRIPT
+          EOF
+    - run:
+        name: Deploy service
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+              if [ $CIRCLE_BRANCH = "master" ]; then
+                  echo "Deploying service"
+                  docker stop senna$DOCKER_CONTAINER_NAME
+                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME
+                  docker rm senna$DOCKER_CONTAINER_NAME
+                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME
+                  docker rmi senna$DOCKER_IMAGE_NAME
+                  docker image tag $CIRCLE_USERNAME$DOCKER_IMAGE_NAME senna$DOCKER_IMAGE_NAME
+                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME
+                  docker run --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME \
+                      --restart unless-stopped \
+                      -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+              else
+                  echo "Branch: $CIRCLE_BRANCH"
+                  echo "Branch: service WILL NOT be deployed"
+              fi
           EOF
 
 workflows:

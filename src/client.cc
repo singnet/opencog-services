@@ -90,7 +90,7 @@ class ServiceClient {
 };
 
 int main(int argc, char** argv) {
-    ServiceClient guide(grpc::CreateChannel("localhost:7070", grpc::InsecureChannelCredentials()));
+    ServiceClient guide(grpc::CreateChannel("localhost:7032", grpc::InsecureChannelCredentials()));
     guide.doSomething(argc, argv);
     return 0;
 }

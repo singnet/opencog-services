@@ -140,7 +140,7 @@ public:
 };
 
 void RunServer() {
-    std::string server_address("0.0.0.0:7070");
+    std::string server_address("0.0.0.0:7032");
     ServiceImpl service;
 
     ServerBuilder builder;

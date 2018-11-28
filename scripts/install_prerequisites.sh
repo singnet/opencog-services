@@ -100,6 +100,12 @@ go get -v -u golang.org/x/lint/golint
 curl -OL https://github.com/singnet/snet-daemon/releases/download/v0.1.0/snetd-0.1.0.tar.gz
 tar xzvf snetd-0.1.0.tar.gz 
 cp snetd-linux-amd64 /usr/local/bin/snetd
+cd $TMP_INSTALL_DIR
+mkdir -p snet-daemon
+cd snet-daemon
+wget https://github.com/singnet/snet-daemon/releases/download/v0.1.2/snetd-0.1.2.tar.gz
+tar -xvf snetd-0.1.2.tar.gz
+cp snetd-0.1.2/snetd-linux-amd64 /usr/local/bin/snetd
 ################################################################################
 # Build using last available version
 #cd /opt/snet/go/src

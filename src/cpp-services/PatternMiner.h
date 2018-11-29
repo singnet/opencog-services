@@ -42,7 +42,6 @@ public:
 
     // OpencogSNETService API
     bool execute(std::string &output, const std::vector<std::string> &args);
-    void loadModules();
 
     PatternMiner();
     ~PatternMiner();

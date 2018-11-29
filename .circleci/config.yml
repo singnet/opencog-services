@@ -23,7 +23,7 @@ jobs:
         name: Build basic docker image
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker image build -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/.circleci/basic_dockerfile
+            docker image build --no-cache -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/.circleci/basic_dockerfile
           EOF
     - run:
         name: Build Docker container
@@ -67,12 +67,14 @@ jobs:
                   docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
                   docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
               else
-                  echo "Repository: $CIRCLE_REPOSITORY_URL"
-                  echo "Branch: $CIRCLE_BRANCH"
-                  echo "service WILL NOT be deployed"
                   docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
+                  echo "Repository: $CIRCLE_REPOSITORY_URL"
+                  echo "Branch: $CIRCLE_BRANCH"
+                  echo "================================================================================"
+                  echo "                        Service WILL NOT be deployed"
+                  echo "================================================================================"
               fi
           EOF
 

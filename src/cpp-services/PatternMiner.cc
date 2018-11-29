@@ -7,17 +7,11 @@ PatternMiner::PatternMiner()
 {
     // Loads default Pattern Miner configuration
     opencog::config().load("./config/opencog_patternminer_nlp.conf");
+    evaluateScheme("(use-modules (opencog nlp))");
 }
 
 PatternMiner::~PatternMiner() 
 {
-}
-
-// This method is called by superclass constructor
-void PatternMiner::loadModules()
-{
-    OpencogSNETService::loadModules();
-    evaluateScheme("(use-modules (opencog nlp))");
 }
 
 bool PatternMiner::execute(string &output, const vector<std::string> &args)

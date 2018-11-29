@@ -53,11 +53,6 @@ public:
      */
     virtual bool execute(std::string &output, const std::vector<std::string> &args) = 0;
 
-    /*
-     * Loads required SCM modules. Default implementation loads only (use-modules (opencog))
-     * This method is called in OpencogSNETService constructor.
-     */
-    virtual void loadModules();
 
     // ************************************************************
     // Helper methods and vars

@@ -23,7 +23,7 @@ jobs:
         name: Build basic docker image
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker image build --no-cache -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/.circleci/basic_dockerfile
+            docker image build --no-cache -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/basic-dockerfile
           EOF
     - run:
         name: Build Docker container

@@ -50,7 +50,7 @@ RUN cd ${SINGNET_REPOS} && \
     wget http://ftp.cn.debian.org/debian/pool/main/n/nlohmann-json/nlohmann-json-dev_2.1.1-1.1_all.deb; \
     apt install -y ./nlohmann-json-dev_2.1.1-1.1_all.deb
 
-RUN cd $SINGNET_REPOS && \
+RUN cd ${SINGNET_REPOS} && \
     git clone https://github.com/singnet/cogutil.git && \
     cd cogutil && \
     mkdir build && \
@@ -59,7 +59,7 @@ RUN cd $SINGNET_REPOS && \
     make && \
     make install
 
-RUN cd $SINGNET_REPOS && \
+RUN cd ${SINGNET_REPOS} && \
     git clone https://github.com/singnet/atomspace.git && \
     cd atomspace && \
     mkdir build && \
@@ -68,7 +68,7 @@ RUN cd $SINGNET_REPOS && \
     make && \
     make install
 
-RUN cd $SINGNET_REPOS && \
+RUN cd ${SINGNET_REPOS} && \
     git clone https://github.com/singnet/opencog.git && \
     cd opencog && \
     mkdir build && \
@@ -79,7 +79,7 @@ RUN cd $SINGNET_REPOS && \
 
 # Manually install Python 3.6. This is required because opencog
 # image is based in Ubuntu 14.04.
-RUN cd $SINGNET_REPOS && \
+RUN cd ${SINGNET_REPOS} && \
     apt install -y \
         build-essential \
         checkinstall \

@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/singnet
     environment:
       ORG: singnet
+      SNETD_PORT: 7031
       DOCKER_ORG: singularitynet
       DOCKER_CONTEXT: https://github.com/singnet/opencog-services.git
       DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
@@ -65,7 +66,7 @@ jobs:
                   docker rmi $DOCKER_IMAGE_NAME || true
                   docker image tag $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $DOCKER_IMAGE_NAME
                   docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
-                  docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+                  docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
               else
                   docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING

@@ -25,7 +25,7 @@ bool SCMService::execute(string &output, const vector<string> &args)
     string cmd = "(execute (list ";
     for (unsigned int i = 0; i < args.size(); i++) {
         if (std::regex_match(args.at(i), url_match_result, url_regex)) {
-            fprintf(stderr, "Matched: %s\n", args.at(i).c_str());
+            printf("Fetching and loading into Atomspace: %s\n", args.at(i).c_str());
             string errorMessage;
             if (loadAtomeseFile(errorMessage, args.at(i))) {
                 output.assign(errorMessage);
@@ -39,7 +39,7 @@ bool SCMService::execute(string &output, const vector<string> &args)
         }
     }
     cmd += "))";
-    printf("cmd = <%s>\n", cmd.c_str());
+    printf("Scheme command: <%s>\n", cmd.c_str());
     evaluateScheme(output, cmd);
     return false;
 }

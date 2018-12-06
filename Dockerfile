@@ -12,9 +12,6 @@ RUN cd ${SINGNET_INSTALL} && \
     git clone https://github.com/singnet/opencog-services.git
 
 RUN cd ${SINGNET_INSTALL}/opencog-services && \
-    cp lib/libPatternMiner.so /usr/local/lib/opencog
-
-RUN cd ${SINGNET_INSTALL}/opencog-services && \
     ./scripts/build.sh
 
 WORKDIR ${SINGNET_INSTALL}/opencog-services

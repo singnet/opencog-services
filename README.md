@@ -4,7 +4,7 @@
 [contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 [cpp-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
 [opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
-[opencog-pattern-miner]: https://wiki.opencog.org/w/Pattern_miner
+[opencog-pattern-miner]: https://github.com/singnet/opencog/tree/master/opencog/learning/miner
 [users-guide]: https://singnet.github.io/opencog-services/
 
 
@@ -22,7 +22,7 @@ C++ and Scheme services are implemented in `src/cpp-services` and
 
 - [Echo](docs/Echo.md) - a simple 'echo' which just outputs its input, used to test the architecture and to serve as example.
 - [EchoScheme](docs/EchoScheme.md) - the same, but written in `Scheme`.
-- [PatternMiner](docs/PatternMiner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
+- [Miner](docs/Miner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
 
 [HTML User's Guide Hub][users-guide]
 

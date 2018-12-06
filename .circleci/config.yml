@@ -16,7 +16,7 @@ jobs:
       DOCKER_CONTAINER_NAME_STAGING: _OPENCOG_SERVICES_STAGING
       REPO_NAME: opencog-services
       SERVICE_NAME: opencog
-      SERVICE_RUN_SCRIPT: bin/server
+      SERVICE_RUN_SCRIPT: scripts/service_up.sh
       TEST_SCRIPT: bin/runTests
       COMPLIANCE_CHECK_SCRIPT: scripts/compliance_check.sh
     steps:

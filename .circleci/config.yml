@@ -16,7 +16,8 @@ jobs:
       DOCKER_CONTAINER_NAME_STAGING: _OPENCOG_SERVICES_STAGING
       REPO_NAME: opencog-services
       SERVICE_NAME: opencog
-      SERVICE_RUN_SCRIPT: bin/server
+      SERVICE_START_SCRIPT: scripts/service_up.sh
+      SERVICE_TEST_SCRIPT: bin/server
       TEST_SCRIPT: bin/runTests
       COMPLIANCE_CHECK_SCRIPT: scripts/compliance_check.sh
     steps:
@@ -35,11 +36,11 @@ jobs:
             docker build --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $DOCKER_CONTEXT
           EOF
     - run:
-        name: Start Service
+        name: Start service for testing
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker run --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING \
-              -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $SERVICE_RUN_SCRIPT
+              -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $SERVICE_TEST_SCRIPT
           EOF
     - run:
         name: Execute compliance check
@@ -66,7 +67,7 @@ jobs:
                   docker rmi $DOCKER_IMAGE_NAME || true
                   docker image tag $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $DOCKER_IMAGE_NAME
                   docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
-                  docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_RUN_SCRIPT
+                  docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_START_SCRIPT
               else
                   docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING

@@ -104,3 +104,10 @@ RUN cd ${SINGNET_REPOS} && \
     cd snet-cli && \
     ./scripts/blockchain install && \
     pip3 install -e .
+
+RUN cd ${SINGNET_REPOS} && \
+    mkdir snet-daemon && \
+    cd snet-daemon && \
+    wget https://github.com/singnet/snet-daemon/releases/download/v0.1.2/snetd-0.1.2.tar.gz && \
+    tar -xvf snetd-0.1.2.tar.gz && \
+    cp snetd-0.1.2/snetd-linux-amd64 /usr/local/bin/snetd

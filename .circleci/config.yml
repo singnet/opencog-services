@@ -8,13 +8,14 @@ jobs:
       ORG: singnet
       SNETD_PORT: 7031
       DOCKER_ORG: singularitynet
-      DOCKER_CONTEXT: https://github.com/singnet/opencog-services.git
       DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
       DOCKER_IMAGE_NAME: senna_opencog_services
       DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
       DOCKER_IMAGE_NAME_STAGING: _opencog_services_staging
       DOCKER_CONTAINER_NAME_STAGING: _OPENCOG_SERVICES_STAGING
-      REPO_NAME: opencog-services
+      REPOSITORY: opencog-services
+      BRANCH: master
+      GIT_OWNER: singnet
       SERVICE_NAME: opencog
       SERVICE_START_SCRIPT: scripts/service_up.sh
       SERVICE_TEST_SCRIPT: bin/server
@@ -25,7 +26,7 @@ jobs:
         name: Build basic docker image
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker image build -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/singnet/opencog-services/master/basic-dockerfile
+            docker image build -t $DOCKER_BASIC_IMAGE_NAME https://raw.githubusercontent.com/$GIT_OWNER/$REPOSITORY/$BRANCH/basic-dockerfile
           EOF
     - run:
         name: Build Docker container
@@ -33,7 +34,7 @@ jobs:
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING || true
             docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING || true
-            docker build --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $DOCKER_CONTEXT
+            docker build --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING https://github.com/$GIT_OWNER/$REPOSITORY.git#$BRANCH
           EOF
     - run:
         name: Start service for testing
@@ -58,7 +59,7 @@ jobs:
         name: Deploy service
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-              if [ $CIRCLE_REPOSITORY_URL = "git@github.com:singnet/opencog-services.git" ] && [ $CIRCLE_BRANCH = "master" ] ; then
+              if [ $CIRCLE_REPOSITORY_URL = "git@github.com:$GIT_OWNER/$REPOSITORY.git" ] && [ $CIRCLE_BRANCH = "$BRANCH" ] ; then
                   echo "Deploying service"
                   docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING

@@ -32,8 +32,8 @@ Parameters:
 
 1. **minsup -** Integer - Minimum support - the mining algorithm discards patterns with frequency below that value.
 2. **maxiter -** Integer - Maximum iterations - limits the number of iterations of the mining algorithm.
-3. **incremental-expansion -** - Boolean (#t or #f) - allows increasing number of conjuncts.
-4. **max-conjuncts -** - Integer - limits the number of conjunctions considered by the mining algorithm.
+3. **incremental-expansion -** Boolean (#t or #f) - allows increasing number of conjuncts.
+4. **max-conjuncts -** Integer - limits the number of conjunctions considered by the mining algorithm.
 
 A simple example of knowledge base is presented [here][soda-drinkers].
 

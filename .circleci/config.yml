@@ -34,7 +34,7 @@ jobs:
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING || true
             docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING || true
-            docker build --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING https://github.com/$GIT_OWNER/$REPOSITORY.git#$BRANCH
+            docker build --build-arg BASIC_IMAGE=$DOCKER_BASIC_IMAGE_NAME --no-cache -t $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING https://github.com/$GIT_OWNER/$REPOSITORY.git#$BRANCH
           EOF
     - run:
         name: Start service for testing

@@ -1,4 +1,5 @@
-FROM senna_opencog_services_basic
+ARG BASIC_IMAGE=opencog_services_basic
+FROM $BASIC_IMAGE
 
 ENV SINGNET_INSTALL=/opt/singnet
 ENV GOPATH=${SINGNET_INSTALL}/go

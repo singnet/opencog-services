@@ -7,12 +7,15 @@ jobs:
     environment:
       ORG: singnet
       SNETD_PORT: 7031
+      RELEX_PORT: 7034
       DOCKER_ORG: singularitynet
       DOCKER_BASIC_IMAGE_NAME: senna_opencog_services_basic
       DOCKER_IMAGE_NAME: senna_opencog_services
       DOCKER_CONTAINER_NAME: SENNA_OPENCOG_SERVICES
       DOCKER_IMAGE_NAME_STAGING: _opencog_services_staging
       DOCKER_CONTAINER_NAME_STAGING: _OPENCOG_SERVICES_STAGING
+      RELEX_CONTAINER_NAME: SENNA_OPENCOG_RELEX
+      OPENCOG_NETWORK_NAME: SENNA_OPENCOG_NETWORK
       REPOSITORY: opencog-services
       BRANCH: master
       GIT_OWNER: singnet
@@ -60,24 +63,35 @@ jobs:
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
               if [ $CIRCLE_REPOSITORY_URL = "git@github.com:$GIT_OWNER/$REPOSITORY.git" ] && [ $CIRCLE_BRANCH = "$BRANCH" ] ; then
-                  echo "Deploying service"
+                  echo "Stopping service containers (deployment and staging)"
                   docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
                   docker stop $DOCKER_CONTAINER_NAME || true
                   docker rm $DOCKER_CONTAINER_NAME || true
+                  echo "Managing images"
                   docker rmi $DOCKER_IMAGE_NAME || true
                   docker image tag $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $DOCKER_IMAGE_NAME
                   docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
+                  echo "Starting service container"
                   docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_START_SCRIPT
+                  echo "Starting Relex container"
+                  docker stop $RELEX_CONTAINER_NAME || true
+                  docker rm $RELEX_CONTAINER_NAME || true
+                  docker run --name $RELEX_CONTAINER_NAME --restart unless-stopped -p $RELEX_PORT:$4444 -di opencog/relex /bin/sh opencog-server.sh
+                  echo "Setting up Docker network with service and Relex containers"
+                  docker network rm $OPENCOG_NETWORK_NAME || true
+                  docker network create $OPENCOG_NETWORK_NAME
+                  docker network connect $OPENCOG_NETWORK_NAME $RELEX_CONTAINER_NAME
+                  docker network connect $OPENCOG_NETWORK_NAME $DOCKER_CONTAINER_NAME
               else
-                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
                   echo "Repository: $CIRCLE_REPOSITORY_URL"
                   echo "Branch: $CIRCLE_BRANCH"
                   echo "================================================================================"
                   echo "                        Service WILL NOT be deployed"
                   echo "================================================================================"
+                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
+                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
+                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
               fi
           EOF
 

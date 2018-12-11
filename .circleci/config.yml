@@ -84,14 +84,14 @@ jobs:
                   docker network connect $OPENCOG_NETWORK_NAME $RELEX_CONTAINER_NAME
                   docker network connect $OPENCOG_NETWORK_NAME $DOCKER_CONTAINER_NAME
               else
-                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
                   echo "Repository: $CIRCLE_REPOSITORY_URL"
                   echo "Branch: $CIRCLE_BRANCH"
                   echo "================================================================================"
                   echo "                        Service WILL NOT be deployed"
                   echo "================================================================================"
+                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
+                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
+                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
               fi
           EOF
 

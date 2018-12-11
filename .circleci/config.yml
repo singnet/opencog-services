@@ -59,11 +59,6 @@ jobs:
             docker exec -i $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING $TEST_SCRIPT
           EOF
     - run:
-        name: Relex container
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-          EOF
-    - run:
         name: Deploy service
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
@@ -79,7 +74,7 @@ jobs:
                   docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_START_SCRIPT
                   docker stop $RELEX_CONTAINER_NAME || true
                   docker rm $RELEX_CONTAINER_NAME || true
-                  docker run -it -p $RELEX_PORT:4444 --name $RELEX_CONTAINER_NAME opencog/relex /bin/sh opencog-server.sh
+                  docker run -p $RELEX_PORT:4444 --name $RELEX_CONTAINER_NAME opencog/relex /bin/sh opencog-server.sh
                   docker network rm $OPENCOG_NETWORK_NAME || true
                   docker network create $OPENCOG_NETWORK_NAME
                   docker network connect $OPENCOG_NETWORK_NAME $RELEX_CONTAINER_NAME

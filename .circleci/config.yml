@@ -74,7 +74,7 @@ jobs:
                   docker run --name $DOCKER_CONTAINER_NAME --restart unless-stopped -p $SNETD_PORT:$SNETD_PORT -di $DOCKER_IMAGE_NAME $SERVICE_START_SCRIPT
                   docker stop $RELEX_CONTAINER_NAME || true
                   docker rm $RELEX_CONTAINER_NAME || true
-                  docker run --name $RELEX_CONTAINER_NAME --restart unless-stopped -p $RELEX_PORT:$4444 -di opencog/relex opencog-server.sh
+                  docker run --name $RELEX_CONTAINER_NAME --restart unless-stopped -p $RELEX_PORT:$4444 -di opencog/relex /bin/sh opencog-server.sh
                   docker network rm $OPENCOG_NETWORK_NAME || true
                   docker network create $OPENCOG_NETWORK_NAME
                   docker network connect $OPENCOG_NETWORK_NAME $RELEX_CONTAINER_NAME

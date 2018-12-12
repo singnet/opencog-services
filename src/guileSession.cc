@@ -1,7 +1,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
-#include <opencog/guile/SchemeEval.h>
 #include <opencog/atomspace/AtomSpace.h>
+#include <opencog/guile/SchemeEval.h>
 #include <opencog/util/Config.h>
 
 #include <chrono>
@@ -96,7 +96,7 @@ void session(int argc, char *argv[])
 		// try to read a command, lock if no one is available
 		string received_command = "";
 		received_command = readMsgLock(read_fd);
-		//printf("%d: Received command: %s\n", my_pid, received_command.c_str());
+		printf("%d: Received command: %s\n", my_pid, received_command.c_str());
 
 		string output_mg = "";
 		if (received_command == string(SSM_HANDSHAKE_CMD)) {
@@ -104,10 +104,6 @@ void session(int argc, char *argv[])
 
 			//printf("%d: Response: %s\n", myPID, output_mg.c_str());
 		} else if (received_command == string(SSM_FINISH_CMD)) {
-			// send output telling that this process has finished
-			output_mg = string(SSM_FINISH_CMD);
-			sendMsg(write_fd, output_mg);
-
 			// break loop and exit 0
 			break;
 		} else {

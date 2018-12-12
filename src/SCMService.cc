@@ -27,8 +27,10 @@ bool SCMService::execute(string &output, const vector<string> &args)
         if (std::regex_match(args.at(i), url_match_result, url_regex)) {
             fprintf(stderr, "Matched: %s\n", args.at(i).c_str());
             string errorMessage;
-            if (loadAtomeseFile(errorMessage, args.at(i))) {
-                output.assign(errorMessage);
+
+			int load_status = loadAtomeseFile(args.at(i));
+            if (load_status != OSS_OP_URL_LOADED) {
+                output.assign("Can not load atomese file...");
                 return true;
             }
         } else {

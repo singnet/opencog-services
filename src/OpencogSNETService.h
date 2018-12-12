@@ -22,11 +22,24 @@
 #ifndef _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 #define _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
-#include <opencog/guile/SchemeEval.h>
 #include <opencog/atomspace/AtomSpace.h>
+#include <opencog/guile/SchemeEval.h>
+
+#include "GuileSessionManager.h"
+
+#define OSS_OP_URL_LOADED 100
+#define OSS_OP_ATOMSPACE_RETRIEVED 101
+
+#define OSS_ERROR_CAN_NOT_DELETE_TEMP_FILE -100
+#define OSS_ERROR_CAN_NOT_LOAD_URL -101
+#define OSS_ERROR_CAN_NOT_LOAD_INVALID_SESSION -102
+#define OSS_ERROR_ATOMSPACE_CAN_NOT_BE_RETRIVED -104
+#define OSS_ERROR_FATAL_CAN_NOT_CREATE_PRIVATE_SESSION -500
+
+using namespace opencog;
 
 namespace opencogservices
 {
@@ -34,14 +47,11 @@ namespace opencogservices
 /**
  * Superclass of every Opencog service.
  */
-class OpencogSNETService 
+class OpencogSNETService
 {
-
 public:
-
-
-    OpencogSNETService();
-    ~OpencogSNETService();
+	OpencogSNETService();
+	~OpencogSNETService();
 
     // ************************************************************
     // Required API for subclasses
@@ -65,7 +75,7 @@ public:
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
      */
-    bool loadAtomeseFile(std::string &errorMessage, const std::string &url);
+    int loadAtomeseFile(const std::string &url);
 
     /*
      * Uses `schemeEval` to evaluate the passed Scheme string.
@@ -84,13 +94,30 @@ public:
      */
     void setConfigurationParameters(const std::string jsonString);
 
-    opencog::AtomSpace atomSpace;
+	/*
+     * Set sessionmanager instance for 'this' object
+     */
+	void setGuileSessionManager(GuileSessionManager *pManager);
+
+	/*
+     * Session _sessionManager mirrored functions
+     */
+	int startSession(int &rOutputSessionToken);
+	int endSession(const int sessionToken);
+	int sendCommand(const int token, const char *pCmd);
+	int sync(const int token);
+	int receive(const int token, string &rOutput, bool lock = false);
+	int getAtomspace(AtomSpace &rOutAtomSpace);
+	int getAtomspace(const int token, AtomSpace &rOutAtomSpace);
 
 private:
+	// used to have access to sessions
+	GuileSessionManager *_sessionManager;
 
-    opencog::SchemeEval *schemeEval;
+	// used to store a created private session for this service
+	int _sessionToken;
 };
 
-}
+} // namespace opencogservices
 
 #endif // _OPENCOGSERVICES_OPENCOGSNETSERVICE_H

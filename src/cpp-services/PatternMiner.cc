@@ -3,48 +3,57 @@
 using namespace opencogservices;
 using namespace std;
 
-PatternMiner::PatternMiner() 
+namespace opencogservices
 {
-    // Loads default Pattern Miner configuration
-    opencog::config().load("./config/opencog_patternminer_nlp.conf");
-    evaluateScheme("(use-modules (opencog nlp))");
+
+PatternMiner::PatternMiner()
+{
 }
 
-PatternMiner::~PatternMiner() 
+PatternMiner::~PatternMiner()
 {
 }
 
 bool PatternMiner::execute(string &output, const vector<std::string> &args)
 {
-    if ((args.size() < 1) || (args.size() > 2)) {
-        output.assign("Usage: PatternMiner <url> [config]\n\t<url> Valid URL.\n\t[config] Optional JSON array with Opencog configuration parameters.");
-        return true;
-    }
+	evaluateScheme("(use-modules (opencog nlp))");
 
-    string url = args.at(0);
+	if ((args.size() < 1) || (args.size() > 2)) {
+		output.assign("Usage: PatternMiner <url> [config]\n\t<url> Valid URL.\n\t[config] Optional JSON array with Opencog configuration parameters.");
+		return true;
+	}
 
-    if (url == "") {
-        output.assign("Invalid empty URL");
-        return true;
-    }
+	string url = args.at(0);
 
-    if (args.size() > 1) {
-        setConfigurationParameters(args.at(1));
-    }
+	if (url == "") {
+		output.assign("Invalid empty URL");
+		return true;
+	}
 
-    string errorMessage;
-    if (loadAtomeseFile(errorMessage, url)) {
-        output.assign("Error fetching URL: " + url + "\n" + errorMessage);
-        return true;
-    }
+	if (args.size() > 1) {
+		setConfigurationParameters(args.at(1));
+	}
 
-    opencog::PatternMiner pm(atomSpace);
-    pm.runPatternMiner(false);
-    int g = opencog::config().get_int("Pattern_Max_Gram");
-    vector<opencog::HTreeNode*>& topPatterns = pm.getFinalPatternsForGram(g);
-    //printf("g = %d size = %lu\n", g, topPatterns.size());
-    string patternStr = pm.unifiedPatternToKeyString(topPatterns[0]->pattern);
+	int load_status = loadAtomeseFile(url);
+	if (load_status != OSS_OP_URL_LOADED) {
+		return true;
+	}
 
-    output.assign(patternStr);
-    return false;
+	AtomSpace atomSpace;
+	int retrieval_status = getAtomspace(atomSpace);
+
+	if (retrieval_status != OSS_OP_ATOMSPACE_RETRIEVED) {
+		return true;
+	}
+
+	opencog::PatternMiner pm(atomSpace);
+	pm.runPatternMiner(false);
+	int g = opencog::config().get_int("Pattern_Max_Gram");
+	vector<opencog::HTreeNode *> &topPatterns = pm.getFinalPatternsForGram(g);
+	//printf("g = %d size = %lu\n", g, topPatterns.size());
+	string patternStr = pm.unifiedPatternToKeyString(topPatterns[0]->pattern);
+
+	output.assign(patternStr);
+	return false;
 }
+} // namespace opencogservices

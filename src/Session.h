@@ -16,12 +16,12 @@ namespace opencogservices
 class Session
 {
 private:
-	string mWritePipeName;
-	string mReadPipeName;
+	string _writePipeName;
+	string _readPipeName;
 
-	int mWriteFd;
-	int mReadFd;
-	int mPid;
+	int _writeFd;
+	int _readFd;
+	int _pid;
 
 public:
 	Session(int writeFd, int readFd, int pid);

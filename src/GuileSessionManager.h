@@ -35,24 +35,23 @@ class GuileSessionManager
 {
 private:
 	// sessions ids and objects
-	map<int, Session> mSessions;
-	map<int, thread *> mSessionsThreads;
+	map<int, Session> _sessions;
+	map<int, thread *> _sessionsThreads;
 
 	// ids holder
-	int mIdGen;
-
-	// available IDs to be used
-	list<int> mAvailableIds;
+	int _idGen;
 
 	// private to avoid the final user to generate IDs freely
 	int genId();
-	int freeId(int id);
 
 	// oppened sessions pid file
-	int mPidFile;
+	int _pidFile;
 
 	// closed private sessions file
-	int mClosedSessionsFile;
+	int _closedSessionsFile;
+
+	// session executable path
+	string _sessionAbsoluteExePath;
 
 	// create file with pids to manage oppened processes
 	int killDeadSessions();
@@ -64,13 +63,13 @@ private:
 	set<int> readClosedSessionsFile();
 
 public:
-	GuileSessionManager();
+	GuileSessionManager(const char* guileSessionExePath);
 	~GuileSessionManager();
 
 	int startSession(int &rOutputToken);
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
-	int flushsync(const int token);
+	int sync(const int token);
 	int receive(const int token, string &rOutput, bool lock = false);
 
 	void waitForSessions();

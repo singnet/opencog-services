@@ -12,6 +12,7 @@
 #include <thread>
 #include <vector>
 
+#include "GuileSessionManager.h"
 #include "OpencogSNETService.h"
 #include "OpencogSNETServiceFactory.h"
 #include "opencog.grpc.pb.h"
@@ -37,15 +38,42 @@ static unsigned long int nextTicketCount;
 static string baseOutputURL;
 static string baseOutputDir;
 
+// session manager need to be global in order to be accessed by the signal handler
+GuileSessionManager *gpSessionManager;
+
+void init(char *execPath)
+{
+	// TODO::check better way to do it
+	char path_save[PATH_MAX];
+	char abs_exe_path[PATH_MAX];
+	char *p;
+
+	if (!(p = strrchr(execPath, '/')))
+		getcwd(abs_exe_path, sizeof(abs_exe_path));
+	else {
+		*p = '\0';
+		getcwd(path_save, sizeof(path_save));
+		chdir(execPath);
+		getcwd(abs_exe_path, sizeof(abs_exe_path));
+		chdir(path_save);
+	}
+
+	// initialize guile session manager and set the guile session absolute executable path
+	gpSessionManager = new GuileSessionManager(abs_exe_path);
+}
+
 class ServiceImpl final : public ServiceDefinition::Service
 {
 public:
-	explicit ServiceImpl()
+	explicit ServiceImpl(GuileSessionManager &sessionManager)
 	{
 		nextTicketCount = 1;
 		baseOutputURL = ASYNCHRONOUS_API_OUTPUT_URL;
 		baseOutputDir = ASYNCHRONOUS_API_OUTPUT_DIR;
 		//baseOutputURL = baseOutputDir = "/tmp/";
+
+		// create new manager
+		_sessionManager = &sessionManager;
 	}
 
 	// SERVICE_API
@@ -69,7 +97,6 @@ public:
 		return Status::OK;
 	}
 
-private:
 	void exec_service(ServerContext *context, const Command *input, CommandOutput *output)
 	{
 		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
@@ -77,6 +104,7 @@ private:
 			output->set_s(input->cmd() + ": Opencog service not found");
 		} else {
 			// set the GuileSessionManager here
+			opencogService->setGuileSessionManager(_sessionManager);
 
 			vector<string> args;
 			string out;
@@ -107,6 +135,9 @@ private:
 			} else {
 				output->set_s(out);
 			}
+
+			// dispose the service class
+			delete opencogService;
 		}
 	}
 
@@ -144,12 +175,45 @@ private:
 		fputs(s.c_str(), f);
 		fclose(f);
 	}
+
+private:
+	GuileSessionManager *_sessionManager;
 };
+
+void handleSignal(int sig)
+{
+	bool free_guile_session_manager = false;
+
+	switch (sig) {
+		case SIGINT:
+			free_guile_session_manager = true;
+			break;
+		case SIGKILL:
+			free_guile_session_manager = true;
+			break;
+		case SIGTERM:
+			free_guile_session_manager = true;
+			break;
+		case SIGPWR:
+			free_guile_session_manager = true;
+			break;
+	}
+
+	if (free_guile_session_manager) {
+		/* guarantee that the created sessions will be deleted for any of the registered signals.
+		 * otherwise the session manager will kill them during its next startup
+		 */
+		delete gpSessionManager;
+	}
+
+	// exit the program by returning the received signal
+	exit(sig);
+}
 
 void RunServer()
 {
 	std::string server_address("0.0.0.0:7032");
-	ServiceImpl service;
+	ServiceImpl service(*gpSessionManager);
 	ServerBuilder builder;
 	builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
 	builder.RegisterService(&service);
@@ -160,6 +224,15 @@ void RunServer()
 
 int main(int argc, char **argv)
 {
+	// init global manager to be handled by the handleSignal function
+	init(argv[0]);
+
+	// register a signal handler for this process
+	signal(SIGINT, handleSignal);
+
+	// runs server
 	RunServer();
+
+	// return status OK
 	return 0;
 }

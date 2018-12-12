@@ -86,8 +86,9 @@ void OpencogSNETService::evaluateScheme(string &output, const string &scmLine)
 
 void OpencogSNETService::setConfigurationParameters(const std::string jsonString)
 {
-    auto jasonHash = json::parse(jsonString);
+	// TODO::set configurations for the private session of this service
+    /*auto jasonHash = json::parse(jsonString);
     for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
        config().set(it.key(), it.value());
-    }
+    }*/
 }

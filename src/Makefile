@@ -62,10 +62,10 @@ SERVICES = $(shell ls cpp-services/*.cc | sed "s/\.cc/\.o/")
 
 all: guileSession server client runTests
 
-guileSession: opencog.pb.o guileSession.o
+guileSession: opencog.pb.o opencog.grpc.pb.o guileSession.o
 	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
 
-server: $(SERVICES) utils.o Session.o GuileSessionManager.o OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o opencog.pb.o opencog.grpc.pb.o server.o
+server: $(SERVICES) opencog.pb.o opencog.grpc.pb.o opencogServicesCore.o GuileSessionManager.o Session.o OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o ServiceImpl.o server.o
 	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
 
 client: opencog.pb.o opencog.grpc.pb.o client.o

@@ -1,56 +1,23 @@
-#include <grpc/grpc.h>
-#include <grpcpp/security/server_credentials.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
 
-#include <chrono>
-#include <ctime>
-#include <future>
-#include <iomanip>
-#include <string>
-#include <thread>
-#include <vector>
-
-#include "GuileSessionManager.h"
-#include "OpencogSNETService.h"
-#include "OpencogSNETServiceFactory.h"
-#include "opencog.grpc.pb.h"
-
-// seconds
-#define ASYNCHRONOUS_API_UPDATE_INTERVAL ((unsigned int)60)
-
-#define ASYNCHRONOUS_API_OUTPUT_URL "http://54.203.198.53:7000/ServiceAsynchronousOutput/opencog/"
-#define ASYNCHRONOUS_API_OUTPUT_DIR "/home/admin/storage/ServiceAsynchronousOutput/opencog/"
-
-using grpc::Server;
-using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::ServerReader;
-using grpc::ServerReaderWriter;
-using grpc::ServerWriter;
-using grpc::Status;
+#include "ServiceImpl.h"
 
 using namespace opencogservices;
 using namespace std;
 
-static unsigned long int nextTicketCount;
-static string baseOutputURL;
-static string baseOutputDir;
-
 // session manager need to be global in order to be accessed by the signal handler
-GuileSessionManager *gpSessionManager;
+static GuileSessionManager *gpSessionManager;
 
-void init(char *execPath)
+void initGuileSessionManager(char *execPath)
 {
 	// TODO::check better way to do it
 	char path_save[PATH_MAX];
 	char abs_exe_path[PATH_MAX];
 	char *p;
 
-	if (!(p = strrchr(execPath, '/')))
+	// TODO::check better way to do it
+	if (!(p = strrchr(execPath, '/'))) {
 		getcwd(abs_exe_path, sizeof(abs_exe_path));
-	else {
+	} else {
 		*p = '\0';
 		getcwd(path_save, sizeof(path_save));
 		chdir(execPath);
@@ -61,124 +28,6 @@ void init(char *execPath)
 	// initialize guile session manager and set the guile session absolute executable path
 	gpSessionManager = new GuileSessionManager(abs_exe_path);
 }
-
-class ServiceImpl final : public ServiceDefinition::Service
-{
-public:
-	explicit ServiceImpl(GuileSessionManager &sessionManager)
-	{
-		nextTicketCount = 1;
-		baseOutputURL = ASYNCHRONOUS_API_OUTPUT_URL;
-		baseOutputDir = ASYNCHRONOUS_API_OUTPUT_DIR;
-		//baseOutputURL = baseOutputDir = "/tmp/";
-
-		// create new manager
-		_sessionManager = &sessionManager;
-	}
-
-	// SERVICE_API
-
-	Status execute(ServerContext *context, const Command *input, CommandOutput *output) override
-	{
-		exec_service(context, input, output);
-		return Status::OK;
-	}
-
-	Status asynchronousTask(ServerContext *context, const Command *input, Ticket *ticket) override
-	{
-		string suffix = input->cmd() + "-" + to_string(::getpid()) + to_string(nextTicketCount);
-		string url = baseOutputURL + suffix;
-		string fname = baseOutputDir + suffix;
-		nextTicketCount++;
-		ticket->set_url(url);
-		thread t(&ServiceImpl::threadJobManager, this, context, input, fname);
-		t.detach();
-		sleep(1);
-		return Status::OK;
-	}
-
-	void exec_service(ServerContext *context, const Command *input, CommandOutput *output)
-	{
-		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
-		if (opencogService == NULL) {
-			output->set_s(input->cmd() + ": Opencog service not found");
-		} else {
-			// set the GuileSessionManager here
-			opencogService->setGuileSessionManager(_sessionManager);
-
-			vector<string> args;
-			string out;
-			// The 'while (true)' is just to avoid an annoying chain of if's
-			while (true) {
-				// feed 'args' with arguments until the first empty string
-				// is found
-				if (input->arg1() == "")
-					break;
-				args.push_back(input->arg1());
-				if (input->arg2() == "")
-					break;
-				args.push_back(input->arg2());
-				if (input->arg3() == "")
-					break;
-				args.push_back(input->arg3());
-				if (input->arg4() == "")
-					break;
-				args.push_back(input->arg4());
-				if (input->arg5() == "")
-					break;
-				args.push_back(input->arg5());
-				// Breaks anyway after feeding 5 arguments
-				break;
-			}
-			if (opencogService->execute(out, args)) {
-				output->set_s("Error in " + input->cmd() + ": " + out);
-			} else {
-				output->set_s(out);
-			}
-
-			// dispose the service class
-			delete opencogService;
-		}
-	}
-
-	void threadJobManager(ServerContext *context, const Command *input, const string &fname)
-	{
-		CommandOutput output;
-
-		auto future = std::async(std::launch::async, &ServiceImpl::exec_service, this, context, input, &output);
-
-		unsigned int count = ASYNCHRONOUS_API_UPDATE_INTERVAL;
-		while (true) {
-			auto threadStatus = future.wait_for(std::chrono::seconds(0));
-			if (threadStatus == std::future_status::ready) {
-				break;
-			} else {
-				if (count == ASYNCHRONOUS_API_UPDATE_INTERVAL) {
-					count = 0;
-					auto now = std::chrono::system_clock::now();
-					auto now_c = std::chrono::system_clock::to_time_t(now);
-					//string s = "Work in progress. Last update: " + std::time_put(std::localtime(&now_c), "%Y-%m-%d %X") + "\n";
-					char buffer[256];
-					strftime(buffer, sizeof(buffer), " Work in progress. Last update: %d-%m-%Y %H:%M:%S\n", std::localtime(&now_c));
-					// TODO : this need to be improved to use a more robust method
-					FILE *f = fopen(fname.c_str(), "w");
-					fputs(buffer, f);
-					fclose(f);
-				}
-				count++;
-				sleep(1); // 1 second
-			}
-		}
-
-		string s = "Service finished. Output:\n" + output.s();
-		FILE *f = fopen(fname.c_str(), "w");
-		fputs(s.c_str(), f);
-		fclose(f);
-	}
-
-private:
-	GuileSessionManager *_sessionManager;
-};
 
 void handleSignal(int sig)
 {
@@ -225,7 +74,7 @@ void RunServer()
 int main(int argc, char **argv)
 {
 	// init global manager to be handled by the handleSignal function
-	init(argv[0]);
+	initGuileSessionManager(argv[0]);
 
 	// register a signal handler for this process
 	signal(SIGINT, handleSignal);

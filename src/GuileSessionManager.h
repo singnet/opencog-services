@@ -1,36 +1,13 @@
-#ifndef SCHEME_SESSION_MANAGER_H
-#define SCHEME_SESSION_MANAGER_H
+#ifndef _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
+#define _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
 
-#include <opencog/atomspace/AtomSpace.h>
-#include <opencog/guile/SchemeEval.h>
-#include <opencog/util/Config.h>
-
-#include <chrono>
-#include <ctime>
-#include <fcntl.h>
-#include <future>
-#include <iomanip>
-#include <list>
-#include <map>
-#include <set>
-#include <stdio.h>
-#include <string.h>
-#include <string>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <thread>
-#include <unistd.h>
-
+#include "opencogServicesCore.h"
 #include "Session.h"
-#include "guileSessionManagerDeff.h"
-
-using namespace opencog;
-using namespace std;
-
-void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
 
 namespace opencogservices
 {
+extern void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
+
 class GuileSessionManager
 {
 private:
@@ -63,7 +40,7 @@ private:
 	set<int> readClosedSessionsFile();
 
 public:
-	GuileSessionManager(const char* guileSessionExePath);
+	GuileSessionManager(const char *guileSessionExePath);
 	~GuileSessionManager();
 
 	int startSession(int &rOutputToken);

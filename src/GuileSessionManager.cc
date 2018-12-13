@@ -1,5 +1,7 @@
 #include "GuileSessionManager.h"
 
+namespace opencogservices
+{
 void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe)
 {
 	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe;
@@ -9,21 +11,19 @@ void callSession(const string &rSessionProgram, const string &rReadPipe, const s
 	//execl(rSessionProgram.c_str(), rReadPipe.c_str(), rWritePipe.c_str());
 }
 
-namespace opencogservices
-{
-GuileSessionManager::GuileSessionManager(const char* guileSessionExePath)
+GuileSessionManager::GuileSessionManager(const char *guileSessionExePath)
 {
 	//TODO::change to hex generator
-	_idGen = SSM_INITIAL_ID;
+	_idGen = GSM_INITIAL_ID;
 
 	// certify that there will be no running sessions from previously running mannagers
 	killDeadSessions();
 
 	// open a new sessions pid file
-	_pidFile = open(SSM_SESSION_OPENED_SESSIONS_FILE, O_CREAT | O_WRONLY);
+	_pidFile = open(GSM_SESSION_OPENED_SESSIONS_FILE, O_CREAT | O_WRONLY);
 
 	// open file to store a log of all the closed sessions
-	_closedSessionsFile = open(SSM_SESSION_CLOSED_SESSIONS_FILE, O_CREAT | O_WRONLY);
+	_closedSessionsFile = open(GSM_SESSION_CLOSED_SESSIONS_FILE, O_CREAT | O_WRONLY);
 
 	// store the path of the guile session exe
 	_sessionAbsoluteExePath = string(guileSessionExePath) + "/";
@@ -37,7 +37,7 @@ GuileSessionManager::~GuileSessionManager()
 		Session session = it->second;
 
 		// string token
-		session.sendMsg(SSM_FINISH_CMD);
+		session.sendMsg(GSM_FINISH_CMD);
 
 		// TODO::check if need to close form this side
 		close(session.getWriteFd());
@@ -56,7 +56,7 @@ GuileSessionManager::~GuileSessionManager()
 	close(_closedSessionsFile);
 
 	// remove opened closed sessions log files
-	string rm_pid_file_cmd = "rm " + string(SSM_SESSION_OPENED_SESSIONS_FILE) + " " + string(SSM_SESSION_CLOSED_SESSIONS_FILE);
+	string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE) + " " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
 	system(rm_pid_file_cmd.c_str());
 }
 
@@ -73,11 +73,11 @@ int GuileSessionManager::startSession(int &rOutputToken)
 	int id = genId();
 
 	// prepare args, first arg
-	string first_arg = _sessionAbsoluteExePath +  string(SSM_SESSION_CLIENT);
+	string first_arg = _sessionAbsoluteExePath + string(GSM_SESSION_CLIENT);
 
 	// second arg, with pipe name
-	string second_arg_read_pipe = SSM_SESSION_PIPE_NAME_PREFIX + to_string(id) + "_read";
-	string second_arg_write_pipe = SSM_SESSION_PIPE_NAME_PREFIX + to_string(id) + "_write";
+	string second_arg_read_pipe = GSM_SESSION_PIPE_NAME_PREFIX + to_string(id) + "_read";
+	string second_arg_write_pipe = GSM_SESSION_PIPE_NAME_PREFIX + to_string(id) + "_write";
 
 	// prepara com pipe
 	mkfifo(second_arg_read_pipe.c_str(), 0666);
@@ -85,14 +85,14 @@ int GuileSessionManager::startSession(int &rOutputToken)
 
 	// create a new session process and wait son to create its pipes
 	thread *pServiceThread;
-	pServiceThread = new thread(callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe);
+	pServiceThread = new thread(opencogservices::callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe);
 
 	// open pipes from session _sessionManager, do not use NONBLOCK! otherwise it will lose the handshake-like com.
 	int read_fd = open(second_arg_read_pipe.c_str(), O_RDONLY);
 	int write_fd = open(second_arg_write_pipe.c_str(), O_WRONLY);
 
 	if (read_fd < 0 || write_fd < 0) {
-		return SSM_OP_ERROR_CAN_NOT_OPEN_PIPES;
+		return GSM_OP_ERROR_CAN_NOT_OPEN_PIPES;
 	}
 
 	// create a session object to handle messages
@@ -122,21 +122,21 @@ int GuileSessionManager::startSession(int &rOutputToken)
 	// set output parameter
 	rOutputToken = id;
 
-	return SSM_OP_SESSION_CREATED;
+	return GSM_OP_SESSION_CREATED;
 }
 
 int GuileSessionManager::endSession(const int token)
 {
 	// check if session token is positive and if session exists
 	if (_sessions.find(token) == _sessions.end()) {
-		return SSM_OP_ERROR_DOES_NOT_EXIST;
+		return GSM_OP_ERROR_DOES_NOT_EXIST;
 	}
 
 	// get session object
 	Session session = _sessions[token];
 
 	// tell session to close its files and kill itself
-	sendCommand(token, SSM_FINISH_CMD);
+	sendCommand(token, GSM_FINISH_CMD);
 
 	// close my side of the pipes
 	close(session.getWriteFd());
@@ -158,14 +158,14 @@ int GuileSessionManager::endSession(const int token)
 	session_pid.push_back('\n');
 	write(_closedSessionsFile, session_pid.c_str(), session_pid.length());
 
-	return SSM_OP_SESSION_ENDED;
+	return GSM_OP_SESSION_ENDED;
 }
 
 int GuileSessionManager::sendCommand(const int token, const char *pCmd)
 {
 	// check if token is valid
 	if (_sessions.find(token) == _sessions.end()) {
-		return SSM_OP_ERROR_UNABLE_TO_SEND_COMMAND;
+		return GSM_OP_ERROR_UNABLE_TO_SEND_COMMAND;
 	}
 
 	// get session object
@@ -175,29 +175,29 @@ int GuileSessionManager::sendCommand(const int token, const char *pCmd)
 	session.sendMsg(pCmd);
 
 	// return status ok
-	return SSM_OP_SESSION_COMMAND_SENT;
+	return GSM_OP_SESSION_COMMAND_SENT;
 }
 
 int GuileSessionManager::sync(const int token)
 {
 	// check if token is valid
 	if (_sessions.find(token) == _sessions.end()) {
-		return SSM_OP_ERROR_UNABLE_TO_FLUSH_SYNC;
+		return GSM_OP_ERROR_UNABLE_TO_FLUSH_SYNC;
 	}
 
 	// get session object
 	Session session = _sessions[token];
 
 	// send handshake to sync commands
-	session.sendMsg(string(SSM_HANDSHAKE_CMD));
+	session.sendMsg(string(GSM_HANDSHAKE_CMD));
 
 	string cmd = session.readMsg();
-	while (cmd != SSM_HANDSHAKE_RESPONSE) {
+	while (cmd != GSM_HANDSHAKE_RESPONSE) {
 		cmd = session.readMsg();
 	}
 
 	// return sync ok
-	return SSM_OP_SESSION_FLUSH_SYNC_COMPLETED;
+	return GSM_OP_SESSION_FLUSH_SYNC_COMPLETED;
 }
 
 int GuileSessionManager::receive(const int token, string &rOutput, bool lock)
@@ -206,7 +206,7 @@ int GuileSessionManager::receive(const int token, string &rOutput, bool lock)
 
 	// check if token is valid
 	if (_sessions.find(token) == _sessions.end()) {
-		return SSM_OP_ERROR_DOES_NOT_EXIST;
+		return GSM_OP_ERROR_DOES_NOT_EXIST;
 	}
 
 	// get session object
@@ -220,7 +220,7 @@ int GuileSessionManager::receive(const int token, string &rOutput, bool lock)
 	}
 
 	// return op OK
-	return SSM_OP_SESSION_MSG_RECEIVED;
+	return GSM_OP_SESSION_MSG_RECEIVED;
 }
 
 void GuileSessionManager::waitForSessions()
@@ -237,7 +237,7 @@ vector<int> GuileSessionManager::readopenedSessionsFile()
 	vector<int> pids;
 
 	// try to open the opened sessions file
-	int file_desc = open(SSM_SESSION_OPENED_SESSIONS_FILE, O_RDONLY);
+	int file_desc = open(GSM_SESSION_OPENED_SESSIONS_FILE, O_RDONLY);
 
 	if (file_desc >= 0) {
 		// control variables
@@ -278,9 +278,9 @@ vector<int> GuileSessionManager::readopenedSessionsFile()
 			}
 		} while (status != 0);
 
-		// close file, delete it and create a new one
+		// close file and delete it
 		close(file_desc);
-		string rm_pid_file_cmd = "rm " + string(SSM_SESSION_OPENED_SESSIONS_FILE);
+		string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE);
 		system(rm_pid_file_cmd.c_str());
 	}
 
@@ -294,7 +294,7 @@ set<int> GuileSessionManager::readClosedSessionsFile()
 	set<int> pids;
 
 	// try to open the opened sessions file
-	int file_desc = open(SSM_SESSION_CLOSED_SESSIONS_FILE, O_RDONLY);
+	int file_desc = open(GSM_SESSION_CLOSED_SESSIONS_FILE, O_RDONLY);
 
 	if (file_desc >= 0) {
 		// control variables
@@ -336,9 +336,9 @@ set<int> GuileSessionManager::readClosedSessionsFile()
 			}
 		} while (status != 0);
 
-		// close file, delete it and create a new one
+		// close file and delete it
 		close(file_desc);
-		string rm_pid_file_cmd = "rm " + string(SSM_SESSION_CLOSED_SESSIONS_FILE);
+		string rm_pid_file_cmd = "rm " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
 		system(rm_pid_file_cmd.c_str());
 	}
 
@@ -348,7 +348,7 @@ set<int> GuileSessionManager::readClosedSessionsFile()
 
 int GuileSessionManager::killDeadSessions()
 {
-	int status = SSM_OP_NO_PROCESS_KILLED;
+	int status = GSM_OP_NO_PROCESS_KILLED;
 
 	// get all closed sessions to avoid killing objects that are already dead (private sessions)
 	set<int> closed_sessions_pids = readClosedSessionsFile();
@@ -368,14 +368,14 @@ int GuileSessionManager::killDeadSessions()
 	// kill all processes if readed pids length is greater than 0
 	if (pids_to_kill.length() > 0) {
 		// tell system to kill all processes
-		string rm_pipes_cmd = "rm " + string(SSM_SESSION_PIPE_NAME_PREFIX) + "*";
+		string rm_pipes_cmd = "rm " + string(GSM_SESSION_PIPE_NAME_PREFIX) + "*";
 		string kill_sessions_rm_pipes_cmd = "kill -9 " + pids_to_kill + ";" + rm_pipes_cmd + " > /dev/null";
 
 		// tell system to delete all created pipes
 		system(kill_sessions_rm_pipes_cmd.c_str());
 
 		// set return status
-		status = SSM_OP_PROCESSES_KILLED;
+		status = GSM_OP_PROCESSES_KILLED;
 	}
 
 	// return status

@@ -22,7 +22,7 @@
 #ifndef _OPENCOGSERVICES_OPENCOGSNETSERVICEFACTORY_H
 #define _OPENCOGSERVICES_OPENCOGSNETSERVICEFACTORY_H
 
-#include <string>
+#include "opencogServicesCore.h"
 #include "OpencogSNETService.h"
 
 namespace opencogservices

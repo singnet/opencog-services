@@ -1,7 +1,14 @@
-#include "utils.h"
+#include "opencogServicesCore.h"
+#include "GuileSessionManager.h"
+#include "OpencogSNETService.h"
+#include "OpencogSNETServiceFactory.h"
+#include "SCMService.h"
+#include "ServiceImpl.h"
+#include "Session.h"
 
 namespace opencogservices
 {
+
 size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream)
 {
 	size_t written = fwrite(pPtr, size, nmemb, (FILE *)pStream);
@@ -16,7 +23,7 @@ int loadUrlFile(const string &rUrl, string &rOutputFileName)
 	// create temp file to hold the URL contents
 	CURL *pCurlHandle;
 	char tmp_name[] = "/tmp/URL_LOADED_FILE_XXXXXX";
-	FILE *pFile = fdopen(mkstemp(tmp_name), "w");
+	FILE *pFile		= fdopen(mkstemp(tmp_name), "w");
 
 	// return error if failed to create file
 	if (!pFile) {
@@ -49,4 +56,4 @@ int loadUrlFile(const string &rUrl, string &rOutputFileName)
 	// return the generated file
 	return status;
 }
-}
+} // namespace opencogservices

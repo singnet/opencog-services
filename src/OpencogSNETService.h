@@ -22,27 +22,15 @@
 #ifndef _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 #define _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 
-#include <string>
-#include <vector>
-
-#include <opencog/atomspace/AtomSpace.h>
-#include <opencog/guile/SchemeEval.h>
-
+#include "opencogServicesCore.h"
 #include "GuileSessionManager.h"
-
-#define OSS_OP_URL_LOADED 100
-#define OSS_OP_ATOMSPACE_RETRIEVED 101
-
-#define OSS_ERROR_CAN_NOT_DELETE_TEMP_FILE -100
-#define OSS_ERROR_CAN_NOT_LOAD_URL -101
-#define OSS_ERROR_CAN_NOT_LOAD_INVALID_SESSION -102
-#define OSS_ERROR_ATOMSPACE_CAN_NOT_BE_RETRIVED -104
-#define OSS_ERROR_FATAL_CAN_NOT_CREATE_PRIVATE_SESSION -500
-
-using namespace opencog;
 
 namespace opencogservices
 {
+
+// declare here and let the compiler figure out which class is this one,
+// need to set a friend ref in the SNETService class
+class ServiceImpl;
 
 /**
  * Superclass of every Opencog service.
@@ -53,21 +41,20 @@ public:
 	OpencogSNETService();
 	~OpencogSNETService();
 
-    // ************************************************************
-    // Required API for subclasses
+	// ************************************************************
+	// Required API for subclasses
 
-    /*
+	/*
      * This is the method called by the gRPC server. It is suppused to do
      * (synchronously) everything the service does. Return 'true' if some error
      * occurred or 'false' otherwise.
      */
-    virtual bool execute(std::string &output, const std::vector<std::string> &args) = 0;
+	virtual bool execute(std::string &output, const std::vector<std::string> &args) = 0;
 
+	// ************************************************************
+	// Helper methods and vars
 
-    // ************************************************************
-    // Helper methods and vars
-
-    /*
+	/*
      * Fetches the contents of the passed URL (which is supposed to be a .scm file
      * with an Atomese knowledge base) and load it in 'atomSpace' (a public
      * AtomSpace field). Any errors are reported in errorMessage.
@@ -75,42 +62,34 @@ public:
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
      */
-    int loadAtomeseFile(const std::string &url);
+	void loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
 
-    /*
-     * Uses `schemeEval` to evaluate the passed Scheme string.
-     */
-    void evaluateScheme(const std::string &scmLine);
-
-    /*
+	/*
      * Uses `schemeEval` to evaluate the passed Scheme string and return the
      * output of the execution.
      */
-    void evaluateScheme(std::string &output, const std::string &scmLine);
+	void evaluateScheme(std::string &output, const std::string &scmLine, const int token = -1);
 
-    /*
+	/*
      * Use the passed JSON hash to set Opencog's configuration parameters (e.g.
      * `{"Max_thread_num": "8", "Pattern_Max_Gram": "3"}`)
      */
-    void setConfigurationParameters(const std::string jsonString);
-
-	/*
-     * Set sessionmanager instance for 'this' object
-     */
-	void setGuileSessionManager(GuileSessionManager *pManager);
+	void setConfigurationParameters(const std::string jsonString, const int token = -1);
 
 	/*
      * Session _sessionManager mirrored functions
      */
-	int startSession(int &rOutputSessionToken);
-	int endSession(const int sessionToken);
-	int sendCommand(const int token, const char *pCmd);
-	int sync(const int token);
-	int receive(const int token, string &rOutput, bool lock = false);
-	int getAtomspace(AtomSpace &rOutAtomSpace);
-	int getAtomspace(const int token, AtomSpace &rOutAtomSpace);
+	void createGuileSession(int &rOutputSessionToken);
+	void closeGuileSession(const int sessionToken);
+	void fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token = -1);
 
 private:
+	// let the service class to have access to the setGuileSessionManager
+	friend class ServiceImpl;
+
+	// Set sessionmanager instance for 'this' object
+	void setGuileSessionManager(GuileSessionManager *pManager);
+
 	// used to have access to sessions
 	GuileSessionManager *_sessionManager;
 

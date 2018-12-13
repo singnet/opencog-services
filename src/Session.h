@@ -1,15 +1,7 @@
-#ifndef SESSION_H
-#define SESSION_H
+#ifndef _OPENCOGSERVICES_SESSION_H
+#define _OPENCOGSERVICES_SESSION_H
 
-#include <string>
-#include <unistd.h>
-
-#define S_OP_MESSAGE_SENT 100
-#define S_OP_MESSAGE_READ 101
-#define S_OP_ERROR_CAN_NOT_SEND_MSG -100
-#define S_OP_ERROR_CAN_NOT_READ_MSG -101
-
-using namespace std;
+#include "opencogServicesCore.h"
 
 namespace opencogservices
 {

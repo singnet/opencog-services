@@ -22,11 +22,6 @@
 #ifndef _OPENCOGSERVICES_PATTERNMINER_H
 #define _OPENCOGSERVICES_PATTERNMINER_H
 
-#include <opencog/util/Config.h>
-#include <opencog/atomspace/AtomSpace.h>
-#include <opencog/learning/PatternMiner/PatternMiner.h>
-#include <opencog/guile/SchemeEval.h>
-
 #include "../OpencogSNETService.h"
 
 namespace opencogservices

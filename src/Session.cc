@@ -1,5 +1,4 @@
 #include "Session.h"
-#include "guileSessionManagerDeff.h"
 
 namespace opencogservices
 {
@@ -31,7 +30,7 @@ Session::~Session()
 int Session::sendMsg(const string &msg)
 {
 	string s_msg = msg;
-	s_msg.push_back(SSM_COMMAND_DELIMITER);
+	s_msg.push_back(GSM_COMMAND_DELIMITER);
 	int status = write(_writeFd, s_msg.c_str(), s_msg.length());
 
 	if (status != 0) {
@@ -44,7 +43,7 @@ int Session::sendMsg(const string &msg)
 int Session::sendMsg(const char *msg)
 {
 	string s_msg = string(msg);
-	s_msg.push_back(SSM_COMMAND_DELIMITER);
+	s_msg.push_back(GSM_COMMAND_DELIMITER);
 	int status = write(_writeFd, s_msg.c_str(), s_msg.length());
 
 	if (status != 0) {
@@ -69,11 +68,11 @@ string Session::readMsg()
 			exit(-1);
 		}
 
-		if (c != SSM_COMMAND_DELIMITER) {
+		if (c != GSM_COMMAND_DELIMITER) {
 			received_msg.push_back(c);
 		}
 
-	} while (c != SSM_COMMAND_DELIMITER);
+	} while (c != GSM_COMMAND_DELIMITER);
 
 	return received_msg;
 }

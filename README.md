@@ -4,7 +4,7 @@
 [contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 [cpp-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
 [opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
-[opencog-pattern-miner]: https://wiki.opencog.org/w/Pattern_miner
+[opencog-pattern-miner]: https://github.com/singnet/opencog/tree/master/opencog/learning/miner
 [users-guide]: https://singnet.github.io/opencog-services/
 
 
@@ -22,24 +22,26 @@ C++ and Scheme services are implemented in `src/cpp-services` and
 
 - [Echo](docs/Echo.md) - a simple 'echo' which just outputs its input, used to test the architecture and to serve as example.
 - [EchoScheme](docs/EchoScheme.md) - the same, but written in `Scheme`.
-- [PatternMiner](docs/PatternMiner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
+- [Miner](docs/Miner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
 
 [HTML User's Guide Hub][users-guide]
 
 ## Getting Started
 
-In addition to the services thenselves, this repository contains all the basic
+In addition to the services themselves, this repository contains all the basic
 code and scripts required to build and deploy the Opencog services.
 
 ### Building and testing services locally (without blockchain)
 
-We suggest you to build in a docker container with all the required packages using `Docker/Dockerfile`.
-Then run container and continue from its prompt.
+We suggest you to build in a docker container with all the required packages
+using the command lines below. Having a docker container is useful because the
+Opencog Services uses C++ gRPC bindings which requires a lot of pre-requisite
+packages to be installed.
 
 ```
-$ git clone https://github.com/singnet/opencog-services.git
-$ docker build -t opencog_service_dev opencog-services/Docker/
-$ docker run --name OPENCOG_SERVICE_DEV -ti opencog_service_dev /bin/bash
+$ docker image build -t opencog_services_basic https://raw.githubusercontent.com/singnet/opencog-services/master/basic-dockerfile
+$ docker image build -t opencog_services https://raw.githubusercontent.com/singnet/opencog-services/master/Dockerfile
+$ docker run --name OPENCOG_SERVICE_DEV -ti opencog_services /bin/bash
 ```
 
 Find `server` and `client` executables in `bin/`
@@ -57,7 +59,7 @@ $ ./bin/client sync Echo foo bar
 foo bar
 ```
 
-The command line above is requesting the the execution of the service `Echo`,
+The command line above is requesting the execution of the service `Echo`,
 passing two arguments `foo` and `bar`. The service just echoes the passed input.
 
 The keyword `sync` before the service name sates that the call should be
@@ -65,7 +67,7 @@ synchronous. So the `client` command will wait for the service to finish before
 returning. You can make an asynchronous call using
 
 ```
-$ ./bin/client sync Echo foo bar
+$ ./bin/client async Echo foo bar
 Task "Echo" started. See results in: http://54.203.198.53:7000/ServiceAsynchronousOutput/opencog/Echo-53171
 ```
 
@@ -73,7 +75,17 @@ In this case the service return an URL which can be acessed asynchronously to
 get the results (when they are ready). This is specially useful when running
 services that take too long to execute.
 
-Results remain available for 24 hours after being delivered. Then they are
+**Important note:** `async` calls are setup to work only in the deployment
+container. To test asynchronous commands locally you need to change
+src/server.cc:
+
+```
+#define ASYNCHRONOUS_API_OUTPUT_URL 
+#define ASYNCHRONOUS_API_OUTPUT_DIR 
+
+```
+
+In the deployment environment, results remain available for 24 hours after being delivered. Then they are
 deleted.
 
 ### Writing a new Opencog service

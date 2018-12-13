@@ -63,19 +63,19 @@ void session(int argc, char *argv[])
 	SchemeEval *pSchemeEval = new SchemeEval(pAtomspace);
 
 	// let the user define which config the system will use
-	opencog::config().load("./config/opencog_patternminer_nlp.conf");
+	// opencog::config().load("./config/opencog_patternminer_nlp.conf");
 
 	while (true) {
 		// try to read a command, lock if no one is available
 		string received_command = "";
 		received_command		= readMsgLock(read_fd);
-		//printf("%d: Received command: %s\n", my_pid, received_command.c_str());
+		printf("%d: Received command: %s\n", my_pid, received_command.c_str());
 
-		string output_mg = "";
+		string output_mgs = "";
 		if (received_command == string(GSM_HANDSHAKE_CMD)) {
-			output_mg = GSM_HANDSHAKE_RESPONSE;
+			output_mgs = GSM_HANDSHAKE_RESPONSE;
 
-			//printf("%d: Response: %s\n", myPID, output_mg.c_str());
+			// printf("%d: Response: %s\n", myPID, output_mgs.c_str());
 		} else if (received_command == string(GSM_SET_CONFIG)) {
 
 		} else if (received_command == string(GSM_FINISH_CMD)) {
@@ -83,17 +83,20 @@ void session(int argc, char *argv[])
 			break;
 		} else {
 			// execute the received command
-			output_mg = pSchemeEval->eval(received_command);
+			output_mgs = pSchemeEval->eval(received_command);
 
 			// remove \n and () from response
-			boost::remove_erase_if(output_mg, boost::is_any_of("\n"));
+			boost::remove_erase_if(output_mgs, boost::is_any_of("\n"));
 
-			if (output_mg.length() > GSM_MININUM_RESPONSE_LENGTH) {
-				//printf("%d: Response: %s\n", myPID, output_mg.c_str());
+			// need to set simple output for read lock
+			if (output_mgs.length() == 0) {
+				// printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+				output_mgs.append("NOTHING");
 			}
 		}
 
-		sendMsg(write_fd, output_mg);
+		printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+		sendMsg(write_fd, output_mgs);
 	}
 }
 

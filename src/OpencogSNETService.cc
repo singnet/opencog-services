@@ -76,7 +76,7 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 
 	// TODO::check if sync is necessary here
 	// wait for rule file to be loaded
-	_sessionManager->sync(access_token);
+	// _sessionManager->sync(access_token);
 
 	// sending cmd to this object private session
 	_sessionManager->sendCommand(access_token, rScmLine.c_str());

@@ -1,0 +1,6631 @@
+(SetLink
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (ConceptNode "man")
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (ConceptNode "soda drinker")
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-727804c5")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-727804c5")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-3dcd9c4e")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-3dcd9c4e")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-1208d3b6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-1208d3b6")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-727804c5")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-727804c5")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-3dcd9c4e")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-3dcd9c4e")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-3dcd9c4e")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-3dcd9c4e")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (ConceptNode "human")
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-793e6063")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-727804c5")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-727804c5")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$top-arg")
+      (VariableNode "$top-arg")
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-695fa277")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-695fa277")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "woman")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+         (VariableNode "$PM-793e6063-3efdff2d")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-3efdff2d")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (ConceptNode "woman")
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-727804c5")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-727804c5")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Hessley")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Lucy")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+         (VariableNode "$PM-762382f3-617778c7")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-617778c7")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Zac")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-793e6063-7f67d2f2")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-7f67d2f2")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+         (VariableNode "$PM-793e6063-3efdff2d")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-3efdff2d")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Emily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-7ce2ee91")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3-7ce2ee91")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Allen")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Mike")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6a340f52")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3-6a340f52")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (InheritanceLink
+         (VariableNode "$PM-793e6063")
+         (ConceptNode "ugly")
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "man")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableNode "$PM-793e6063")
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-5010998c")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3-5010998c")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Lily")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Jenica")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Davion")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Jassy")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-49d47bfb")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Abe")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-49d47bfb")
+            (ConceptNode "ugly")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "ugly")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Bob")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Cason")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Breonna")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (ConceptNode "Jaleesa")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+         (InheritanceLink
+            (ConceptNode "Rio")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (ConceptNode "Kecia")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-762382f3-6c91188a")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Jadrian")
+            (VariableNode "$PM-762382f3-6c91188a")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "man")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (ConceptNode "Sophia")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-762382f3")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (VariableNode "$PM-762382f3")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "soda drinker")
+         )
+         (InheritanceLink
+            (ConceptNode "Alaura")
+            (VariableNode "$PM-762382f3")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "human")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+      )
+   )
+   (LambdaLink
+      (VariableList
+         (VariableNode "$PM-793e6063")
+         (VariableNode "$PM-793e6063-4fd1dac6")
+      )
+      (AndLink
+         (InheritanceLink
+            (VariableNode "$PM-793e6063")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "woman")
+         )
+         (InheritanceLink
+            (VariableNode "$PM-793e6063-4fd1dac6")
+            (ConceptNode "soda drinker")
+         )
+      )
+   )
+)
+
+

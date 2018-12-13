@@ -1,19 +1,16 @@
 #include "OpencogSNETServiceFactory.h"
 #include "SCMService.h"
 #include "cpp-services/Echo.h"
-#include "cpp-services/PatternMiner.h"
 
 using namespace opencogservices;
-using namespace std;
 
 OpencogSNETService *OpencogSNETServiceFactory::factory(const string &serviceName) 
 {
-    if (serviceName == "PatternMiner") {
-        return new PatternMiner(); // opencogservices::PatternMiner(), not opencog::PatternMiner::PatternMiner()
-    } else if (serviceName == "Echo") {
+	if (serviceName == "Echo") {
         return new Echo();
     } else {
-        string fname = "src/scm-services/" + serviceName + ".scm";
+        string fname = "./src/scm-services/" + serviceName + ".scm";
+		printf("name: %s\n", fname.c_str());
         if (fileExists(fname)) {
             return new SCMService(fname);
         } else {
@@ -23,10 +20,6 @@ OpencogSNETService *OpencogSNETServiceFactory::factory(const string &serviceName
 }
 
 bool OpencogSNETServiceFactory::fileExists(const std::string& fname) {
-    if (FILE *f = fopen(fname.c_str(), "r")) {
-        fclose(f);
-        return true;
-    } else {
-        return false;
-    }   
+    ifstream f(fname.c_str());
+    return f.good();
 }

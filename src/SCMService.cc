@@ -21,22 +21,21 @@ bool SCMService::execute(string &output, const vector<string> &args)
 
 	string scheme_out = "";
 	evaluateScheme(scheme_out, "(load \"" + schemeFileName + "\")");
-	string cmd = "(execute (list ";
+
 	for (unsigned int i = 0; i < args.size(); i++) {
 		if (std::regex_match(args.at(i), url_match_result, url_regex)) {
 			fprintf(stderr, "Matched: %s\n", args.at(i).c_str());
 			string errorMessage;
 			loadAtomeseFile(errorMessage, args.at(i));
 		} else {
-			cmd += args.at(i);
-			if (i != (args.size() - 1)) {
-				cmd += " ";
-			}
+			string cmd		  = "(display \"" + args.at(i) + "\")";
+			string scheme_out = "";
+			evaluateScheme(scheme_out, cmd);
+
+			output += scheme_out;
+			if (i < args.size() - 1) output += " ";
 		}
 	}
-	cmd += "))";
-	printf("cmd = <%s>\n", cmd.c_str());
-	evaluateScheme(output, cmd);
 	return false;
 }
 

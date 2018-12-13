@@ -2,7 +2,6 @@
 #include "ServiceImpl.h"
 
 using namespace opencogservices;
-using namespace std;
 
 // session manager need to be global in order to be accessed by the signal handler
 static GuileSessionManager *gpSessionManager;

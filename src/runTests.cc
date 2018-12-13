@@ -10,7 +10,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define TESTS_DIR "../tests"
+#define TESTS_DIR "./tests"
 
 using namespace std;
 using json = nlohmann::json;
@@ -61,7 +61,7 @@ static int runTests(char *serviceName)
 
 	auto testCases = jHash["test-cases"];
 	for (auto tcase : testCases) {
-		cmdLine = "./client sync ";
+		cmdLine = "./bin/client sync ";
 		cmdLine += serviceName;
 		cmdLine += " ";
 		cmdLine += tcase["input"].get<string>();
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 	if (serverPID == 0) {
 		int fd = open("/dev/null", O_WRONLY | O_CREAT, 0666);
 		dup2(fd, 1); // replace stdout
-		execl("./server", "server", (char *)0);
+		execl("./bin/server", "./bin/server", (char *)0);
 	} else {
 		sleep(1); // wait for server to be ready
 		int returnCode = 0;

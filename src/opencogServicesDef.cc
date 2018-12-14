@@ -1,4 +1,8 @@
+
+#include <curl/curl.h>
 #include "opencogServicesDef.h"
+
+using namespace std;
 
 namespace opencogservices
 {

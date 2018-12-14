@@ -59,9 +59,9 @@ using namespace std;
 
 namespace opencogservices
 {
-extern void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
-extern int loadUrlFile(const string &rUrl, string &rOutputFileName);
-extern size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream);
+void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
+int loadUrlFile(const string &rUrl, string &rOutputFileName);
+size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream);
 } // namespace opencogservices
 
 #endif

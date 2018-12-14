@@ -1,11 +1,11 @@
 #include "opencogServicesDef.h"
 #include <fcntl.h>
-#include <unistd.h>
-#include <string>
 #include <nlohmann/json.hpp>
+#include <string>
+#include <unistd.h>
 
-#include <opencog/guile/SchemeEval.h>
 #include <opencog/atomspace/AtomSpace.h>
+#include <opencog/guile/SchemeEval.h>
 #include <opencog/util/Config.h>
 
 #include <boost/algorithm/string/classification.hpp>

@@ -1,14 +1,14 @@
 #ifndef _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
 #define _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
 
-#include <vector>
-#include <set>
-#include <map>
-#include <thread>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include "Session.h"
+#include <fcntl.h>
+#include <map>
+#include <set>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <thread>
+#include <vector>
 
 namespace opencogservices
 {

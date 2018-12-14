@@ -1,93 +1,174 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <curl/curl.h>
-#include <nlohmann/json.hpp>
- 
-#include <opencog/util/Config.h>
-
 #include "OpencogSNETService.h"
 
-using namespace opencogservices;
-using namespace opencog;
-using namespace std;
-using json = nlohmann::json;
- 
-static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
+namespace opencogservices
 {
-  size_t written = fwrite(ptr, size, nmemb, (FILE *) stream);
-  return written;
-}
- 
-OpencogSNETService::OpencogSNETService() 
-{
-    schemeEval = new SchemeEval(&atomSpace);
-    logger().set_level(Logger::INFO);
-    logger().set_print_to_stdout_flag(false);
-    evaluateScheme("(use-modules (opencog))");
-}
 
-OpencogSNETService::~OpencogSNETService() 
+OpencogSNETService::OpencogSNETService()
 {
 }
 
-bool OpencogSNETService::loadAtomeseFile(string &errorMessage, const std::string &url)
+OpencogSNETService::~OpencogSNETService()
 {
-    CURL *curlHandle;
-    char tmpName[] = "/tmp/OpencogSNETService_loadAtomeseFile_XXXXXX";
-    FILE *file = fdopen(mkstemp(tmpName), "w");
-    if (! file) {
-        return true;
-    }
-
-    curl_global_init(CURL_GLOBAL_ALL);
-    curlHandle = curl_easy_init();
-    curl_easy_setopt(curlHandle, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curlHandle, CURLOPT_VERBOSE, 0L);
-    curl_easy_setopt(curlHandle, CURLOPT_NOPROGRESS, 1L);
-    curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, writeData);
-    curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, file);
-
-    CURLcode errorCode = curl_easy_perform(curlHandle);
-    if (errorCode) {
-        errorMessage.assign(curl_easy_strerror(errorCode));
-    }
-
-    fclose(file);
-    curl_easy_cleanup(curlHandle);
-    curl_global_cleanup();
-
-    string command = "(primitive-load \"";
-    command += tmpName;
-    command += "\")";
-    evaluateScheme(command);
-
-    if (remove(tmpName)) {
-        string msg = "loadAtomeseFile(): Error deleting temporary file: ";
-        msg += tmpName;
-        logger().warn(msg);
-    }
-
-    return (errorCode != 0);
+	// delete this service private session
+	_sessionManager->endSession(_sessionToken);
 }
 
-void OpencogSNETService::evaluateScheme(const string &scmLine)
+void OpencogSNETService::setConfigurationParameters(const std::string jsonString, const int token)
 {
-    logger().info("evaluateScheme(): " + scmLine);
-    logger().info(schemeEval->eval(scmLine));
+	int access_token = _sessionToken;
+	if (token > 0) {
+		access_token = token;
+	}
+
+	// sync with manager
+	_sessionManager->sync(access_token);
+
+	// send intent to load config
+	int GSM_status = _sessionManager->sendCommand(_sessionToken, GSM_SET_CONFIG);
+
+	if (GSM_status != GSM_OP_SESSION_COMMAND_SENT) {
+		// TODO::raise exception
+	} else {
+		// receive intent response
+		string output = "";
+		_sessionManager->receive(access_token, output, true);
+
+		// send json string to be loaded
+		GSM_status = _sessionManager->sendCommand(_sessionToken, jsonString.c_str());
+
+		if (GSM_status != GSM_OP_SESSION_COMMAND_SENT) {
+			// TODO::raise exception
+		} else {
+			// wait its response
+			_sessionManager->receive(access_token, output, true);
+		}
+	}
 }
 
-void OpencogSNETService::evaluateScheme(string &output, const string &scmLine)
+void OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl, const int token)
 {
-    logger().info("evaluateScheme(): " + scmLine);
-    output.assign(schemeEval->eval(scmLine));
-    logger().info(output);
+	int access_token = _sessionToken;
+	if (token > 0) {
+		access_token = token;
+	}
+
+	// status to be returned
+	int status = OSS_OP_URL_LOADED;
+
+	// load url into file
+	string atomese_file_name = "";
+	int url_status			 = loadUrlFile(rUrl, atomese_file_name);
+
+	if (url_status == UTILS_OP_URL_LOADED) {
+		// prepare commands to load
+		string command = "(primitive-load \"" + atomese_file_name + "\")";
+
+		// send command to this session
+		_sessionManager->sync(access_token);
+		int GSM_status = _sessionManager->sendCommand(_sessionToken, command.c_str());
+
+		// check if command was sent properly to the specified session
+		if (GSM_status != GSM_OP_SESSION_COMMAND_SENT) {
+			status = OSS_ERROR_CAN_NOT_LOAD_INVALID_SESSION;
+		} else {
+			_sessionManager->receive(access_token, output, true);
+		}
+	} else {
+		status = OSS_ERROR_CAN_NOT_LOAD_URL;
+	}
+
+	// remove temp file
+	if (remove(atomese_file_name.c_str())) {
+		status = OSS_ERROR_CAN_NOT_DELETE_TEMP_FILE;
+	}
+
+	// TODO::raise exceptions here based on status variable
 }
 
-void OpencogSNETService::setConfigurationParameters(const std::string jsonString)
+void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine, const int token)
 {
-    auto jasonHash = json::parse(jsonString);
-    for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
-       config().set(it.key(), it.value());
-    }
+	int access_token = _sessionToken;
+	if (token >= 0) {
+		access_token = token;
+	}
+
+	// TODO::check if sync is really necessary here
+	// wait for rule file to be loaded
+	_sessionManager->sync(access_token);
+
+	// sending cmd to this object private session
+	_sessionManager->sendCommand(access_token, rScmLine.c_str());
+
+	// get response to prevent buffer stacking and set as a return parameter
+	_sessionManager->receive(access_token, rOutput, true);
+
+	// put '\n' at the end
+	rOutput.push_back('\n');
 }
+
+void OpencogSNETService::createGuileSession(int &rOutputSessionToken)
+{
+	int status = _sessionManager->startSession(rOutputSessionToken);
+
+	//TODO::raise exception
+}
+
+void OpencogSNETService::closeGuileSession(const int sessionToken)
+{
+	int status = _sessionManager->endSession(sessionToken);
+
+	//TODO::raise exception
+}
+
+void OpencogSNETService::fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token)
+{
+	int access_token = _sessionToken;
+	if (token > 0) {
+		access_token = token;
+	}
+
+	// ensure that this command will be sent correctly
+	int sync_status = _sessionManager->sync(access_token);
+
+	if (sync_status == GSM_OP_SESSION_FLUSH_SYNC_COMPLETED) {
+		// tell to the _sessionManager to print the current private atomspace
+		_sessionManager->sendCommand(access_token, "(cog-prt-atomspace)");
+
+		// receive the atomspace and lock until obtaining a response
+		string atomspace_string = "";
+		_sessionManager->receive(access_token, atomspace_string, true);
+
+		// create an eval to return this atomspace
+		SchemeEval *eval = new SchemeEval(&rOutAtomSpace);
+		eval->eval(atomspace_string);
+
+		// dispose this eval
+		eval = nullptr;
+	} else {
+		// TODO::raise exceptions here based on status variable
+		// set error status_ atomspace can not be retrieved
+	}
+}
+
+void OpencogSNETService::setGuileSessionManager(GuileSessionManager *_sessionManager)
+{
+	// set _sessionManager instancef
+	this->_sessionManager = _sessionManager;
+
+	// created a private session for this service
+	int status = _sessionManager->startSession(_sessionToken);
+
+	if (status == GSM_OP_SESSION_CREATED) {
+		// after sessint this _sessionManager load the opencog modules
+		_sessionManager->sendCommand(_sessionToken, "(use-modules (opencog))");
+
+		// lock to sync with session with a OK handshake
+		int flush_status = _sessionManager->sync(_sessionToken);
+
+		if (flush_status != GSM_OP_SESSION_FLUSH_SYNC_COMPLETED) {
+			// TODO::raise exceptions here based on status variable
+			//exit(OSS_ERROR_FATAL_CAN_NOT_CREATE_PRIVATE_SESSION);
+		}
+	}
+}
+} // namespace opencogservices

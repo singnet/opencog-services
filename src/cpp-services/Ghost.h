@@ -20,9 +20,6 @@
 #define GHOST_STATUS_OK false
 
 #define GHOST_MSG_ERROR_INVALID_COMMAND "Invalid command."
-#define GHOST_MSG_ERROR_CAN_NOT_START_SESSION "Can not start session"
-#define GHOST_MSG_ERROR_NEED_MORE_ARGUMENTS "Need more arguments for: "
-#define GHOST_MSG_ERROR_UNABLE_TO_SEND_UTTERANCE "Unable to send utterance."
 
 #define GHOST_MSG_TOKENGRANT "Your token ID is: "
 #define GHOST_MSG_SESSION_ENDED "Session ended."

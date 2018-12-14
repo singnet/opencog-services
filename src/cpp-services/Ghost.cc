@@ -138,21 +138,21 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
 	switch (command) {
 		case TALK:
 			if (rArgs.size() < TALK_ARG_SIZE) {
-				response = string(GHOST_MSG_ERROR_NEED_MORE_ARGUMENTS) + rArgs[0] + " command.\n";
+				response = "Usage: Ghost utterance <session_id> \"Utterance string\"";
 			} else {
 				utterance(atoi(rArgs[1].c_str()), rArgs[2], response);
 			}
 			break;
 		case START_SESSION:
 			if (rArgs.size() < START_ARG_SIZE) {
-				response = string(GHOST_MSG_ERROR_NEED_MORE_ARGUMENTS) + rArgs[0] + " command.\n";
+				response = "Usage: Ghost start_session <rule file URL>";
 			} else {
 				ghostStartSession(rArgs[1], response);
 			}
 			break;
 		case END_SESSION:
 			if (rArgs.size() < END_ARG_SIZE) {
-				response = string(GHOST_MSG_ERROR_NEED_MORE_ARGUMENTS) + rArgs[0] + " command.\n";
+				response = "Usage: Ghost end_session <session_id>";
 			} else {
 				ghostEndSession(atoi(rArgs[1].c_str()), response);
 			}

@@ -1,6 +1,5 @@
 #include "GuileSessionManager.h"
 #include <fstream>
-#include <algorithm>
 
 using namespace std;
 using namespace opencogservices;
@@ -41,16 +40,16 @@ GuileSessionManager::~GuileSessionManager()
 		close(session.getReadFd());
 
 		// TODO::remove created pipes
-		string cleanpipes_command = "rm " + session.getWritePipeName() + " " + session.getReadPipeName();
-		system(cleanpipes_command.c_str());
+        remove(session.getWritePipeName().c_str());
+        remove(session.getReadPipeName().c_str());   
 	}
 
 	// wait for all threads to die (avoid crash)
 	waitForSessions();
 
 	// remove opened closed sessions log files
-	string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE) + " " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
-	system(rm_pid_file_cmd.c_str());
+	remove(GSM_SESSION_OPENED_SESSIONS_FILE);
+    remove(GSM_SESSION_CLOSED_SESSIONS_FILE);    
 }
 
 int GuileSessionManager::genId()
@@ -222,7 +221,7 @@ void GuileSessionManager::waitForSessions()
 	}
 }
 
-void GuileSessionManager::readPIDFile(const std::string &filename, vector<int> &outPidVec){
+void GuileSessionManager::readPIDFile(const std::string &filename, set<int> &outPidVec){
 	// try to open the opened sessions file
 	ifstream pid_file(filename);
 	string readed_line = "";
@@ -233,14 +232,13 @@ void GuileSessionManager::readPIDFile(const std::string &filename, vector<int> &
 
 			// convert line into PID
 			int pid = atoi(readed_line.c_str());
-			outPidVec.push_back(pid);
+			outPidVec.insert(pid);
 		}
 
 		pid_file.close();
 
         // remove files from fs
-        string rm_pid_file_cmd = "rm " + string(filename);
-	    system(rm_pid_file_cmd.c_str());
+	    remove(filename.c_str());
 	}
 }
 
@@ -249,19 +247,19 @@ int GuileSessionManager::clearEnvironment()
 	int status = GSM_OP_NO_PROCESS_KILLED;
 
 	// get all closed sessions to avoid killing objects that are already dead (private sessions)
-	vector<int> closed_sessions_pids;
+	std::set<int> closed_sessions_pids;
     readPIDFile(string(GSM_SESSION_CLOSED_SESSIONS_FILE), closed_sessions_pids);
 
 	// read all opened sessions pids
-	vector<int> opened_sessions_pids;
+	std::set<int> opened_sessions_pids;
     readPIDFile(string(GSM_SESSION_OPENED_SESSIONS_FILE), opened_sessions_pids);
 
     string pids_to_kill = "";
-    for (unsigned int pid = 0; pid < opened_sessions_pids.size(); pid++) {
-        int pid_to_kill = opened_sessions_pids[pid];
+    std::set<int>::iterator it = opened_sessions_pids.begin();
+    for ( ; it != opened_sessions_pids.end(); it++) {
+        int pid_to_kill = *it;
 
-        if (find(closed_sessions_pids.begin(), closed_sessions_pids.end(), pid_to_kill) 
-                == closed_sessions_pids.end()) {
+        if (closed_sessions_pids.find(pid_to_kill) == closed_sessions_pids.end()) {
             pids_to_kill.append(to_string(pid_to_kill) + " ");
         }
     }
@@ -269,10 +267,11 @@ int GuileSessionManager::clearEnvironment()
     // kill all processes if readed pids length is greater than 0
 	if (pids_to_kill.length() > 0) {
 		// tell system to kill all processes
-		string rm_pipes_cmd				  = "rm " + string(GSM_SESSION_PIPE_NAME_PREFIX) + "*";
-		string kill_sessions_rm_pipes_cmd = "kill -9 " + pids_to_kill + ";" + rm_pipes_cmd + " > /dev/null";
+		string rm_pipes_cmd = string(GSM_SESSION_PIPE_NAME_PREFIX) + "*";
+        remove(rm_pipes_cmd.c_str());
 
-		// tell system to delete all created pipes
+        // kill all sessions
+		string kill_sessions_rm_pipes_cmd = "kill -9 " + pids_to_kill + ";" + rm_pipes_cmd + " > /dev/null";
 		system(kill_sessions_rm_pipes_cmd.c_str());
 
 		// set return status

@@ -29,6 +29,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <thread>
+#include <set>
 #include <vector>
 #include <string>
 #include <iterator>
@@ -55,7 +56,7 @@ private:
 	int clearEnvironment();
 
     // read pid files to check if there is an openned process
-    void readPIDFile(const std::string &filename, std::vector<int> &outPidVec);
+    void readPIDFile(const std::string &filename, std::set<int> &outPidVec);
 
 public:
 	GuileSessionManager(const char *guileSessionExePath);

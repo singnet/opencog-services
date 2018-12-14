@@ -10,20 +10,12 @@ static size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream)
 	return written;
 }
 
-static int loadUrlFile(const string &rUrl, string &rOutputFileName)
+static CURLcode loadUrlFile(string &errorMessage, const string &rUrl, string &rOutputFileName)
 {
-	// status to be returned
-	int status = UTILS_OP_URL_LOADED;
-
 	// create temp file to hold the URL contents
 	CURL *pCurlHandle;
 	char tmp_name[] = "/tmp/URL_LOADED_FILE_XXXXXX";
 	FILE *pFile		= fdopen(mkstemp(tmp_name), "w");
-
-	// return error if failed to create file
-	if (!pFile) {
-		status = UTILS_OP_ERROR_CAN_NOT_CREATE_FILE;
-	}
 
 	// load URL and save its contents into the file
 	curl_global_init(CURL_GLOBAL_ALL);
@@ -36,9 +28,9 @@ static int loadUrlFile(const string &rUrl, string &rOutputFileName)
 
 	// if unable to handle url set error status, does not override file error
 	CURLcode errorCode = curl_easy_perform(pCurlHandle);
-	if (errorCode != CURLE_OK && status != UTILS_OP_ERROR_CAN_NOT_CREATE_FILE) {
-		status = UTILS_OP_ERROR_CAN_NOT_LOAD_URL;
-	}
+    if (errorCode) {
+        errorMessage.assign(curl_easy_strerror(errorCode));
+    }
 
 	// close the file
 	fclose(pFile);
@@ -49,7 +41,7 @@ static int loadUrlFile(const string &rUrl, string &rOutputFileName)
 	rOutputFileName = string(tmp_name);
 
 	// return the generated file
-	return status;
+	return errorCode;
 }
 
 OpencogSNETService::OpencogSNETService()
@@ -80,7 +72,7 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
 	} else {
 		// receive intent response
 		string output = "";
-		_sessionManager->receiveResponse(access_token, output, true);
+		_sessionManager->receiveResponse(access_token, output);
 
 		// send json string to be loaded
 		GSM_status = _sessionManager->sendCommand(_sessionToken, jsonString.c_str());
@@ -89,7 +81,7 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
 			// TODO::raise exception
 		} else {
 			// wait its response
-			_sessionManager->receiveResponse(access_token, output, true);
+			_sessionManager->receiveResponse(access_token, output);
 		}
 	}
 }
@@ -106,9 +98,12 @@ void OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl
 
 	// load url into file
 	string atomese_file_name = "";
-	int url_status			 = loadUrlFile(rUrl, atomese_file_name);
+    string error_msg = "";
+	CURLcode error_code = loadUrlFile(error_msg, rUrl, atomese_file_name);
 
-	if (url_status == UTILS_OP_URL_LOADED) {
+	if (error_code) {
+        output.assign(error_msg);
+	} else {
 		// prepare commands to load
 		string command = "(primitive-load \"" + atomese_file_name + "\")";
 
@@ -120,16 +115,16 @@ void OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl
 		if (GSM_status != GSM_OP_SESSION_COMMAND_SENT) {
 			out_msg.assign("Can not send command...");
 		} else {
-			_sessionManager->receiveResponse(access_token, out_msg, true);
+			_sessionManager->receiveResponse(access_token, out_msg);
 		}
-	} else {
-		out_msg.assign("Can not load url...");
 	}
 
 	// remove temp file
-	if (remove(atomese_file_name.c_str())) {
-		out_msg.assign("Can not remove file...");
-	}
+    if (remove(atomese_file_name.c_str())) {
+        string msg = "loadAtomeseFile(): Error deleting temporary file: ";
+        msg += atomese_file_name;
+        logger().warn(msg);
+    }
 
     // assign final output
     output.assign(out_msg);
@@ -150,7 +145,7 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 	_sessionManager->sendCommand(access_token, rScmLine.c_str());
 
 	// get response to prevent buffer stacking and set as a return parameter
-	_sessionManager->receiveResponse(access_token, rOutput, true);
+	_sessionManager->receiveResponse(access_token, rOutput);
 
 	// put '\n' at the end
 	rOutput.push_back('\n');
@@ -186,7 +181,7 @@ void OpencogSNETService::fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const 
 
 		// receive the atomspace and lock until obtaining a response
 		string atomspace_string = "";
-		_sessionManager->receiveResponse(access_token, atomspace_string, true);
+		_sessionManager->receiveResponse(access_token, atomspace_string);
 
 		// create an eval to return this atomspace
 		SchemeEval *eval = new SchemeEval(&rOutAtomSpace);

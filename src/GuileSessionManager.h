@@ -26,12 +26,12 @@
 #include "Session.h"
 #include <fcntl.h>
 #include <map>
-#include <set>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <thread>
 #include <vector>
 #include <string>
+#include <iterator>
 
 namespace opencogservices
 {
@@ -48,23 +48,14 @@ private:
 	// private to avoid the final user to generate IDs freely
 	int genId();
 
-	// oppened sessions pid file
-	int _pidFile;
-
-	// closed private sessions file
-	int _closedSessionsFile;
-
 	// session executable path
 	std::string _sessionAbsoluteExePath;
 
 	// create file with pids to manage oppened processes
 	int clearEnvironment();
 
-	// read openedSessions and returns a vector of pids
-	std::vector<int> readOpenedSessionsFile();
-
-	// read the closed sessions file to avoid trying to kill something that is already dead
-	std::set<int> readClosedSessionsFile();
+    // read pid files to check if there is an openned process
+    void readPIDFile(const std::string &filename, std::vector<int> &outPidVec);
 
 public:
 	GuileSessionManager(const char *guileSessionExePath);
@@ -74,7 +65,7 @@ public:
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
 	int sync(const int token);
-	int receiveResponse(const int token, std::string &rOutput, bool lock = false);
+	int receiveResponse(const int token, std::string &rOutput);
 
 	void waitForSessions();
 };

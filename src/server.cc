@@ -41,9 +41,9 @@ static GuileSessionManager *gpSessionManager;
 void initGuileSessionManager(char *execPath)
 {
 	// TODO::check better way to do it
-	char path_save[PATH_MAX];
-	char abs_exe_path[PATH_MAX];
-	char *p;
+    char path_save[PATH_MAX];
+    char abs_exe_path[PATH_MAX];
+    char *p;
 
 	// TODO::check better way to do it
 	if (!(p = strrchr(execPath, '/'))) {
@@ -210,8 +210,8 @@ void RunServer() {
 }
 
 int main(int argc, char** argv) {
-	initGuileSessionManager(argv[0]);
-	signal(SIGINT, handleSignal);
-	RunServer();
+    initGuileSessionManager(argv[0]);
+    signal(SIGINT, handleSignal);
+    RunServer();
     return 0;
 }

@@ -43,34 +43,26 @@ int Session::sendMsg(const string &msg)
 
 string Session::readMsg()
 {
-	string received_msg = "";
-	char c;
-	do {
-		int status = read(_readFd, &c, sizeof(char));
-
-		if (status == 0) {
-			return received_msg;
-		}
-
-		if (status == -1) {
-			exit(-1);
-		}
-
-		if (c != GSM_COMMAND_DELIMITER) {
-			received_msg.push_back(c);
-		}
-
-	} while (c != GSM_COMMAND_DELIMITER);
-
-	return received_msg;
-}
-
-string Session::readMsgLock()
-{
 	string msg = "";
 
 	do {
-		msg = readMsg();
+		char c;
+        do {
+            int status = read(_readFd, &c, sizeof(char));
+
+            if (status == 0) {
+                return msg;
+            }
+
+            if (status == -1) {
+                exit(-1);
+            }
+
+            if (c != GSM_COMMAND_DELIMITER) {
+                msg.push_back(c);
+            }
+
+        } while (c != GSM_COMMAND_DELIMITER);
 	} while (msg.length() == 0);
 
 	return msg;

@@ -60,7 +60,6 @@ public:
 
 	int sendMsg(const std::string &rMsg);
 	std::string readMsg();
-	std::string readMsgLock();
 };
 } // namespace opencogservices
 #endif

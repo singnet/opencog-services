@@ -45,36 +45,28 @@ static void sendMsg(int fd, const string &rMsg)
 	write(fd, s_msg.c_str(), s_msg.length());
 }
 
-static string readMsg(int fd)
-{
-	string received_msg = "";
-	char c;
-	do {
-		int status = read(fd, &c, sizeof(char));
-
-		if (status == 0) {
-			return received_msg;
-		}
-
-		if (status == -1) {
-			exit(-1);
-		}
-
-		if (c != GSM_COMMAND_DELIMITER) {
-			received_msg.push_back(c);
-		}
-
-	} while (c != GSM_COMMAND_DELIMITER);
-
-	return received_msg;
-}
-
-static string readMsgLock(int fd)
+static string readMsg(int readFd)
 {
 	string msg = "";
 
 	do {
-		msg = readMsg(fd);
+		char c;
+        do {
+            int status = read(readFd, &c, sizeof(char));
+
+            if (status == 0) {
+                return msg;
+            }
+
+            if (status == -1) {
+                exit(-1);
+            }
+
+            if (c != GSM_COMMAND_DELIMITER) {
+                msg.push_back(c);
+            }
+
+        } while (c != GSM_COMMAND_DELIMITER);
 	} while (msg.length() == 0);
 
 	return msg;
@@ -105,7 +97,7 @@ static void session(int argc, char *argv[])
 	while (true) {
 		// try to read a command, lock if no one is available
 		string received_command = "";
-		received_command		= readMsgLock(read_fd);
+		received_command		= readMsg(read_fd);
 		printf("%d: Received command: %s\n", my_pid, received_command.c_str());
 
 		string output_mgs = "";

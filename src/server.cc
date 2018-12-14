@@ -212,6 +212,6 @@ void RunServer() {
 int main(int argc, char** argv) {
 	initGuileSessionManager(argv[0]);
 	signal(SIGINT, handleSignal);
-    RunServer();
+	RunServer();
     return 0;
 }

@@ -1,8 +1,10 @@
 #include "GuileSessionManager.h"
+#include <fstream>
 
-namespace opencogservices
-{
-void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe)
+using namespace std;
+using namespace opencogservices;
+
+static void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe)
 {
 	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe;
 
@@ -18,12 +20,6 @@ GuileSessionManager::GuileSessionManager(const char *guileSessionExePath)
 
 	// certify that there will be no running sessions from previously running mannagers
 	clearEnvironment();
-
-	// open a new sessions pid file
-	_pidFile = open(GSM_SESSION_OPENED_SESSIONS_FILE, O_CREAT | O_WRONLY);
-
-	// open file to store a log of all the closed sessions
-	_closedSessionsFile = open(GSM_SESSION_CLOSED_SESSIONS_FILE, O_CREAT | O_WRONLY);
 
 	// store the path of the guile session exe
 	_sessionAbsoluteExePath = string(guileSessionExePath) + "/";
@@ -51,10 +47,6 @@ GuileSessionManager::~GuileSessionManager()
 	// wait for all threads to die (avoid crash)
 	waitForSessions();
 
-	// close sessions pid file
-	close(_pidFile);
-	close(_closedSessionsFile);
-
 	// remove opened closed sessions log files
 	string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE) + " " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
 	system(rm_pid_file_cmd.c_str());
@@ -62,9 +54,7 @@ GuileSessionManager::~GuileSessionManager()
 
 int GuileSessionManager::genId()
 {
-	int id = _idGen;
-	_idGen = _idGen + 1;
-	return id;
+	return _idGen++;
 }
 
 int GuileSessionManager::startSession(int &rOutputToken)
@@ -85,7 +75,7 @@ int GuileSessionManager::startSession(int &rOutputToken)
 
 	// create a new session process and wait son to create its pipes
 	thread *pServiceThread;
-	pServiceThread = new thread(opencogservices::callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe);
+	pServiceThread = new thread(callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe);
 
 	// open pipes from session _sessionManager, do not use NONBLOCK! otherwise it will lose the handshake-like com.
 	int read_fd  = open(second_arg_read_pipe.c_str(), O_RDONLY);
@@ -108,7 +98,11 @@ int GuileSessionManager::startSession(int &rOutputToken)
 	// write pid to the sessions pid file, just in case the program get killed
 	string s_session_pid = to_string(session_pid);
 	s_session_pid.push_back('\n');
+
+	// write the newly created pid into pids log file
+	_pidFile = open(GSM_SESSION_OPENED_SESSIONS_FILE, O_CREAT | O_APPEND | O_WRONLY);
 	write(_pidFile, s_session_pid.c_str(), s_session_pid.length());
+	close(_pidFile);
 
 	// set the newly created session PID to allow to kill it when necessary (avoid zombie processess)
 	session.setPid(session_pid);
@@ -146,7 +140,7 @@ int GuileSessionManager::endSession(const int token)
 	string cleanpipes_command = "rm " + session.getWritePipeName() + " " + session.getReadPipeName();
 	system(cleanpipes_command.c_str());
 
-	string session_pid = session.getPidStr();
+	string session_pid = to_string(session.getPid());
 
 	// remove it from the sessions map
 	_sessions.erase(token);
@@ -156,7 +150,11 @@ int GuileSessionManager::endSession(const int token)
 
 	// write pid of this session since it was closed to keep a log of closed sessions
 	session_pid.push_back('\n');
+
+	// add the closed session to the pids log file
+	_closedSessionsFile = open(GSM_SESSION_CLOSED_SESSIONS_FILE, O_CREAT | O_APPEND | O_WRONLY);
 	write(_closedSessionsFile, session_pid.c_str(), session_pid.length());
+	close(_closedSessionsFile);
 
 	return GSM_OP_SESSION_ENDED;
 }
@@ -237,51 +235,23 @@ vector<int> GuileSessionManager::readOpenedSessionsFile()
 	vector<int> pids;
 
 	// try to open the opened sessions file
-	int file_desc = open(GSM_SESSION_OPENED_SESSIONS_FILE, O_RDONLY);
+	ifstream pid_file(GSM_SESSION_OPENED_SESSIONS_FILE);
+	string readed_line = "";
 
-	if (file_desc >= 0) {
-		// control variables
-		string received_msg = "";
+	if (pid_file.is_open()) {
+		while (pid_file.good()) {
+			getline(pid_file, readed_line);
 
-		// holds the read status
-		int status = 0;
+			// convert line into PID
+			int pid = atoi(readed_line.c_str());
+			pids.push_back(pid);
+		}
 
-		// holds the readed character
-		char c;
+		pid_file.close();
 
-		// read line by line until end of file
-		// TODO::replace with a better and cleaner read method, despite this one being fast
-		do {
-			status = read(file_desc, &c, sizeof(char));
-
-			// if readed char different of end of file '\0'
-			if (status != 0) {
-
-				// reading error
-				if (status == -1) {
-					exit(-1);
-				}
-
-				// build pid
-				if (c != '\n') {
-					received_msg.push_back(c);
-				} else {
-					// kill process after getting a pid
-					if (c == '\n') {
-						// append readed pid
-						pids.push_back(atoi(received_msg.c_str()));
-
-						// clear to read next pid
-						received_msg.clear();
-					}
-				}
-			}
-		} while (status != 0);
-
-		// close file and delete it
-		close(file_desc);
-		string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE);
-		system(rm_pid_file_cmd.c_str());
+        // remove files from fs
+        string rm_pid_file_cmd = "rm " + string(GSM_SESSION_OPENED_SESSIONS_FILE);
+	    system(rm_pid_file_cmd.c_str());
 	}
 
 	// return the readed pids
@@ -294,52 +264,25 @@ set<int> GuileSessionManager::readClosedSessionsFile()
 	set<int> pids;
 
 	// try to open the opened sessions file
-	int file_desc = open(GSM_SESSION_CLOSED_SESSIONS_FILE, O_RDONLY);
+	ifstream pid_file (GSM_SESSION_CLOSED_SESSIONS_FILE);
+	string readed_line = "";
 
-	if (file_desc >= 0) {
-		// control variables
-		string received_msg = "";
+	if (pid_file.is_open())
+	{
+		while (pid_file.good())
+		{
+			getline(pid_file, readed_line);
+			
+			// convert line into PID
+			int pid = atoi(readed_line.c_str());
+			pids.insert(pid);
+		}
 
-		// holds the read status
-		int status = 0;
+		pid_file.close();
 
-		// holds the readed character
-		char c;
-
-		// read line by line until end of file
-		// TODO::replace with a better and cleaner read method, despite this one being fast
-		do {
-			status = read(file_desc, &c, sizeof(char));
-
-			// if readed char different of end of file '\0'
-			if (status != 0) {
-
-				// reading error
-				if (status == -1) {
-					exit(-1);
-				}
-
-				// build pid
-				if (c != '\n') {
-					received_msg.push_back(c);
-				} else {
-					// kill process after getting a pid
-					if (c == '\n') {
-						// append readed pid
-						int pid = atoi(received_msg.c_str());
-						pids.insert(pid);
-
-						// clear to read next pid
-						received_msg.clear();
-					}
-				}
-			}
-		} while (status != 0);
-
-		// close file and delete it
-		close(file_desc);
-		string rm_pid_file_cmd = "rm " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
-		system(rm_pid_file_cmd.c_str());
+        // remove files from fs
+	    string rm_pid_file_cmd = "rm " + string(GSM_SESSION_CLOSED_SESSIONS_FILE);
+	    system(rm_pid_file_cmd.c_str());
 	}
 
 	// return the readed pids
@@ -381,5 +324,3 @@ int GuileSessionManager::clearEnvironment()
 	// return status
 	return status;
 }
-
-} // namespace opencogservices

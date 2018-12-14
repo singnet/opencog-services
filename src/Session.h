@@ -24,6 +24,7 @@
 #define _OPENCOGSERVICES_SESSION_H
 
 #include <unistd.h>
+#include <string>
 #include "opencogServicesDef.h"
 
 namespace opencogservices
@@ -31,8 +32,8 @@ namespace opencogservices
 class Session
 {
 private:
-	string _writePipeName;
-	string _readPipeName;
+	std::string _writePipeName;
+	std::string _readPipeName;
 
 	int _writeFd;
 	int _readFd;
@@ -47,22 +48,19 @@ public:
 	void setWriteFd(int fd);
 	void setReadFd(int fd);
 	void setPid(int pid);
-	void setReadPipeName(const string &rName);
-	void setWritePipeName(const string &rName);
-	void setReadPipeName(const char *pName);
-	void setWritePipeName(const char *pName);
+	void setReadPipeName(const std::string &rName);
+	void setWritePipeName(const std::string &rName);
 
 	int getReadFd();
 	int getWriteFd();
 	int getPid();
 
-	string getPidStr();
-	string getReadPipeName();
-	string getWritePipeName();
+	std::string getReadPipeName();
+	std::string getWritePipeName();
 
-	int sendMsg(const string &rMsg);
-	string readMsg();
-	string readMsgLock();
+	int sendMsg(const std::string &rMsg);
+	std::string readMsg();
+	std::string readMsgLock();
 };
 } // namespace opencogservices
 #endif

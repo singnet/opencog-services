@@ -1,7 +1,8 @@
 #include "Session.h"
 
-namespace opencogservices
-{
+using namespace opencogservices;
+using namespace std;
+
 Session::Session(int write_fd, int read_fd)
 {
 	this->_pid = -1;
@@ -100,16 +101,6 @@ void Session::setWritePipeName(const string &rName)
 	this->_writePipeName.assign(rName);
 }
 
-void Session::setReadPipeName(const char *pName)
-{
-	this->_readPipeName = string(pName);
-}
-
-void Session::setWritePipeName(const char *pName)
-{
-	this->_writePipeName = string(pName);
-}
-
 int Session::getReadFd()
 {
 	return _readFd;
@@ -125,11 +116,6 @@ int Session::getPid()
 	return _pid;
 }
 
-string Session::getPidStr()
-{
-	return to_string(_pid);
-}
-
 string Session::getReadPipeName()
 {
 	return _readPipeName;
@@ -139,4 +125,3 @@ string Session::getWritePipeName()
 {
 	return _writePipeName;
 }
-} // namespace opencogservices

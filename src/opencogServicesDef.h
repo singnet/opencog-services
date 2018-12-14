@@ -74,16 +74,4 @@
 #define OSS_ERROR_ATOMSPACE_CAN_NOT_BE_RETRIVED -104
 #define OSS_ERROR_FATAL_CAN_NOT_CREATE_PRIVATE_SESSION -500
 
-#include <string>
-#include <curl/curl.h>
-
-using namespace std;
-
-namespace opencogservices
-{
-void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
-int loadUrlFile(const string &rUrl, string &rOutputFileName);
-size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream);
-} // namespace opencogservices
-
 #endif

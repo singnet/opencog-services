@@ -38,14 +38,14 @@ using namespace std;
 
 using json = nlohmann::json;
 
-void sendMsg(int fd, const string &rMsg)
+static void sendMsg(int fd, const string &rMsg)
 {
 	string s_msg = rMsg;
 	s_msg.push_back(GSM_COMMAND_DELIMITER);
 	write(fd, s_msg.c_str(), s_msg.length());
 }
 
-string readMsg(int fd)
+static string readMsg(int fd)
 {
 	string received_msg = "";
 	char c;
@@ -69,7 +69,7 @@ string readMsg(int fd)
 	return received_msg;
 }
 
-string readMsgLock(int fd)
+static string readMsgLock(int fd)
 {
 	string msg = "";
 
@@ -80,7 +80,7 @@ string readMsgLock(int fd)
 	return msg;
 }
 
-void session(int argc, char *argv[])
+static void session(int argc, char *argv[])
 {
 	// openning piper
 	char *pSecondArgWritePipe = argv[1];

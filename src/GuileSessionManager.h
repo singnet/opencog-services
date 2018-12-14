@@ -31,17 +31,16 @@
 #include <sys/types.h>
 #include <thread>
 #include <vector>
+#include <string>
 
 namespace opencogservices
 {
-extern void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe);
-
 class GuileSessionManager
 {
 private:
 	// sessions ids and objects
-	map<int, Session> _sessions;
-	map<int, thread *> _sessionsThreads;
+	std::map<int, Session> _sessions;
+	std::map<int, std::thread *> _sessionsThreads;
 
 	// ids holder
 	int _idGen;
@@ -56,16 +55,16 @@ private:
 	int _closedSessionsFile;
 
 	// session executable path
-	string _sessionAbsoluteExePath;
+	std::string _sessionAbsoluteExePath;
 
 	// create file with pids to manage oppened processes
 	int clearEnvironment();
 
 	// read openedSessions and returns a vector of pids
-	vector<int> readOpenedSessionsFile();
+	std::vector<int> readOpenedSessionsFile();
 
 	// read the closed sessions file to avoid trying to kill something that is already dead
-	set<int> readClosedSessionsFile();
+	std::set<int> readClosedSessionsFile();
 
 public:
 	GuileSessionManager(const char *guileSessionExePath);
@@ -75,7 +74,7 @@ public:
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
 	int sync(const int token);
-	int receiveResponse(const int token, string &rOutput, bool lock = false);
+	int receiveResponse(const int token, std::string &rOutput, bool lock = false);
 
 	void waitForSessions();
 };

@@ -1,8 +1,9 @@
 /*
  * Copyright (C) 2018 OpenCog Foundation
  *
- * Author: Andre Senna <https://github.com/andre-senna>
- *
+ * Authors: Alysson Ribeiro da Silva <https://github.com/Ophien>
+ *			Andre Senna <https://github.com/andre-senna>
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License v3 as
  * published by the Free Software Foundation and including the exceptions
@@ -22,11 +23,19 @@
 #ifndef _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 #define _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
 
+// need to be declared here to make it friend of OpencogSNETService
+class ServiceImpl;
+
 #include <vector>
 #include <string>
 
 #include <opencog/guile/SchemeEval.h>
 #include <opencog/atomspace/AtomSpace.h>
+
+#include "opencogServicesDef.h"
+#include "GuileSessionManager.h"
+
+using namespace opencog;
 
 namespace opencogservices
 {
@@ -65,30 +74,43 @@ public:
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
      */
-    bool loadAtomeseFile(std::string &errorMessage, const std::string &url);
+    void loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
 
     /*
      * Uses `schemeEval` to evaluate the passed Scheme string.
      */
-    void evaluateScheme(const std::string &scmLine);
-
-    /*
-     * Uses `schemeEval` to evaluate the passed Scheme string and return the
-     * output of the execution.
-     */
-    void evaluateScheme(std::string &output, const std::string &scmLine);
+    void evaluateScheme(std::string &output, const std::string &scmLine, const int token = -1);
 
     /*
      * Use the passed JSON hash to set Opencog's configuration parameters (e.g.
      * `{"Max_thread_num": "8", "Pattern_Max_Gram": "3"}`)
      */
-    void setConfigurationParameters(const std::string jsonString);
+    void setConfigurationParameters(const std::string jsonString, const int token = -1);
 
-    opencog::AtomSpace atomSpace;
+	/*
+	 * Process based guile session manager mirrored functions
+	 */
+	void createGuileSession(int &rOutputSessionToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
+	void closeGuileSession(const int sessionToken);
+	void fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token = -1);
+
+    //opencog::AtomSpace atomSpace;
 
 private:
 
-    opencog::SchemeEval *schemeEval;
+    //opencog::SchemeEval *schemeEval;
+
+	// let the service class to have access to the setGuileSessionManager
+	friend class ::ServiceImpl;
+
+	// Set sessionmanager instance for 'this' object
+	void setGuileSessionManager(GuileSessionManager *pManager);
+
+	// used to have access to sessions
+	GuileSessionManager *_sessionManager;
+
+	// used to store a created private session for this service
+	int _sessionToken;		
 };
 
 }

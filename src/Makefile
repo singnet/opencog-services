@@ -46,11 +46,13 @@ vpath %.proto $(PROTOS_PATH)
 # Opencog
 
 CXXFLAGS += -I/usr/local/include/guile/2.2 -DHAVE_GUILE
+CXXFLAGS += -I/usr/local/include/opencog/
 CXXFLAGS += $(shell curl-config --cflags)
 LDFLAGS += -L/usr/local/lib/opencog -L/usr/local/lib/opencog/modules -L/usr/local/lib
 LDFLAGS += $(shell ls /usr/local/lib/opencog | grep "\.so" | sed "s/lib/-l/" | sed "s/\.so//")
 LDFLAGS += $(shell ls /usr/local/lib/opencog/modules | grep "\.so" | sed "s/lib/-l/" | sed "s/\.so//")
 LDFLAGS += -lcogutil
+LDFLAGS += -lboost_system
 LDFLAGS += $(shell curl-config --libs)
 SERVICES = $(shell ls cpp-services/*.cc | sed "s/\.cc/\.o/")
 
@@ -60,9 +62,12 @@ SERVICES = $(shell ls cpp-services/*.cc | sed "s/\.cc/\.o/")
 #
 #################################################################################
 
-all: server client runTests
+all: guileSession server client runTests
 
-server: $(SERVICES) OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o opencog.pb.o opencog.grpc.pb.o server.o
+server: $(SERVICES) Session.o GuileSessionManager.o OpencogSNETServiceFactory.o SCMService.o OpencogSNETService.o opencog.pb.o opencog.grpc.pb.o server.o utils.o 
+	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
+
+guileSession: guileSession.o
 	$(CXX) $^ $(LDFLAGS) -o ../bin/$@
 
 client: opencog.pb.o opencog.grpc.pb.o client.o

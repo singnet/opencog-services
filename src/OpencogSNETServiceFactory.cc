@@ -1,6 +1,7 @@
 #include "OpencogSNETServiceFactory.h"
 #include "SCMService.h"
 #include "cpp-services/Echo.h"
+#include "cpp-services/Ghost.h"
 
 using namespace opencogservices;
 using namespace std;
@@ -9,6 +10,8 @@ OpencogSNETService *OpencogSNETServiceFactory::factory(const string &serviceName
 {
     if (serviceName == "Echo") {
         return new Echo();
+    } if(serviceName == "Ghost") {
+        return new Ghost();
     } else {
         string fname = "src/scm-services/" + serviceName + ".scm";
         if (fileExists(fname)) {

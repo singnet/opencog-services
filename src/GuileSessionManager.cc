@@ -200,7 +200,7 @@ int GuileSessionManager::sync(const int token)
 	return GSM_OP_SESSION_FLUSH_SYNC_COMPLETED;
 }
 
-int GuileSessionManager::receive(const int token, string &rOutput, bool lock)
+int GuileSessionManager::receiveResponse(const int token, string &rOutput, bool lock)
 {
 	rOutput = "";
 

@@ -1,3 +1,25 @@
+/*
+ * Copyright (C) 2018 OpenCog Foundation
+ *
+ * Authors: Alysson Ribeiro da Silva <https://github.com/Ophien>
+ *			Andre Senna <https://github.com/andre-senna>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License v3 as
+ * published by the Free Software Foundation and including the exceptions
+ * at http://opencog.org/wiki/Licenses
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, write to:
+ * Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
 #ifndef _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
 #define _OPENCOGSERVICES_GUILE_SESSION_MANAGER_H
 
@@ -53,7 +75,7 @@ public:
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
 	int sync(const int token);
-	int receive(const int token, string &rOutput, bool lock = false);
+	int receiveResponse(const int token, string &rOutput, bool lock = false);
 
 	void waitForSessions();
 };

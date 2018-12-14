@@ -31,7 +31,7 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
 	} else {
 		// receive intent response
 		string output = "";
-		_sessionManager->receive(access_token, output, true);
+		_sessionManager->receiveResponse(access_token, output, true);
 
 		// send json string to be loaded
 		GSM_status = _sessionManager->sendCommand(_sessionToken, jsonString.c_str());
@@ -40,7 +40,7 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
 			// TODO::raise exception
 		} else {
 			// wait its response
-			_sessionManager->receive(access_token, output, true);
+			_sessionManager->receiveResponse(access_token, output, true);
 		}
 	}
 }
@@ -71,7 +71,7 @@ void OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl
 		if (GSM_status != GSM_OP_SESSION_COMMAND_SENT) {
 			status = OSS_ERROR_CAN_NOT_LOAD_INVALID_SESSION;
 		} else {
-			_sessionManager->receive(access_token, output, true);
+			_sessionManager->receiveResponse(access_token, output, true);
 		}
 	} else {
 		status = OSS_ERROR_CAN_NOT_LOAD_URL;
@@ -100,7 +100,7 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 	_sessionManager->sendCommand(access_token, rScmLine.c_str());
 
 	// get response to prevent buffer stacking and set as a return parameter
-	_sessionManager->receive(access_token, rOutput, true);
+	_sessionManager->receiveResponse(access_token, rOutput, true);
 
 	// put '\n' at the end
 	rOutput.push_back('\n');
@@ -136,7 +136,7 @@ void OpencogSNETService::fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const 
 
 		// receive the atomspace and lock until obtaining a response
 		string atomspace_string = "";
-		_sessionManager->receive(access_token, atomspace_string, true);
+		_sessionManager->receiveResponse(access_token, atomspace_string, true);
 
 		// create an eval to return this atomspace
 		SchemeEval *eval = new SchemeEval(&rOutAtomSpace);

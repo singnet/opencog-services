@@ -99,13 +99,17 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 
 	// TODO::check if sync is really necessary here
 	// wait for rule file to be loaded
-	_sessionManager->sync(access_token);
+	//_sessionManager->sync(access_token);
 
 	// sending cmd to this object private session
-	_sessionManager->sendCommand(access_token, rScmLine.c_str());
+	int status = _sessionManager->sendCommand(access_token, rScmLine.c_str());
 
 	// get response to prevent buffer stacking and set as a return parameter
 	_sessionManager->receiveResponse(access_token, rOutput);
+
+	if(status == GSM_OP_ERROR_UNABLE_TO_SEND_COMMAND) {
+		rOutput = "Invalid session.";
+	}
 
 	// put '\n' at the end
 	rOutput.push_back('\n');

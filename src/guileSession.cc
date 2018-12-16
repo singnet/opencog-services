@@ -98,7 +98,7 @@ static void session(int argc, char *argv[])
 		// try to read a command, lock if no one is available
 		string received_command = "";
 		received_command		= readMsg(read_fd);
-		printf("%d: Received command: %s\n", my_pid, received_command.c_str());
+		// printf("%d: Received command: %s\n", my_pid, received_command.c_str());
 
 		string output_mgs = "";
 
@@ -132,7 +132,7 @@ static void session(int argc, char *argv[])
 			}
 		}
 
-		printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+		//printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
 		sendMsg(write_fd, output_mgs);
 	}
 }

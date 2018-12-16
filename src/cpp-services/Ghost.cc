@@ -1,4 +1,5 @@
 #include "Ghost.h"
+#include <ctime>
 #include "../utils.h"
 
 using namespace opencogservices;
@@ -28,7 +29,7 @@ void Ghost::loadRuleFile(std::string &output, const int token, const std::string
         output.assign(error_msg);
 	} else {
 		// prepare commands to load
-		string command = "(primitive-load \"" + atomese_file_name + "\")";
+		string command = "(ghost-parse-files \"" + atomese_file_name + "\")";
 
 		// send command to this session
         evaluateScheme(output, command, token);
@@ -63,7 +64,11 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 	evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
 	evaluateScheme(scheme_out, string("(set-relex-server-host)"), session_token);
 	evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
-	evaluateScheme(scheme_out, string("(ghost-af-only #f)"), session_token);
+
+	//evaluateScheme(scheme_out, string("(ghost-set-sti-weight 1)"), session_token);
+	//evaluateScheme(scheme_out, string("(ghost-set-strength-weight 1)"), session_token);
+	//evaluateScheme(scheme_out, string("(ghost-set-context-weight 1)"), session_token);
+	//evaluateScheme(scheme_out, string("(ghost-set-urge-weight 1)"), session_token);
 
 	// load url rule file
 	loadRuleFile(rOutput, session_token, rUrl);
@@ -74,18 +79,29 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 	rOutput = "session started: " + to_string(session_token);
 }
 
-string Ghost::getGhostResponse(const int token, int attempts)
+void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_for_response_secs)
 {
 	string output = "";
-	for (int i = 0; i < attempts; i++) {
-		// get response
-		evaluateScheme(output, string("(map cog-name (ghost-get-result))"), token);
 
-		if (output.length() > 3 && output != "NOTHING")
+	double elapsed_secs = 0.0;
+
+	while(elapsed_secs < wait_for_response_secs) {
+		auto start = chrono::steady_clock::now();
+
+  		evaluateScheme(output, string("(map cog-name (ghost-get-result))"), token);
+
+		if (output.length() > 3 && output != "NOTHING") {
+			rOutput.assign(output);
 			break;
+		}
+
+		auto end = chrono::steady_clock::now();
+		auto elapsed = end - start;
+
+  		elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
 	}
 
-	return output;
+	rOutput.assign("I have nothing to say...");
 }
 
 void Ghost::utterance(const int token, const string &rUtterance, string &rOutput)
@@ -97,8 +113,8 @@ void Ghost::utterance(const int token, const string &rUtterance, string &rOutput
 	evaluateScheme(rOutput, cmd, token);
 
 	// read ghost response
-	int attempts = 10000;
-	rOutput = getGhostResponse(token, attempts);
+	double wait_for_response_secs = 2.0;
+	getGhostResponse(token, rOutput, wait_for_response_secs);
 }
 
 void Ghost::ghostEndSession(const int token, string &rOutput)
@@ -163,8 +179,9 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
 	}
 
 	// set default response if none is obtained from the system
-	if (response.length() == 0)
+	if (response.length() == 0) {
 		response = string(GHOST_MSG_DEFAULT_RESPONSE);
+	}
 
 	// set output to the user
 	rOutput = response;

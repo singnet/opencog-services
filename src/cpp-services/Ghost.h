@@ -44,7 +44,7 @@ public:
 	bool execute(std::string &rOutput, const std::vector<std::string> &rArgs) override;
 
 private:
-	std::string getGhostResponse(const int token, int attempts);
+	void getGhostResponse(const int token, std::string &rOutput, double attempts_time);
 	int getCommand(const std::string &rCmdStr);
 	void loadRuleFile(std::string &output, const int token, const std::string &rUrl);
 	void ghostStartSession(const std::string &rUrl, std::string &output);

@@ -1,5 +1,6 @@
 #include "GuileSessionManager.h"
 #include <fstream>
+#include <signal.h>
 
 using namespace std;
 using namespace opencogservices;
@@ -8,9 +9,9 @@ static void callSession(const string &rSessionProgram, const string &rReadPipe, 
 {
 	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe;
 
-	//TODO::change to execv
+	//TODO::change to exec familly
 	system(call.c_str());
-	//execl(rSessionProgram.c_str(), rReadPipe.c_str(), rWritePipe.c_str());
+	//execl(rSessionProgram.c_str(), rReadPipe.c_str(), rWritePipe.c_str(), (char *) 0);
 }
 
 GuileSessionManager::GuileSessionManager(const char *guileSessionExePath)
@@ -136,8 +137,8 @@ int GuileSessionManager::endSession(const int token)
 	close(session.getReadFd());
 
 	// tell the system to delete temp pipes
-	string cleanpipes_command = "rm " + session.getWritePipeName() + " " + session.getReadPipeName();
-	system(cleanpipes_command.c_str());
+	remove(session.getWritePipeName().c_str());
+	remove(session.getReadPipeName().c_str());
 
 	string session_pid = to_string(session.getPid());
 
@@ -260,23 +261,12 @@ int GuileSessionManager::clearEnvironment()
         int pid_to_kill = *it;
 
         if (closed_sessions_pids.find(pid_to_kill) == closed_sessions_pids.end()) {
-            pids_to_kill.append(to_string(pid_to_kill) + " ");
+            kill(pid_to_kill, SIGKILL);
         }
     }
 
-    // kill all processes if readed pids length is greater than 0
-	if (pids_to_kill.length() > 0) {
-		// tell system to kill all processes
-		string rm_pipes_cmd = string(GSM_SESSION_PIPE_NAME_PREFIX) + "*";
-        remove(rm_pipes_cmd.c_str());
-
-        // kill all sessions
-		string kill_sessions_rm_pipes_cmd = "kill -9 " + pids_to_kill + ";" + rm_pipes_cmd + " > /dev/null";
-		system(kill_sessions_rm_pipes_cmd.c_str());
-
-		// set return status
-		status = GSM_OP_PROCESSES_KILLED;
-	}
+	// need to remove this way to avoid permission denied due to pipes left openned
+	system("rm -rf /tmp/cog* > /dev/null");
 
 	// return status
 	return status;

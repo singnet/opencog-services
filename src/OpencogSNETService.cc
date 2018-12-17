@@ -107,7 +107,7 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 	// get response to prevent buffer stacking and set as a return parameter
 	_sessionManager->receiveResponse(access_token, rOutput);
 
-	if(status == GSM_OP_ERROR_UNABLE_TO_SEND_COMMAND) {
+	if (status == GSM_OP_ERROR_UNABLE_TO_SEND_COMMAND) {
 		rOutput = "Invalid session.";
 	}
 
@@ -115,9 +115,9 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 	rOutput.push_back('\n');
 }
 
-void OpencogSNETService::createGuileSession(int &rOutputSessionToken)
+void OpencogSNETService::createGuileSession(int &rOutputSessionToken, vector<string> &modules, vector<string> &agents)
 {
-	int status = _sessionManager->startSession(rOutputSessionToken);
+	int status = _sessionManager->startSession(rOutputSessionToken, modules, agents);
 
 	//TODO::raise exception
 }
@@ -165,7 +165,9 @@ void OpencogSNETService::setGuileSessionManager(GuileSessionManager *_sessionMan
 	this->_sessionManager = _sessionManager;
 
 	// created a private session for this service
-	int status = _sessionManager->startSession(_sessionToken);
+    vector<string> modules;
+    vector<string> agents;
+	int status = _sessionManager->startSession(_sessionToken, modules, agents);
 
 	if (status == GSM_OP_SESSION_CREATED) {
 		// after sessint this _sessionManager load the opencog modules

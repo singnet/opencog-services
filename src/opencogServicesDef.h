@@ -40,6 +40,9 @@
 #define GSM_CLOSE_DESCS "close"
 #define GSM_FINISH_CMD "end"
 #define GSM_SET_CONFIG "config"
+#define GSM_LOAD_MODULE "load_module"
+#define GSM_ARG_TYPE_MODULE "MODULE"
+#define GSM_ARG_TYPE_AGENT "AGENT"
 
 #define GSM_OP_ERROR_CAN_NOT_OPEN_PIPES -100
 #define GSM_OP_ERROR_DOES_NOT_EXIST -101

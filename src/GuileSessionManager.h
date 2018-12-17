@@ -58,11 +58,14 @@ private:
     // read pid files to check if there is an openned process
     void readPIDFile(const std::string &filename, std::set<int> &outPidVec);
 
+    // configure parameters
+    void buildConfigArgs(std::vector<std::string> &modules, std::vector<std::string> &agents);
+
 public:
 	GuileSessionManager(const char *guileSessionExePath);
 	~GuileSessionManager();
 
-	int startSession(int &rOutputToken);
+	int startSession(int &rOutputToken, std::vector<std::string> &modules, std::vector<std::string> &agents);
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
 	int sync(const int token);

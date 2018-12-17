@@ -22,13 +22,20 @@
 
 #include "opencogServicesDef.h"
 #include <fcntl.h>
+#include <vector>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <thread>
 #include <unistd.h>
 
+#include <opencog/cogserver/server/CogServer.h>
 #include <opencog/atomspace/AtomSpace.h>
 #include <opencog/guile/SchemeEval.h>
 #include <opencog/util/Config.h>
+#include <opencog/attention/AFImportanceDiffusionAgent.h>
+#include <opencog/attention/WAImportanceDiffusionAgent.h>
+#include <opencog/attention/AFRentCollectionAgent.h>
+#include <opencog/attention/WARentCollectionAgent.h>
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
@@ -37,6 +44,9 @@ using namespace opencog;
 using namespace std;
 
 using json = nlohmann::json;
+
+static vector<string> modules;
+static vector<string> agents;
 
 static void sendMsg(int fd, const string &rMsg)
 {
@@ -72,6 +82,57 @@ static string readMsg(int readFd)
 	return msg;
 }
 
+static void callForCogAgentHandler(CogServer* pAgentsHandler) {
+
+    // load the server modules specified in the config files
+    for (unsigned int module = 0; module < modules.size(); module++) {
+        bool load_status = pAgentsHandler->loadModule(modules[module].c_str());
+
+        if (load_status == false) {
+            printf("Unable to load modules...\n");
+            exit(-1);
+        } else {
+            printf("Module %s loaded.\n", modules[module].c_str());
+        }
+    }
+
+    // load ECAN based ghost agents for debug purposes
+    for (unsigned int agent = 0; agent < agents.size(); agent++) {
+        pAgentsHandler->createAgent(agents[agent].c_str(), true);
+        printf("Agent: %s loaded.\n", agents[agent].c_str());
+    }
+
+    printf("Starting opencogs mindagents.\n");
+
+    // run the server's main loop
+    pAgentsHandler->serverLoop();
+}
+
+static void readArgs(int argc, char *argv[])
+{
+    for (int arg = 3; arg < argc; arg++) {
+        std::string current_arg = string(argv[arg]);
+
+        std::vector<std::string> tokens;
+        std::string token;
+        std::istringstream tokenStream(current_arg);
+        while (std::getline(tokenStream, token, GSM_COMMAND_DELIMITER)) {
+            tokens.push_back(token);
+        }
+
+        std::string arg_type  = tokens[0];
+        std::string arg_value = tokens[1];
+
+        printf("AAAAAAA: %s\n", arg_type.c_str());
+
+        if (arg_type == GSM_ARG_TYPE_MODULE) {
+            modules.push_back(arg_value);
+        } else if (arg_type == GSM_ARG_TYPE_AGENT) {
+            agents.push_back(arg_value);
+        }
+    }
+}
+
 static void session(int argc, char *argv[])
 {
 	// openning piper
@@ -88,10 +149,20 @@ static void session(int argc, char *argv[])
 	// write PID to the caller
 	sendMsg(write_fd, to_string(my_pid));
 
-	// Init opencog pAtomspace and eval for this session
+    // Initi this session atomspace
 	AtomSpace *pAtomspace   = new AtomSpace();
-	SchemeEval *pSchemeEval = new SchemeEval(pAtomspace);
 
+    // craete a COGSERVER that is able to hold several agents that process information
+    CogServer* pAgentsHandler = new CogServer(pAtomspace);
+
+    // get this process instance of the scheme evaluator
+	SchemeEval *pSchemeEval = ::SchemeEval::get_evaluator(pAtomspace);
+
+    // run cogserver in a separate thread to avoid process lock
+    readArgs(argc, argv);
+    thread cog_agent_handler_thread(callForCogAgentHandler, pAgentsHandler);
+
+    // identify if a config file will be loaded for this session scheme evalutlator
 	bool load_mode = false;
 
 	while (true) {
@@ -102,7 +173,7 @@ static void session(int argc, char *argv[])
 
 		string output_mgs = "";
 
-		if (load_mode) {
+        if (load_mode) {
 			auto jasonHash = json::parse(received_command);
 			for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
 				config().set(it.key(), it.value());
@@ -135,6 +206,9 @@ static void session(int argc, char *argv[])
 		//printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
 		sendMsg(write_fd, output_mgs);
 	}
+
+    // wait for server to die
+    cog_agent_handler_thread.join();
 }
 
 int main(int argc, char **argv)

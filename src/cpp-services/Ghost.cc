@@ -50,8 +50,19 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 {
 	int session_token = 0;
 
+    // build modules to be used by this guile session
+    vector<string> modules;
+    modules.push_back("/opencog/build/opencog/attention/libattention.so");
+
+    // set agents to be used by this guile session
+    vector<string> agents;
+    agents.push_back("opencog::AFImportanceDiffusionAgent");
+    agents.push_back("opencog::WAImportanceDiffusionAgent");
+    agents.push_back("opencog::AFRentCollectionAgent");
+    agents.push_back("opencog::WARentCollectionAgent");
+
 	// try to start a new session
-	createGuileSession(session_token);
+	createGuileSession(session_token, modules, agents);
 
 	// initialize ghost in this session
 	string scheme_out = "";
@@ -64,11 +75,6 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 	evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
 	evaluateScheme(scheme_out, string("(set-relex-server-host)"), session_token);
 	evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
-
-	//evaluateScheme(scheme_out, string("(ghost-set-sti-weight 1)"), session_token);
-	//evaluateScheme(scheme_out, string("(ghost-set-strength-weight 1)"), session_token);
-	//evaluateScheme(scheme_out, string("(ghost-set-context-weight 1)"), session_token);
-	//evaluateScheme(scheme_out, string("(ghost-set-urge-weight 1)"), session_token);
 
 	// load url rule file
 	loadRuleFile(rOutput, session_token, rUrl);
@@ -101,7 +107,9 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
   		elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
 	}
 
-	rOutput.assign("I have nothing to say...");
+    if ( output == "NOTHING" ) {
+    	rOutput.assign("I have nothing to say...");
+    }
 }
 
 void Ghost::utterance(const int token, const string &rUtterance, string &rOutput)
@@ -113,7 +121,7 @@ void Ghost::utterance(const int token, const string &rUtterance, string &rOutput
 	evaluateScheme(rOutput, cmd, token);
 
 	// read ghost response
-	double wait_for_response_secs = 2.0;
+	double wait_for_response_secs = 20.0;
 	getGhostResponse(token, rOutput, wait_for_response_secs);
 }
 

@@ -90,7 +90,7 @@ public:
 	/*
 	 * Process based guile session manager mirrored functions
 	 */
-	void createGuileSession(int &rOutputSessionToken);
+	void createGuileSession(int &rOutputSessionToken, std::vector<std::string> &modules, std::vector<std::string> &agents);
 	void closeGuileSession(const int sessionToken);
 	void fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token = -1);
 

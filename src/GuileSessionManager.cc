@@ -5,13 +5,19 @@
 using namespace std;
 using namespace opencogservices;
 
-static void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe)
+static void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe, const vector<string> &modules, const vector<string> &agents)
 {
-	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe;
+	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe + " ";
 
-	//TODO::change to exec familly
+    for (unsigned int module = 0; module < modules.size(); module++) {
+        call += modules[module] + " ";
+    }
+
+    for (unsigned int agent = 0; agent < agents.size(); agent++) {
+        call += agents[agent] + " ";
+    }
+
 	system(call.c_str());
-	//execl(rSessionProgram.c_str(), rReadPipe.c_str(), rWritePipe.c_str(), (char *) 0);
 }
 
 GuileSessionManager::GuileSessionManager(const char *guileSessionExePath)
@@ -58,7 +64,20 @@ int GuileSessionManager::genId()
 	return _idGen++;
 }
 
-int GuileSessionManager::startSession(int &rOutputToken)
+void GuileSessionManager::buildConfigArgs(std::vector<std::string> &modules, std::vector<std::string> &agents) 
+{
+    for (unsigned int module = 0; module < modules.size(); module++) {
+        string mod = string(GSM_ARG_TYPE_MODULE) + GSM_COMMAND_DELIMITER + modules[module];
+        modules[module].assign(mod);
+    }
+
+    for (unsigned int agent = 0; agent < agents.size(); agent++) {
+        string ag = string(GSM_ARG_TYPE_AGENT) + GSM_COMMAND_DELIMITER + agents[agent];
+        agents[agent].assign(ag);
+    }   
+}
+
+int GuileSessionManager::startSession(int &rOutputToken, vector<string> &modules, vector<string> &agents)
 {
 	// generate an ID for this session
 	int id = genId();
@@ -74,9 +93,12 @@ int GuileSessionManager::startSession(int &rOutputToken)
 	mkfifo(second_arg_read_pipe.c_str(), 0666);
 	mkfifo(second_arg_write_pipe.c_str(), 0666);
 
+    // build parameters
+    buildConfigArgs(modules, agents);
+
 	// create a new session process and wait son to create its pipes
 	thread *pServiceThread;
-	pServiceThread = new thread(callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe);
+	pServiceThread = new thread(callSession, first_arg, second_arg_read_pipe, second_arg_write_pipe, modules, agents);
 
 	// open pipes from session _sessionManager, do not use NONBLOCK! otherwise it will lose the handshake-like com.
 	int read_fd  = open(second_arg_read_pipe.c_str(), O_RDONLY);

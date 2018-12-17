@@ -13,7 +13,7 @@ echo "MPE channel id: $MPE_CHANNEL"
 echo "Channel state before request..."
 snet client get_channel_state $MPE_CHANNEL $SERVICE_ENDPOINT
 
-snet client call $MPE_CHANNEL 0.00000001 $SERVICE_ENDPOINT execute $SERVICE_JSON_PARAMS
+snet client call $MPE_CHANNEL 0.00000001 $SERVICE_ENDPOINT asynchronousTask $SERVICE_JSON_PARAMS
 
 echo "Channel state after request..."
 snet client get_channel_state $MPE_CHANNEL $SERVICE_ENDPOINT

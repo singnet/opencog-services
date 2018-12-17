@@ -25,25 +25,39 @@ The service is meant to illustrate the implementation of a Scheme Opencog servic
 
 You can use this service from [SingularityNET DApp][dap], clicking on `SNET/Opencog`.
 
-You can also call the service from SingularityNET CLI (`snet`):
+You can also call the service from SingularityNET CLI (`snet`). See
+[here][snet-doc] for detailed information on how SingularityNET CLI works or
+use the helper scripts from opencog-services repository as described below.
+
+Clone the repository to use the scripts.
 
 ```
-$ snet set current_agent_at YOUR_AGENT_ADDRESS
-set current_agent_at YOUR_AGENT_ADDRESS
-
-$ snet client call execute EchoScheme 1 2
+git clone git@github.com:singnet/opencog-services.git
 ```
 
-It can also be executed as an asynchronous task:
+First, make sure your session have an identity with your private key.
 
 ```
-$ snet set current_agent_at YOUR_AGENT_ADDRESS
-set current_agent_at YOUR_AGENT_ADDRESS
-
-$ snet client call asynchronousTask Echo 1 2
+$ snet identity create YOUR_ID key
 ```
 
-In this case the command output is an URL where you can find the results as soon as they are available.
+`YOUR_ID` is a local id used only in the current session so it's not really
+important. Any string should work. You will be requested to enter your private
+key.
+
+Now you need to add funds to a MPE channel.
+
+```
+$ ./scripts/deposit_mpe.sh
+```
+
+This script will print the balances and a list of all chanels of your identity.
+Look for the `#channelId` of the last listed channel. This is the channel which
+will be used to make the client calls below.
+
+```
+$ ./scripts/client_request.sh EchoScheme foo bar
+```
 
 ### Contributing and Reporting Issues
 

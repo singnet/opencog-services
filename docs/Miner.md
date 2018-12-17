@@ -1,5 +1,6 @@
 [opencog-services-repo]: https://github.com/singnet/opencog-services
 [dap]: http://alpha.singularitynet.io/
+[snet-doc]: https://github.com/singnet/wiki
 [opencog-pattern-miner]: https://github.com/singnet/opencog/tree/master/opencog/learning/miner
 [pattern-miner-repo]: https://github.com/singnet/opencog/tree/master/opencog/learning/miner
 [opencog]: https://opencog.org/
@@ -47,20 +48,45 @@ some relevant Opencog processing.
 
 You can use this service from [SingularityNET DApp][dap], clicking on `SNET/Opencog`.
 
-You can also call the service from SingularityNET CLI (`snet`):
+You can also call the service from SingularityNET CLI (`snet`). See
+[here][snet-doc] for detailed information on how SingularityNET CLI works or
+use the helper scripts from opencog-services repository as described below.
+
+Clone the repository to use the scripts.
 
 ```
-$ snet set current_agent_at YOUR_AGENT_ADDRESS
-set current_agent_at YOUR_AGENT_ADDRESS
+git clone git@github.com:singnet/opencog-services.git
+```
 
-$ snet client call execute Miner KNOWLEDGE_BASE_URL MIN_SUP MAX_ITER INCR_EXP MAX_CONJ
+First, make sure your session have an identity with your private key.
+
+```
+$ snet identity create YOUR_ID key
+```
+
+`YOUR_ID` is a local id used only in the current session so it's not really
+important. Any string should work. You will be requested to enter your private
+key.
+
+Now you need to add funds to a MPE channel.
+
+```
+$ ./scripts/deposit_mpe.sh
+```
+
+This script will print the balances and a list of all chanels of your identity.
+Look for the `#channelId` of the last listed channel. This is the channel which
+will be used to make the client calls below.
+
+```
+$ ./scripts/client_request.sh Miner KNOWLEDGE_BASE_URL MIN_SUP MAX_ITER INCR_EXP MAX_CONJ
 ```
 
 The following command
 line will call the Pattern Miner on the [Ugly male soda-drinkers][soda-drinkers] knowledge base:
 
 ```
-$ snet client call execute Miner https://raw.githubusercontent.com/singnet/opencog/master/examples/learning/miner/ugly-male-soda-drinker/kb.scm 5 100 \#t 3
+$ ./scripts/client_request.sh Miner https://raw.githubusercontent.com/singnet/opencog/master/examples/learning/miner/ugly-male-soda-drinker/kb.scm 5 100 \#t 3
 ```
 
 Pattern Miner can take several minutes (or even hours) to execute depending on
@@ -71,10 +97,7 @@ to understand how it works and how each parameter can affect the expected result
 So you may want to execute Pattern Miner asynchronously:
 
 ```
-$ snet set current_agent_at YOUR_AGENT_ADDRESS
-set current_agent_at YOUR_AGENT_ADDRESS
-
-$ snet client call asynchronousTask Miner KNOWLEDGE_BASE_URL MIN_SUP MAX_ITER INCR_EXP MAX_CONJ
+$ ./scripts/client_request_async.sh Miner https://raw.githubusercontent.com/singnet/opencog/master/examples/learning/miner/ugly-male-soda-drinker/kb.scm 5 100 \#t 3
 ```
 
 In this case the command output is an URL where you can find the results as

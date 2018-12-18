@@ -5,16 +5,24 @@
 using namespace std;
 using namespace opencogservices;
 
-static void callSession(const string &rSessionProgram, const string &rReadPipe, const string &rWritePipe, const vector<string> &modules, const vector<string> &agents)
+static void callSession(const string &rSessionProgram, 
+                        const string &rReadPipe, 
+                        const string &rWritePipe, 
+                        const vector<string> *modules, 
+                        const vector<string> *agents)
 {
 	string call = rSessionProgram + " " + rReadPipe + " " + rWritePipe + " ";
 
-    for (unsigned int module = 0; module < modules.size(); module++) {
-        call += modules[module] + " ";
+    if (modules != nullptr) {
+        for (unsigned int module = 0; module < modules->size(); module++) {
+            call += (*modules)[module] + " ";
+        }
     }
 
-    for (unsigned int agent = 0; agent < agents.size(); agent++) {
-        call += agents[agent] + " ";
+    if (agents != nullptr) {
+        for (unsigned int agent = 0; agent < agents->size(); agent++) {
+            call += (*agents)[agent] + " ";
+        }
     }
 
 	system(call.c_str());
@@ -64,20 +72,24 @@ int GuileSessionManager::genId()
 	return _idGen++;
 }
 
-void GuileSessionManager::buildConfigArgs(std::vector<std::string> &modules, std::vector<std::string> &agents) 
+void GuileSessionManager::buildConfigArgs(std::vector<std::string> *modules, std::vector<std::string> *agents) 
 {
-    for (unsigned int module = 0; module < modules.size(); module++) {
-        string mod = string(GSM_ARG_TYPE_MODULE) + GSM_COMMAND_DELIMITER + modules[module];
-        modules[module].assign(mod);
+    if (modules != nullptr) {
+        for (unsigned int module = 0; module < modules->size(); module++) {
+            string mod = string(GSM_ARG_TYPE_MODULE) + GSM_COMMAND_DELIMITER + (*modules)[module];
+            (*modules)[module].assign(mod);
+        }
     }
 
-    for (unsigned int agent = 0; agent < agents.size(); agent++) {
-        string ag = string(GSM_ARG_TYPE_AGENT) + GSM_COMMAND_DELIMITER + agents[agent];
-        agents[agent].assign(ag);
-    }   
+    if (modules != nullptr) {
+        for (unsigned int agent = 0; agent < agents->size(); agent++) {
+            string ag = string(GSM_ARG_TYPE_AGENT) + GSM_COMMAND_DELIMITER + (*agents)[agent];
+            (*agents)[agent].assign(ag);
+        }   
+    }
 }
 
-int GuileSessionManager::startSession(int &rOutputToken, vector<string> &modules, vector<string> &agents)
+int GuileSessionManager::startSession(int &rOutputToken, vector<string> *modules, vector<string> *agents)
 {
 	// generate an ID for this session
 	int id = genId();
@@ -287,7 +299,7 @@ int GuileSessionManager::clearEnvironment()
         }
     }
 
-	// need to remove this way to avoid permission denied due to pipes left openned
+	// easiest to remove this way to avoid permission denied due to pipes left openned
 	system("rm -rf /tmp/cog* > /dev/null");
 
 	// return status

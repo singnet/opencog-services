@@ -59,13 +59,13 @@ private:
     void readPIDFile(const std::string &filename, std::set<int> &outPidVec);
 
     // configure parameters
-    void buildConfigArgs(std::vector<std::string> &modules, std::vector<std::string> &agents);
+    void buildConfigArgs(std::vector<std::string> *modules, std::vector<std::string> *agents);
 
 public:
 	GuileSessionManager(const char *guileSessionExePath);
 	~GuileSessionManager();
 
-	int startSession(int &rOutputToken, std::vector<std::string> &modules, std::vector<std::string> &agents);
+	int startSession(int &rOutputToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
 	int endSession(const int token);
 	int sendCommand(const int token, const char *pCmd);
 	int sync(const int token);

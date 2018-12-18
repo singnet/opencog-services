@@ -62,7 +62,7 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
     agents.push_back("opencog::WARentCollectionAgent");
 
 	// try to start a new session
-	createGuileSession(session_token, modules, agents);
+	createGuileSession(session_token, &modules, &agents);
 
 	// initialize ghost in this session
 	string scheme_out = "";

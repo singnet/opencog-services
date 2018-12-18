@@ -115,7 +115,7 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
 	rOutput.push_back('\n');
 }
 
-void OpencogSNETService::createGuileSession(int &rOutputSessionToken, vector<string> &modules, vector<string> &agents)
+void OpencogSNETService::createGuileSession(int &rOutputSessionToken, vector<string> *modules, vector<string> *agents)
 {
 	int status = _sessionManager->startSession(rOutputSessionToken, modules, agents);
 
@@ -165,9 +165,7 @@ void OpencogSNETService::setGuileSessionManager(GuileSessionManager *_sessionMan
 	this->_sessionManager = _sessionManager;
 
 	// created a private session for this service
-    vector<string> modules;
-    vector<string> agents;
-	int status = _sessionManager->startSession(_sessionToken, modules, agents);
+	int status = _sessionManager->startSession(_sessionToken);
 
 	if (status == GSM_OP_SESSION_CREATED) {
 		// after sessint this _sessionManager load the opencog modules

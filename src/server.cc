@@ -38,7 +38,7 @@ static string baseOutputURL;
 static string baseOutputDir;
 static GuileSessionManager *gpSessionManager;
 
-void initGuileSessionManager(char *execPath)
+static void initGuileSessionManager(char *execPath)
 {
 	// TODO::check better way to do it
     char path_save[PATH_MAX];
@@ -60,7 +60,7 @@ void initGuileSessionManager(char *execPath)
 	gpSessionManager = new GuileSessionManager(abs_exe_path);
 }
 
-void handleSignal(int sig)
+static void handleSignal(int sig)
 {
 	bool free_guile_session_manager = false;
 
@@ -197,7 +197,7 @@ public:
 	}
 };
 
-void RunServer() {
+static void RunServer() {
     std::string server_address("0.0.0.0:7032");
     ServiceImpl service;
 

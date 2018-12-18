@@ -123,8 +123,6 @@ static void readArgs(int argc, char *argv[])
         std::string arg_type  = tokens[0];
         std::string arg_value = tokens[1];
 
-        printf("AAAAAAA: %s\n", arg_type.c_str());
-
         if (arg_type == GSM_ARG_TYPE_MODULE) {
             modules.push_back(arg_value);
         } else if (arg_type == GSM_ARG_TYPE_AGENT) {

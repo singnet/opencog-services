@@ -21,13 +21,14 @@ bool SCMService::execute(string &output, const vector<string> &args)
     );
     std::smatch url_match_result;
 
-    evaluateScheme("(load \"" + schemeFileName + "\")");
+	string scheme_out = "";
+	evaluateScheme(scheme_out, "(load \"" + schemeFileName + "\")");
     string cmd = "(execute (list ";
     for (unsigned int i = 0; i < args.size(); i++) {
         if (std::regex_match(args.at(i), url_match_result, url_regex)) {
             printf("Fetching and loading into Atomspace: %s\n", args.at(i).c_str());
-            string errorMessage;
-            if (loadAtomeseFile(errorMessage, args.at(i))) {
+			string errorMessage;
+			if(loadAtomeseFile(errorMessage, args.at(i))) {
                 output.assign(errorMessage);
                 return true;
             }

@@ -23,6 +23,7 @@ C++ and Scheme services are implemented in `src/cpp-services` and
 - [Echo](docs/Echo.md) - a simple 'echo' which just outputs its input, used to test the architecture and to serve as example.
 - [EchoScheme](docs/EchoScheme.md) - the same, but written in `Scheme`.
 - [Miner](docs/Miner.md) - load a knowledge base and run [Opencog's PatternMiner][opencog-pattern-miner]
+- [Ghost](docs/Ghost.md) - handle several OpenCog servers locally, to operate MindAgents, and allow to handle GHOST agents in exclusive sessions.
 
 [HTML User's Guide Hub][users-guide]
 

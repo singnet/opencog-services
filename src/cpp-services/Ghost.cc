@@ -98,7 +98,7 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
 
 		if (output.length() > 3 && output != "NOTHING") {
 			rOutput.assign(output);
-			break;
+			return;
 		}
 
 		auto end = chrono::steady_clock::now();
@@ -107,9 +107,7 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
   		elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
 	}
 
-    if ( output == "NOTHING" ) {
-    	rOutput.assign("I have nothing to say...");
-    }
+    rOutput.assign("I have nothing to say...");
 }
 
 void Ghost::utterance(const int token, const string &rUtterance, string &rOutput)
@@ -121,7 +119,7 @@ void Ghost::utterance(const int token, const string &rUtterance, string &rOutput
 	evaluateScheme(rOutput, cmd, token);
 
 	// read ghost response
-	double wait_for_response_secs = 20.0;
+	double wait_for_response_secs = 5.0;
 	getGhostResponse(token, rOutput, wait_for_response_secs);
 }
 

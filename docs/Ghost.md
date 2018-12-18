@@ -18,8 +18,8 @@ The service expects 0 to n arguments (n is limited as described [here](opencog-t
 
 ### What’s the point?
 
-The service is meant to illustrate the implementation of a C++ GHOST chatbot, an Opencog service, that can handle multiple independent OpenCog (guile) sessions.
-It shows how opencog's AtomSpaces can possibly be managed independently and used together to form a higher form of AI.
+The service is meant to illustrate the implementation of a C++ GHOST chatbot, an Opencog service, that can handle multiple exclusive OpenCog sessions.
+It shows how opencog's AtomSpaces sets can possibly be managed independently by several MindAgents and used together to form a higher form of AI.
 It's also useful to test availability of the server.
 
 ### How does it work?
@@ -38,8 +38,8 @@ $ snet client call execute Ghost
 For this case you should receive the following response: "I am Betty"
 This is the current name given to this GHOST based chatbot service.
 
-The service is based on sessions, where each one holds a private AtomSpace and a Scheme Evaluator, an opencog's structured information objects, to allow multiple personalities or personas.
-Multiple sessions can be created and they are completely independent, since they run in separated processes.
+The service deploys GHOST sessions based on the provided OpenCog's service api, where each one holds a private and exclusive AtomSpace, Scheme Evaluator, and CogServer to run MindAgents locally. It allow multiple agents with different personas to be handled by the same program. Moreover, they can be used as sessions for different users.
+Multiple GHOST sessions can be created and they are completely independent, since they run in separate processes. 
 
 In order to load rule files and start one session for this GHOST service, you can use the following command:
 

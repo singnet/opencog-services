@@ -206,6 +206,7 @@ static void session(int argc, char *argv[])
 	}
 
     // wait for server to die
+    pAgentsHandler->stop();
     cog_agent_handler_thread.join();
 }
 

@@ -28,7 +28,10 @@ bool SCMService::execute(string &output, const vector<string> &args)
         if (std::regex_match(args.at(i), url_match_result, url_regex)) {
             printf("Fetching and loading into Atomspace: %s\n", args.at(i).c_str());
 			string errorMessage;
-			loadAtomeseFile(errorMessage, args.at(i));
+			if(loadAtomeseFile(errorMessage, args.at(i))) {
+                output.assign(errorMessage);
+                return true;
+            }
         } else {
             cmd += args.at(i);
             if (i != (args.size() - 1)) {

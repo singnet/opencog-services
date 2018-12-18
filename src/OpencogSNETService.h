@@ -74,7 +74,7 @@ public:
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
      */
-    void loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
+    bool loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
 
     /*
      * Uses `schemeEval` to evaluate the passed Scheme string.

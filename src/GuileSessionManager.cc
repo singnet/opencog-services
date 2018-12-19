@@ -69,7 +69,17 @@ GuileSessionManager::~GuileSessionManager()
 
 int GuileSessionManager::genId()
 {
+    if (_availableIds.size() > 0) {
+        int ret = _availableIds.front();
+        _availableIds.pop_front();
+        return ret;
+    }
+
 	return _idGen++;
+}
+
+void GuileSessionManager::freeId(int id){
+    _availableIds.push_back(id);
 }
 
 void GuileSessionManager::buildConfigArgs(std::vector<std::string> *modules, std::vector<std::string> *agents) 
@@ -192,6 +202,9 @@ int GuileSessionManager::endSession(const int token)
 	FILE *closed_pid_file = fopen(GSM_SESSION_CLOSED_SESSIONS_FILE, "aw");
     fprintf(closed_pid_file, "%s\n", session_pid.c_str());
 	fclose(closed_pid_file);
+
+    // free id
+    freeId(token);
 
 	return GSM_OP_SESSION_ENDED;
 }

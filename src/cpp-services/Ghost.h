@@ -50,7 +50,6 @@ private:
 	void ghostStartSession(const std::string &rUrl, std::string &output);
 	void ghostEndSession(const int token, std::string &output);
 	void utterance(const int token, const std::string &rUtterance, std::string &rOutput);
-	std::string _name;
 };
 } // namespace opencogservices
 #endif

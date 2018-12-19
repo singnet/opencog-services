@@ -7,8 +7,6 @@ using namespace std;
 
 Ghost::Ghost()
 {
-	// Init
-	_name = "Betty";
 }
 
 Ghost::~Ghost()
@@ -73,7 +71,11 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 	evaluateScheme(scheme_out, string("(use-modules (opencog ghost))"), session_token);
 	evaluateScheme(scheme_out, string("(use-modules (opencog ghost procedures))"), session_token);
 	evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
-	evaluateScheme(scheme_out, string("(set-relex-server-host)"), session_token);
+
+    char* relex_container_name = getenv("RELEX_CONTAINER_NAME");
+    string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" 4444)");
+
+	evaluateScheme(scheme_out, relex_seek_cmd, session_token);
 	evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
 
 	// load url rule file
@@ -150,7 +152,10 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
 
 	// Send startup message after receiving an empty argument list
 	if (rArgs.size() == 0) {
-		rOutput.assign("I am " + _name);
+		rOutput.assign("Usage: use 'Ghost start_session <url>' to start a new session\n \
+            Ghost end_session <id> to end a session\n \
+            Ghost utterance <utterance string> to talk with ghost.");
+
 		return GHOST_STATUS_OK;
 	}
 

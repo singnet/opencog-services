@@ -73,6 +73,7 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 	evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
 
     char* relex_container_name = getenv("RELEX_CONTAINER_NAME");
+    printf("XXXXX %s\n", relex_container_name);
     string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" 4444)");
 
 	evaluateScheme(scheme_out, relex_seek_cmd, session_token);

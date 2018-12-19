@@ -30,6 +30,7 @@
 #include <sys/types.h>
 #include <thread>
 #include <set>
+#include <list>
 #include <vector>
 #include <string>
 #include <iterator>
@@ -48,6 +49,8 @@ private:
 
 	// private to avoid the final user to generate IDs freely
 	int genId();
+    void freeId(int id);
+    std::list<int> _availableIds;
 
 	// session executable path
 	std::string _sessionAbsoluteExePath;

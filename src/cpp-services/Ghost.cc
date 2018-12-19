@@ -45,12 +45,13 @@ void Ghost::loadRuleFile(std::string &output, const int token, const std::string
 }
 
 void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
+    fprintf(stderr, "XXX %s XXX\n", relex_container_name);
 {
 	int session_token = 0;
 
     // build modules to be used by this guile session
     vector<string> modules;
-    modules.push_back("/opencog/build/opencog/attention/libattention.so");
+    modules.push_back("/usr/local/lib/opencog/libattention.so");
 
     // set agents to be used by this guile session
     vector<string> agents;
@@ -85,7 +86,6 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 
 	// set output to the user
 	rOutput = "session started: " + to_string(session_token);
-    rOutput += relex_container_name;
 }
 
 void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_for_response_secs)

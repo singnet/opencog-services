@@ -177,10 +177,16 @@ int GuileSessionManager::endSession(const int token)
 	string session_pid = to_string(session.getPid());
 
 	// remove it from the sessions map
-	_sessions.erase(token);
+    if (_sessions.find(token) != _sessions.end()) {
+	    _sessions.erase(token);
+    }
 
 	// stop and remove thread from here (ensure that it will never runs forever)
-	_sessionsThreads.erase(token);
+    if (_sessionsThreads.find(token) != _sessionsThreads.end()) {
+        // wait for thread to die and then erase it
+        _sessionsThreads[token]->join();
+	    _sessionsThreads.erase(token);
+    }
 
 	// add the closed session to the pids log file
 	FILE *closed_pid_file = fopen(GSM_SESSION_CLOSED_SESSIONS_FILE, "aw");

@@ -5,5 +5,9 @@
 {"input": "utterance 12 hi", "output": "t4.txt"},
 {"input": "utterance 12 hello", "output": "t5.txt"},
 {"input": "utterance 14 hi", "output": "t6.txt"},
-{"input": "utterance 14 hello", "output": "t7.txt"}
+{"input": "utterance 14 hello", "output": "t7.txt"},
+{"input": "start_session https://raw.githubusercontent.com/Ophien/rulefiles/master/testC.scm", "output": "t8.txt"},
+{"input": "utterance 20 hello", "output": "t9.txt"},
+{"input": "utterance 20 hi", "output": "t10.txt"},
+{"input": "utterance 20 what", "output": "t11.txt"}
 ]}

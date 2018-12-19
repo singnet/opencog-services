@@ -6,7 +6,7 @@
 
 ![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
-# Echo
+# Ghost
 
 This service allows your to have a conversation with an OpenCog's Ghost based chatbot.
 
@@ -18,8 +18,7 @@ The service expects 0 to n arguments (n is limited as described [here](opencog-t
 
 ### What’s the point?
 
-The service is meant to illustrate the implementation of a C++ GHOST chatbot, an Opencog service, that can handle multiple exclusive OpenCog sessions.
-It shows how opencog's AtomSpaces sets can possibly be managed independently by several MindAgents and used together to form a higher form of AI.
+The service is meant to illustrate the implementation of a C++ GHOST chatbot that can handle multiple exclusive OpenCog sessions.
 It's also useful to test availability of the server.
 
 ### How does it work?

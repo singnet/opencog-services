@@ -32,10 +32,6 @@
 #include <opencog/atomspace/AtomSpace.h>
 #include <opencog/guile/SchemeEval.h>
 #include <opencog/util/Config.h>
-#include <opencog/attention/AFImportanceDiffusionAgent.h>
-#include <opencog/attention/WAImportanceDiffusionAgent.h>
-#include <opencog/attention/AFRentCollectionAgent.h>
-#include <opencog/attention/WARentCollectionAgent.h>
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
@@ -101,8 +97,6 @@ static void callForCogAgentHandler(CogServer* pAgentsHandler) {
         pAgentsHandler->createAgent(agents[agent].c_str(), true);
         printf("Agent: %s loaded.\n", agents[agent].c_str());
     }
-
-    printf("Starting opencogs mindagents.\n");
 
     // run the server's main loop
     pAgentsHandler->serverLoop();
@@ -184,7 +178,6 @@ static void session(int argc, char *argv[])
 			} else if (received_command == string(GSM_SET_CONFIG)) {
 				load_mode = true;
 			} else if (received_command == string(GSM_FINISH_CMD)) {
-				// break loop and exit 0
 				break;
 			} else {
 				// execute the received command
@@ -205,8 +198,10 @@ static void session(int argc, char *argv[])
 		sendMsg(write_fd, output_mgs);
 	}
 
-    // wait for server to die
+    // TODO::fix this method to avoid seg. fault
     pAgentsHandler->stop();
+
+     // wait for server to die
     cog_agent_handler_thread.join();
 }
 

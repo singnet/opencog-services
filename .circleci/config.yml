@@ -17,8 +17,8 @@ jobs:
       RELEX_CONTAINER_NAME: SENNA_OPENCOG_RELEX
       OPENCOG_NETWORK_NAME: SENNA_OPENCOG_NETWORK
       REPOSITORY: opencog-services
-      BRANCH: master
-      GIT_OWNER: singnet
+      BRANCH: review_building_script
+      GIT_OWNER: andre-senna
       SERVICE_NAME: opencog
       SERVICE_START_SCRIPT: scripts/service_up.sh
       SERVICE_TEST_SCRIPT: bin/server
@@ -44,19 +44,13 @@ jobs:
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker run --env RELEX_CONTAINER_NAME=$RELEX_CONTAINER_NAME --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING \
-              -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $SERVICE_TEST_SCRIPT
+              -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $TEST_SCRIPT
           EOF
     - run:
         name: Execute compliance check
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             docker exec -i $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING $COMPLIANCE_CHECK_SCRIPT
-          EOF
-    - run:
-        name: Execute regression tests
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker exec -i $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING $TEST_SCRIPT
           EOF
     - run:
         name: Deploy service

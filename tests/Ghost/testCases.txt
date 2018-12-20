@@ -1,4 +1,4 @@
 {"test-cases": [
 {"input": "start_session https://raw.githubusercontent.com/Ophien/rulefiles/master/test.scm", "output": "t1.txt"},
-{"input": "utterance 4 hello", "output": "t2.txt"}
+{"input": "utterance 3 hello", "output": "t2.txt"}
 ]}

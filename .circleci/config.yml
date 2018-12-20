@@ -43,7 +43,7 @@ jobs:
         name: Start service for testing
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker run --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING \
+            docker run --env RELEX_CONTAINER_NAME=$RELEX_CONTAINER_NAME --name $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING \
               -di $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING $SERVICE_TEST_SCRIPT
           EOF
     - run:

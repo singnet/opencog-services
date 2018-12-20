@@ -72,7 +72,6 @@ RUN cd ${SINGNET_REPOS} && \
     git clone https://github.com/singnet/opencog.git && \
     cd opencog && \
     mkdir build && \
-    mkdir ola && \
     cd build && \
     cmake .. && \
     make && \

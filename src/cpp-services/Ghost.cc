@@ -50,7 +50,7 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 
     // build modules to be used by this guile session
     vector<string> modules;
-    modules.push_back("/opencog/build/opencog/attention/libattention.so");
+    modules.push_back("/usr/local/lib/opencog/libattention.so");
 
     // set agents to be used by this guile session
     vector<string> agents;

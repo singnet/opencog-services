@@ -17,8 +17,8 @@ jobs:
       RELEX_CONTAINER_NAME: SENNA_OPENCOG_RELEX
       OPENCOG_NETWORK_NAME: SENNA_OPENCOG_NETWORK
       REPOSITORY: opencog-services
-      BRANCH: review_building_script
-      GIT_OWNER: andre-senna
+      BRANCH: master
+      GIT_OWNER: singnet
       SERVICE_NAME: opencog
       SERVICE_START_SCRIPT: scripts/service_up.sh
       SERVICE_TEST_SCRIPT: bin/server

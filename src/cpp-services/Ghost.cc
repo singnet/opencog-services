@@ -45,7 +45,6 @@ void Ghost::loadRuleFile(std::string &output, const int token, const std::string
 }
 
 void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
-    fprintf(stderr, "XXX %s XXX\n", relex_container_name);
 {
 	int session_token = 0;
 

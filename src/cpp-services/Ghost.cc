@@ -152,9 +152,20 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
 
     // Send startup message after receiving an empty argument list
     if (rArgs.size() == 0) {
-        rOutput.assign("Usage: use 'Ghost start_session <url>' to start a new session\n \
-            Ghost end_session <id> to end a session\n \
-            Ghost utterance <utterance string> to talk with ghost.");
+        rOutput.assign("\n\nAvailable commands for this service:\n\n \
+        1) Start a new session: \n\n \
+            Ghost start_session <url> \n \
+                -Param: <url> - url containing a GHOST rules file. \n \
+                -Output: Integer - session ID integer representing the oppened session ID. \n\n \
+        2) End a session: \n\n \
+            Ghost end_session <session_id> \n \
+                -Param: <session_id> - integer representing a oppened session ID. \n \
+                -Output: String - Session ended message. \n\n \
+        3) Talk with a GHOST session: \n\n \ 
+            Ghost utterance <session_id> <utterance_string> \n \
+                -Param: <session_id> - integer representing a oppened session ID. \n \
+                -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n"
+        );
 
         return GHOST_STATUS_OK;
     }
@@ -165,21 +176,30 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
     switch (command) {
         case TALK:
             if (rArgs.size() < TALK_ARG_SIZE) {
-                response = "Usage: Ghost utterance <session_id> \"Utterance string\"";
+                response = "\n\n    Usage:\n \  
+                Ghost utterance <session_id> <utterance_string> \n \
+                    -Param: <session_id> - integer representing a oppened session ID. \n \
+                    -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n\n";
             } else {
                 utterance(atoi(rArgs[1].c_str()), rArgs[2], response);
             }
             break;
         case START_SESSION:
             if (rArgs.size() < START_ARG_SIZE) {
-                response = "Usage: Ghost start_session <rule file URL>";
+                response = "\n\n    Usage:\n \
+                Ghost start_session <url> \n \
+                    -Param: <url> - url containing a GHOST rules file. \n \
+                    -Output: Integer - session ID integer representing the oppened session ID. \n\n";
             } else {
                 ghostStartSession(rArgs[1], response);
             }
             break;
         case END_SESSION:
             if (rArgs.size() < END_ARG_SIZE) {
-                response = "Usage: Ghost end_session <session_id>";
+                response = "\n\n    Usage:\n \
+                Ghost end_session <session_id> \n \
+                    -Param: <session_id> - integer representing a oppened session ID. \n \
+                    -Output: String - Session ended message. \n\n ";
             } else {
                 ghostEndSession(atoi(rArgs[1].c_str()), response);
             }

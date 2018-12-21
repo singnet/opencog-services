@@ -38,18 +38,18 @@ namespace opencogservices
 class Ghost : public OpencogSNETService
 {
 public:
-	Ghost();
-	~Ghost();
+    Ghost();
+    ~Ghost();
 
-	bool execute(std::string &rOutput, const std::vector<std::string> &rArgs) override;
+    bool execute(std::string &rOutput, const std::vector<std::string> &rArgs) override;
 
 private:
-	void getGhostResponse(const int token, std::string &rOutput, double attempts_time);
-	int getCommand(const std::string &rCmdStr);
-	void loadRuleFile(std::string &output, const int token, const std::string &rUrl);
-	void ghostStartSession(const std::string &rUrl, std::string &output);
-	void ghostEndSession(const int token, std::string &output);
-	void utterance(const int token, const std::string &rUtterance, std::string &rOutput);
+    void getGhostResponse(const int token, std::string &rOutput, double attempts_time);
+    int getCommand(const std::string &rCmdStr);
+    void loadRuleFile(std::string &output, const int token, const std::string &rUrl);
+    void ghostStartSession(const std::string &rUrl, std::string &output);
+    void ghostEndSession(const int token, std::string &output);
+    void utterance(const int token, const std::string &rUtterance, std::string &rOutput);
 };
 } // namespace opencogservices
 #endif

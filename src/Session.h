@@ -32,34 +32,34 @@ namespace opencogservices
 class Session
 {
 private:
-	std::string _writePipeName;
-	std::string _readPipeName;
+    std::string _writePipeName;
+    std::string _readPipeName;
 
-	int _writeFd;
-	int _readFd;
-	int _pid;
+    int _writeFd;
+    int _readFd;
+    int _pid;
 
 public:
-	Session(int writeFd, int readFd, int pid);
-	Session(int writeFd, int readFd);
-	Session();
-	~Session();
+    Session(int writeFd, int readFd, int pid);
+    Session(int writeFd, int readFd);
+    Session();
+    ~Session();
 
-	void setWriteFd(int fd);
-	void setReadFd(int fd);
-	void setPid(int pid);
-	void setReadPipeName(const std::string &rName);
-	void setWritePipeName(const std::string &rName);
+    void setWriteFd(int fd);
+    void setReadFd(int fd);
+    void setPid(int pid);
+    void setReadPipeName(const std::string &rName);
+    void setWritePipeName(const std::string &rName);
 
-	int getReadFd();
-	int getWriteFd();
-	int getPid();
+    int getReadFd();
+    int getWriteFd();
+    int getPid();
 
-	std::string getReadPipeName();
-	std::string getWritePipeName();
+    std::string getReadPipeName();
+    std::string getWritePipeName();
 
-	int sendMsg(const std::string &rMsg);
-	std::string readMsg();
+    int sendMsg(const std::string &rMsg);
+    std::string readMsg();
 };
 } // namespace opencogservices
 #endif

@@ -46,17 +46,17 @@ static vector<string> agents;
 
 static void sendMsg(int fd, const string &rMsg)
 {
-	string s_msg = rMsg;
-	s_msg.push_back(GSM_COMMAND_DELIMITER);
-	write(fd, s_msg.c_str(), s_msg.length());
+    string s_msg = rMsg;
+    s_msg.push_back(GSM_COMMAND_DELIMITER);
+    write(fd, s_msg.c_str(), s_msg.length());
 }
 
 static string readMsg(int readFd)
 {
-	string msg = "";
+    string msg = "";
 
-	do {
-		char c;
+    do {
+        char c;
         do {
             int status = read(readFd, &c, sizeof(char));
 
@@ -73,9 +73,9 @@ static string readMsg(int readFd)
             }
 
         } while (c != GSM_COMMAND_DELIMITER);
-	} while (msg.length() == 0);
+    } while (msg.length() == 0);
 
-	return msg;
+    return msg;
 }
 
 static void callForCogAgentHandler(CogServer* pAgentsHandler) {
@@ -127,76 +127,76 @@ static void readArgs(int argc, char *argv[])
 
 static void session(int argc, char *argv[])
 {
-	// openning piper
-	char *pSecondArgWritePipe = argv[1];
-	char *pSecondArgReadPipe  = argv[2];
+    // openning piper
+    char *pSecondArgWritePipe = argv[1];
+    char *pSecondArgReadPipe  = argv[2];
 
-	// open pipes and wait for father to open the same
-	int write_fd = open(pSecondArgWritePipe, O_WRONLY);
-	int read_fd  = open(pSecondArgReadPipe, O_RDONLY);
+    // open pipes and wait for father to open the same
+    int write_fd = open(pSecondArgWritePipe, O_WRONLY);
+    int read_fd  = open(pSecondArgReadPipe, O_RDONLY);
 
-	// get my PID and write it to the caller process
-	int my_pid = ::getpid();
+    // get my PID and write it to the caller process
+    int my_pid = ::getpid();
 
-	// write PID to the caller
-	sendMsg(write_fd, to_string(my_pid));
+    // write PID to the caller
+    sendMsg(write_fd, to_string(my_pid));
 
     // Initi this session atomspace
-	AtomSpace *pAtomspace   = new AtomSpace();
+    AtomSpace *pAtomspace   = new AtomSpace();
 
     // craete a COGSERVER that is able to hold several agents that process information
     CogServer* pAgentsHandler = new CogServer(pAtomspace);
 
     // get this process instance of the scheme evaluator
-	SchemeEval *pSchemeEval = ::SchemeEval::get_evaluator(pAtomspace);
+    SchemeEval *pSchemeEval = ::SchemeEval::get_evaluator(pAtomspace);
 
     // run cogserver in a separate thread to avoid process lock
     readArgs(argc, argv);
     thread cog_agent_handler_thread(callForCogAgentHandler, pAgentsHandler);
 
     // identify if a config file will be loaded for this session scheme evalutlator
-	bool load_mode = false;
+    bool load_mode = false;
 
-	while (true) {
-		// try to read a command, lock if no one is available
-		string received_command = "";
-		received_command		= readMsg(read_fd);
-		// printf("%d: Received command: %s\n", my_pid, received_command.c_str());
+    while (true) {
+        // try to read a command, lock if no one is available
+        string received_command = "";
+        received_command		= readMsg(read_fd);
+        // printf("%d: Received command: %s\n", my_pid, received_command.c_str());
 
-		string output_mgs = "";
+        string output_mgs = "";
 
         if (load_mode) {
-			auto jasonHash = json::parse(received_command);
-			for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
-				config().set(it.key(), it.value());
-			}
-			load_mode = false;
-		} else {
-			if (received_command == string(GSM_HANDSHAKE_CMD)) {
-				output_mgs = GSM_HANDSHAKE_RESPONSE;
-				// printf("%d: Response: %s\n", myPID, output_mgs.c_str());
-			} else if (received_command == string(GSM_SET_CONFIG)) {
-				load_mode = true;
-			} else if (received_command == string(GSM_FINISH_CMD)) {
-				break;
-			} else {
-				// execute the received command
-				output_mgs = pSchemeEval->eval(received_command);
+            auto jasonHash = json::parse(received_command);
+            for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
+                config().set(it.key(), it.value());
+            }
+            load_mode = false;
+        } else {
+            if (received_command == string(GSM_HANDSHAKE_CMD)) {
+                output_mgs = GSM_HANDSHAKE_RESPONSE;
+                // printf("%d: Response: %s\n", myPID, output_mgs.c_str());
+            } else if (received_command == string(GSM_SET_CONFIG)) {
+                load_mode = true;
+            } else if (received_command == string(GSM_FINISH_CMD)) {
+                break;
+            } else {
+                // execute the received command
+                output_mgs = pSchemeEval->eval(received_command);
 
-				// remove \n and () from response
-				boost::remove_erase_if(output_mgs, boost::is_any_of("\n"));
+                // remove \n and () from response
+                boost::remove_erase_if(output_mgs, boost::is_any_of("\n"));
 
-				// need to set simple output for read lock
-				if (output_mgs.length() == 0) {
-					// printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
-					output_mgs.append("NOTHING");
-				}
-			}
-		}
+                // need to set simple output for read lock
+                if (output_mgs.length() == 0) {
+                    // printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+                    output_mgs.append("NOTHING");
+                }
+            }
+        }
 
-		//printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
-		sendMsg(write_fd, output_mgs);
-	}
+        //printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+        sendMsg(write_fd, output_mgs);
+    }
 
     // TODO::fix this method to avoid seg. fault
     pAgentsHandler->stop();
@@ -207,6 +207,6 @@ static void session(int argc, char *argv[])
 
 int main(int argc, char **argv)
 {
-	session(argc, argv);
-	return 0;
+    session(argc, argv);
+    return 0;
 }

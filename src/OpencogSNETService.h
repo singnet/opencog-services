@@ -87,12 +87,12 @@ public:
      */
     void setConfigurationParameters(const std::string jsonString, const int token = -1);
 
-	/*
-	 * Process based guile session manager mirrored functions
-	 */
-	void createGuileSession(int &rOutputSessionToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
-	void closeGuileSession(const int sessionToken);
-	void fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token = -1);
+    /*
+     * Process based guile session manager mirrored functions
+     */
+    void createGuileSession(int &rOutputSessionToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
+    void closeGuileSession(const int sessionToken);
+    void fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const int token = -1);
 
     //opencog::AtomSpace atomSpace;
 
@@ -100,17 +100,17 @@ private:
 
     //opencog::SchemeEval *schemeEval;
 
-	// let the service class to have access to the setGuileSessionManager
-	friend class ::ServiceImpl;
+    // let the service class to have access to the setGuileSessionManager
+    friend class ::ServiceImpl;
 
-	// Set sessionmanager instance for 'this' object
-	void setGuileSessionManager(GuileSessionManager *pManager);
+    // Set sessionmanager instance for 'this' object
+    void setGuileSessionManager(GuileSessionManager *pManager);
 
-	// used to have access to sessions
-	GuileSessionManager *_sessionManager;
+    // used to have access to sessions
+    GuileSessionManager *_sessionManager;
 
-	// used to store a created private session for this service
-	int _sessionToken;		
+    // used to store a created private session for this service
+    int _sessionToken;		
 };
 
 }

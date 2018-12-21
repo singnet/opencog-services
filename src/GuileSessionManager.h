@@ -40,23 +40,23 @@ namespace opencogservices
 class GuileSessionManager
 {
 private:
-	// sessions ids and objects
-	std::map<int, Session> _sessions;
-	std::map<int, std::thread *> _sessionsThreads;
+    // sessions ids and objects
+    std::map<int, Session> _sessions;
+    std::map<int, std::thread *> _sessionsThreads;
 
-	// ids holder
-	int _idGen;
+    // ids holder
+    int _idGen;
 
-	// private to avoid the final user to generate IDs freely
-	int genId();
+    // private to avoid the final user to generate IDs freely
+    int genId();
     void freeId(int id);
     std::list<int> _availableIds;
 
-	// session executable path
-	std::string _sessionAbsoluteExePath;
+    // session executable path
+    std::string _sessionAbsoluteExePath;
 
-	// create file with pids to manage oppened processes
-	int clearEnvironment();
+    // create file with pids to manage oppened processes
+    int clearEnvironment();
 
     // read pid files to check if there is an openned process
     void readPIDFile(const std::string &filename, std::set<int> &outPidVec);
@@ -65,16 +65,16 @@ private:
     void buildConfigArgs(std::vector<std::string> *modules, std::vector<std::string> *agents);
 
 public:
-	GuileSessionManager(const char *guileSessionExePath);
-	~GuileSessionManager();
+    GuileSessionManager(const char *guileSessionExePath);
+    ~GuileSessionManager();
 
-	int startSession(int &rOutputToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
-	int endSession(const int token);
-	int sendCommand(const int token, const char *pCmd);
-	int sync(const int token);
-	int receiveResponse(const int token, std::string &rOutput);
+    int startSession(int &rOutputToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
+    int endSession(const int token);
+    int sendCommand(const int token, const char *pCmd);
+    int sync(const int token);
+    int receiveResponse(const int token, std::string &rOutput);
 
-	void waitForSessions();
+    void waitForSessions();
 };
 } // namespace opencogservices
 

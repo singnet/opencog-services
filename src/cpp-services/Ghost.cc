@@ -164,7 +164,8 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
         3) Talk with a GHOST session: \n\n \ 
             Ghost utterance <session_id> <utterance_string> \n \
                 -Param: <session_id> - integer representing a oppened session ID. \n \
-                -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n"
+                -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n\n \
+                -Output: String - GHOST response string. \n\n"
         );
 
         return GHOST_STATUS_OK;
@@ -179,7 +180,8 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 response = "\n\n    Usage:\n \  
                 Ghost utterance <session_id> <utterance_string> \n \
                     -Param: <session_id> - integer representing a oppened session ID. \n \
-                    -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n\n";
+                    -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n \
+                    -Output: String - GHOST response string. \n\n";
             } else {
                 utterance(atoi(rArgs[1].c_str()), rArgs[2], response);
             }

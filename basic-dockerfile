@@ -2,9 +2,18 @@ FROM opencog/opencog-dev:cli
 ENV SINGNET_REPOS=/opt/singnet
 ENV GOPATH=$SINGNET_REPOS/go
 ENV PATH=$PATH:$SINGNET_REPOS/go/bin:/usr/lib/go-1.10/bin
+ENV BAZEL_VERSION=0.22.0
+ENV CC=/usr/bin/clang
+ENV CXX=/usr/bin/clang++
+ENV SNET_DAEMON_VERSION=0.1.10
+
 RUN mkdir -p $GOPATH
 
-RUN apt update && apt install -y \
+# Why have numerous versions of python3 when we can compile opencog with it also!
+# Manually install Python 3.6. This is required because opencog
+# image is based in Ubuntu 14.04.
+
+RUN apt update && apt purge -y libprotobuf* && apt install -y \
     apt-utils \
     nano \
     vim \
@@ -16,30 +25,57 @@ RUN apt update && apt install -y \
     libusb-1.0-0-dev \
     nodejs \
     npm \
-    python3 \
-    python3-pip \
-    build-essential \
-    autoconf \
     libtool \
     pkg-config \
     libgflags-dev \
     libgtest-dev \
     clang \
+    openjdk-8-jdk \
+    libomp-dev \
+    liboctomap-dev \
+    build-essential \
+    checkinstall \
+    zlib1g-dev \
+    libreadline-gplv2-dev \
+    libncursesw5-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    tk-dev \
+    libgdbm-dev \
+    libc6-dev \
     libc++-dev \
-    openjdk-8-jdk
+    autoconf \
+    bash-completion \
+    libbz2-dev; \
+    ldconfig && \
+    wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz; \
+    tar xvf Python-3.6.5.tar.xz; \
+    cd Python-3.6.5/; \
+    ./configure --enable-shared; \
+    make -j8; \
+    make install; 
 
+RUN ldconfig &&  python3.6 -m pip install cython
+
+# octomap is included as recent changes in https://github.com/opencog/opencog/blob/master/opencog/spacetime/octomap/CMakeLists.txt 
+# disabled cause it installed python2.7.
+#    cxxtest \
+
+# We use clang for building GRPC as there still this error https://github.com/grpc/grpc/issues/16739
 RUN cd ${SINGNET_REPOS} && \
-    git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc; \
+    git clone -b $(curl -L https://grpc.io/release) --depth 1 https://github.com/grpc/grpc; \
     cd grpc; \
-    git submodule update --init; \
-    make; \
-    make install; \
-    echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list; \
-    curl https://bazel.build/bazel-release.pub.gpg | apt-key add -; \
-    apt-get update; \
-    apt-get install -y bazel; \
-    apt-get upgrade -y bazel; \
-    bazel build :all; \
+    git submodule update --init; 
+
+WORKDIR $SINGNET_REPOS/grpc
+
+RUN make; \
+    make install
+
+# Tested usinig bazel version 0.22.0 as error mentioned i.e https://github.com/grpc/grpc/pull/18317 persist
+RUN curl -LO "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel_${BAZEL_VERSION}-linux-x86_64.deb" && dpkg -i bazel_*.deb && rm bazel_${BAZEL_VERSION}-linux-x86_64.deb
+
+RUN bazel build :all; \
     make install; \
     cd third_party/protobuf; \
     make; \
@@ -50,8 +86,12 @@ RUN cd ${SINGNET_REPOS} && \
     wget http://ftp.cn.debian.org/debian/pool/main/n/nlohmann-json/nlohmann-json-dev_2.1.1-1.1_all.deb; \
     apt install -y ./nlohmann-json-dev_2.1.1-1.1_all.deb
 
+# I had tried building the opencog dependencies with clang, it fails with various assorted errors. 
+ENV CC=/usr/bin/gcc
+ENV CXX=/usr/bin/g++
+
 RUN cd ${SINGNET_REPOS} && \
-    git clone https://github.com/singnet/cogutil.git && \
+    git clone https://github.com/opencog/cogutil.git && \
     cd cogutil && \
     mkdir build && \
     cd build && \
@@ -60,7 +100,7 @@ RUN cd ${SINGNET_REPOS} && \
     make install
 
 RUN cd ${SINGNET_REPOS} && \
-    git clone https://github.com/singnet/atomspace.git && \
+    git clone https://github.com/opencog/atomspace.git && \
     cd atomspace && \
     mkdir build && \
     cd build && \
@@ -69,7 +109,7 @@ RUN cd ${SINGNET_REPOS} && \
     make install
 
 RUN cd ${SINGNET_REPOS} && \
-    git clone https://github.com/singnet/opencog.git && \
+    git clone https://github.com/opencog/opencog.git && \
     cd opencog && \
     mkdir build && \
     cd build && \
@@ -77,29 +117,8 @@ RUN cd ${SINGNET_REPOS} && \
     make && \
     make install
 
-# Manually install Python 3.6. This is required because opencog
-# image is based in Ubuntu 14.04.
 RUN cd ${SINGNET_REPOS} && \
-    apt install -y \
-        build-essential \
-        checkinstall \
-        zlib1g-dev \
-        libreadline-gplv2-dev \
-        libncursesw5-dev \
-        libssl-dev \
-        libsqlite3-dev \
-        tk-dev \
-        libgdbm-dev \
-        libc6-dev \
-        libbz2-dev; \
-    wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz; \
-    tar xvf Python-3.6.5.tar.xz; \
-    cd Python-3.6.5/; \
-    ./configure; \
-    make -j8; \
-    make install
-
-RUN cd ${SINGNET_REPOS} && \
+    ldconfig &&\
     git clone https://github.com/singnet/snet-cli.git && \
     cd snet-cli && \
     cat ./scripts/blockchain | sed "s/python3 /python3.6 /g" > ./scripts/blockchain && \
@@ -109,6 +128,7 @@ RUN cd ${SINGNET_REPOS} && \
 RUN cd ${SINGNET_REPOS} && \
     mkdir snet-daemon && \
     cd snet-daemon && \
-    wget https://github.com/singnet/snet-daemon/releases/download/v0.1.2/snetd-0.1.2.tar.gz && \
-    tar -xvf snetd-0.1.2.tar.gz && \
-    cp snetd-0.1.2/snetd-linux-amd64 /usr/local/bin/snetd
+    wget https://github.com/singnet/snet-daemon/releases/download/v${SNET_DAEMON_VERSION}/snet-daemon-v${SNET_DAEMON_VERSION}-linux-amd64.tar.gz && \
+    tar -xzf snet-daemon-v${SNET_DAEMON_VERSION}-linux-amd64.tar.gz && \
+    cp snet-daemon-v${SNET_DAEMON_VERSION}-linux-amd64/snetd /usr/local/bin/snet && \
+    rm snet-daemon-v${SNET_DAEMON_VERSION}-linux-amd64.tar.gz

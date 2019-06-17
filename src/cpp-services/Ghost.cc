@@ -72,10 +72,16 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
     evaluateScheme(scheme_out, string("(use-modules (opencog ghost procedures))"), session_token);
     evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
 
-    char* relex_container_name = getenv("RELEX_CONTAINER_NAME");
-    string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" 4444)");
+    if(const char* relex_container_name = std::getenv("RELEX_CONTAINER_NAME"))
+    {
+        string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" 4444)");
+        evaluateScheme(scheme_out, relex_seek_cmd, session_token);
+    }
+    else{
+        printf("Warning: Couldn't read RELEX_CONTAINER_NAME using default 127.0.0.1:4444");
+        printf("Using default value as set by: https://git.io/fjuql");
+    }
 
-    evaluateScheme(scheme_out, relex_seek_cmd, session_token);
     evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
 
     // load url rule file
@@ -84,7 +90,7 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
     evaluateScheme(scheme_out, string("(ghost-run)"), session_token);
 
     // set output to the user
-    rOutput = "session started: " + to_string(session_token);
+    rOutput = to_string(session_token);
 }
 
 void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_for_response_secs)
@@ -127,6 +133,9 @@ void Ghost::utterance(const int token, const string &rUtterance, string &rOutput
 
 void Ghost::ghostEndSession(const int token, string &rOutput)
 {
+    // As suggested by the problem at: https://github.com/opencog/opencog/issues/3484, we need to send (ghost-halt) to avoid segfaulting when quiting.
+    string cmd = "(ghost-halt)";
+    evaluateScheme(rOutput, cmd, token);
     closeGuileSession(token);
     rOutput = string(GHOST_MSG_SESSION_ENDED);
 }
@@ -161,29 +170,39 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
             Ghost end_session <session_id> \n \
                 -Param: <session_id> - integer representing a oppened session ID. \n \
                 -Output: String - Session ended message. \n\n \
-        3) Talk with a GHOST session: \n\n \ 
+        3) Talk with a GHOST session: \n\n \
             Ghost utterance <session_id> <utterance_string> \n \
                 -Param: <session_id> - integer representing a oppened session ID. \n \
                 -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n\n \
                 -Output: String - GHOST response string. \n\n"
         );
 
-        return GHOST_STATUS_OK;
+        return false;
     }
 
     // try to parse command if any is received
     int command = getCommand(rArgs[0]);
+    bool status = true;
 
     switch (command) {
         case TALK:
             if (rArgs.size() < TALK_ARG_SIZE) {
-                response = "\n\n    Usage:\n \  
+                response = "\n\n    Usage:\n \
                 Ghost utterance <session_id> <utterance_string> \n \
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n \
                     -Output: String - GHOST response string. \n\n";
+                status = false;
             } else {
-                utterance(atoi(rArgs[1].c_str()), rArgs[2], response);
+                // Check whether id is integer. There is another means to fix this
+                try {
+                    int session_id = boost::lexical_cast<int>(rArgs[1].c_str());
+                    utterance(session_id, rArgs[2], response);
+                }
+                catch (const boost::bad_lexical_cast& e){
+                    // TODO this error doesn't get caught but instead propagates to be bad_alloc error.
+                    status = false;
+                }
             }
             break;
         case START_SESSION:
@@ -192,6 +211,7 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost start_session <url> \n \
                     -Param: <url> - url containing a GHOST rules file. \n \
                     -Output: Integer - session ID integer representing the oppened session ID. \n\n";
+                status = false;
             } else {
                 ghostStartSession(rArgs[1], response);
             }
@@ -202,12 +222,14 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost end_session <session_id> \n \
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Output: String - Session ended message. \n\n ";
+                status = false;
             } else {
                 ghostEndSession(atoi(rArgs[1].c_str()), response);
             }
             break;
         default:
             response = string(GHOST_MSG_ERROR_INVALID_COMMAND);
+            status = false;
             break;
     }
 
@@ -219,5 +241,5 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
     // set output to the user
     rOutput = response;
 
-    return GHOST_STATUS_OK;
+    return status;
 }

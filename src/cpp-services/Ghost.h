@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../OpencogSNETService.h"
+#include <boost/lexical_cast.hpp>
 
 #define S_TALK "utterance"
 #define S_START_SESSION "start_session"
@@ -17,7 +18,7 @@
 #define START_ARG_SIZE 2
 #define END_ARG_SIZE 2
 
-#define GHOST_STATUS_OK false
+#define GHOST_STATUS_OK true
 
 #define GHOST_MSG_ERROR_INVALID_COMMAND "Invalid command."
 

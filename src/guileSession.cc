@@ -183,8 +183,8 @@ static void session(int argc, char *argv[])
                 // execute the received command
                 output_mgs = pSchemeEval->eval(received_command);
 
-                // remove \n and () from response
-                boost::remove_erase_if(output_mgs, boost::is_any_of("\n"));
+                // remove () from response.
+                boost::remove_erase_if(output_mgs, boost::is_any_of("()"));
 
                 // need to set simple output for read lock
                 if (output_mgs.length() == 0) {

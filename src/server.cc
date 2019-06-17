@@ -29,6 +29,7 @@ using grpc::ServerReader;
 using grpc::ServerReaderWriter;
 using grpc::ServerWriter;
 using grpc::Status;
+using grpc::StatusCode;
 
 using namespace opencogservices;
 using namespace std;
@@ -107,8 +108,12 @@ public:
     // SERVICE_API
 
     Status execute(ServerContext* context, const Command* input, CommandOutput* output) override {
-        exec_service(context, input, output);
-        return Status::OK;
+        bool status = exec_service(context, input, output);
+		if (status){return Status::OK;}
+		else {
+			string value = output->s();
+			Status(StatusCode::UNKNOWN,value);
+		}
     }
 
     Status asynchronousTask(ServerContext* context, const Command* input, Ticket* ticket) override {
@@ -123,10 +128,12 @@ public:
         return Status::OK;
     }
 
-	void exec_service(ServerContext* context, const Command* input, CommandOutput* output) {
+	bool exec_service(ServerContext* context, const Command* input, CommandOutput* output) {
 		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
+		bool status = false;
 		if (opencogService == NULL) {
 			output->set_s(input->cmd() + ": Opencog service not found");
+			return status;
 		} else {
 			// set process based guile session manager for this service
 			opencogService->setGuileSessionManager(gpSessionManager);
@@ -150,7 +157,10 @@ public:
 				// Breaks anyway after feeding 5 arguments
 				break;
 			}
-			if (opencogService->execute(out, args)) {
+			// hold the response in value and return it to the server to rely 
+			// this response to the clients in a meaninful manner.
+			status = opencogService->execute(out, args);
+			if (!status) {
 				output->set_s("Error in " + input->cmd() + ": " + out);
 			} else {
 				output->set_s(out);
@@ -158,6 +168,7 @@ public:
 
 			// free mem
 			delete opencogService;
+			return status;
 		}
 	}
 
@@ -198,7 +209,15 @@ public:
 };
 
 static void RunServer() {
-    std::string server_address("0.0.0.0:7032");
+	std::string server_address;
+    if (char * server_port = getenv("OPENCOG_SERVER_PORT")) {
+		std::string port(server_port);
+	    server_address = "0.0.0.0:" + port ;
+	}
+	else {
+		printf("Warning: Using default OPENCOG_SERVER_PORT: 7032\n");
+	    server_address = "0.0.0.0:7032";
+	}
     ServiceImpl service;
 
     ServerBuilder builder;

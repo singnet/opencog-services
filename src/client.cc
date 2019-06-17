@@ -71,6 +71,9 @@ class ServiceClient {
                 if (status.ok()) {
                     printf("%s\n", output.s().c_str());
                 }
+                else {
+                    printf("Error has been reached: %s\n", output.s().c_str());
+                }
             } else {
                 Ticket ticket;
                 status = stub_->asynchronousTask(&context, cmd, &ticket);

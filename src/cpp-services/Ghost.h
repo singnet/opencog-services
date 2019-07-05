@@ -34,7 +34,7 @@
 #define GHOST_ERROR_CAN_NOT_CREATE_FILE -102
 #define GHOST_ERROR_CAN_NOT_DELETE_TEMP_FILE -103
 
-namespace opencogservices
+namespace opencog_services
 {
 class Ghost : public OpencogSNETService
 {

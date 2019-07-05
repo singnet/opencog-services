@@ -1,25 +1,17 @@
 syntax = "proto3";
 
-package opencogservices;
+package opencog_services;
 
 message Command {
-    string cmd = 1;
-    string arg1 = 2;
-    string arg2 = 3;
-    string arg3 = 4;
-    string arg4 = 5;
-    string arg5 = 6;
+   string cmd = 1;
+   repeated string params = 2;
 }
 
 message CommandOutput {
-    string s = 1;
+   string output = 1;
 }
 
-message Ticket {
-    string url = 1;
-}
-
-service ServiceDefinition {
-    rpc execute(Command) returns (CommandOutput) {}
-    rpc asynchronousTask(Command) returns (Ticket) {}
+service OpencogServices {
+   rpc Execute(Command) returns (CommandOutput) {}
+   rpc AsynchronousTask(Command) returns (CommandOutput) {}
 }

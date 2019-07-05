@@ -1,6 +1,6 @@
 #include "Echo.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 Echo::Echo() 

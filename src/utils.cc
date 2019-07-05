@@ -1,7 +1,7 @@
 #include "utils.h"
 #include <curl/curl.h>
 
-using namespace opencogservices;
+using namespace opencog_services;
 
 static size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream)
 {
@@ -9,7 +9,7 @@ static size_t writeData(void *pPtr, size_t size, size_t nmemb, void *pStream)
     return written;
 }
 
-CURLcode opencogservices::loadUrlFile(std::string &errorMessage, const std::string &rUrl, std::string &rOutputFileName)
+CURLcode opencog_services::loadUrlFile(std::string &errorMessage, const std::string &rUrl, std::string &rOutputFileName)
 {
     // create temp file to hold the URL contents
     CURL *pCurlHandle;

@@ -37,7 +37,7 @@ class ServiceImpl;
 
 using namespace opencog;
 
-namespace opencogservices
+namespace opencog_services
 {
 
 /**
@@ -96,15 +96,15 @@ public:
 
     //opencog::AtomSpace atomSpace;
 
+    // Set sessionmanager instance for 'this' object
+    void setGuileSessionManager(GuileSessionManager *pManager);
+
 private:
 
     //opencog::SchemeEval *schemeEval;
 
     // let the service class to have access to the setGuileSessionManager
     friend class ::ServiceImpl;
-
-    // Set sessionmanager instance for 'this' object
-    void setGuileSessionManager(GuileSessionManager *pManager);
 
     // used to have access to sessions
     GuileSessionManager *_sessionManager;

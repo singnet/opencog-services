@@ -2,7 +2,7 @@
 #include <ctime>
 #include "../utils.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 Ghost::Ghost()

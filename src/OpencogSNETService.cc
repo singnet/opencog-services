@@ -1,7 +1,7 @@
 #include "OpencogSNETService.h"
 #include "utils.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 OpencogSNETService::OpencogSNETService()
@@ -163,22 +163,36 @@ void OpencogSNETService::fetchAtomspaceSnapshop(AtomSpace &rOutAtomSpace, const 
 
 void OpencogSNETService::setGuileSessionManager(GuileSessionManager *_sessionManager)
 {
+    printf("session manager\n");
+
     // set _sessionManager instancef
     this->_sessionManager = _sessionManager;
+
+printf("session managerB\n");
 
     // created a private session for this service
     int status = _sessionManager->startSession(_sessionToken);
 
+printf("session managerC\n");
+
     if (status == GSM_OP_SESSION_CREATED) {
+        printf("session managerD\n");
+
         // after sessint this _sessionManager load the opencog modules
         _sessionManager->sendCommand(_sessionToken, "(use-modules (opencog))");
 
+        printf("session managerE\n");
+
         // lock to sync with session with a OK handshake
         int flush_status = _sessionManager->sync(_sessionToken);
+
+printf("session managerF\n");
 
         if (flush_status != GSM_OP_SESSION_FLUSH_SYNC_COMPLETED) {
             // TODO::raise exceptions here based on status variable
             //exit(OSS_ERROR_FATAL_CAN_NOT_CREATE_PRIVATE_SESSION);
         }
+
+        printf("session managerG\n");
     }
 }

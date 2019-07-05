@@ -174,7 +174,6 @@ static void session(int argc, char *argv[])
         } else {
             if (received_command == string(GSM_HANDSHAKE_CMD)) {
                 output_mgs = GSM_HANDSHAKE_RESPONSE;
-                // printf("%d: Response: %s\n", myPID, output_mgs.c_str());
             } else if (received_command == string(GSM_SET_CONFIG)) {
                 load_mode = true;
             } else if (received_command == string(GSM_FINISH_CMD)) {
@@ -183,8 +182,9 @@ static void session(int argc, char *argv[])
                 // execute the received command
                 output_mgs = pSchemeEval->eval(received_command);
 
-                // remove () from response.
-                boost::remove_erase_if(output_mgs, boost::is_any_of("()"));
+                // remove \n and () from response
+                               // remove () from response.
+                boost::remove_erase_if(output_mgs, boost::is_any_of("\n()"));
 
                 // need to set simple output for read lock
                 if (output_mgs.length() == 0) {

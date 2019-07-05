@@ -1,6 +1,6 @@
 #include "Session.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 Session::Session(int write_fd, int read_fd)

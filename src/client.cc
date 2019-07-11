@@ -11,16 +11,13 @@ using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
 
-using namespace opencogservices;
+using namespace opencog_services;
 
-class ServiceClient {
-
+class OpencogServicesClient {
     public:
+        OpencogServicesClient(std::shared_ptr<Channel> channel) : stub_(OpencogServices::NewStub(channel)) {
 
-        ServiceClient(std::shared_ptr<Channel> channel) : stub_(ServiceDefinition::NewStub(channel)) {
         }
-
-        // TEST_CODE
 
         void usage()
         {
@@ -28,14 +25,13 @@ class ServiceClient {
             exit(0);
         }
 
-        void doSomething(int argc, char** argv)
+        void exec(int argc, char** argv)
         {
-
             Command cmd;
             Status status;
             ClientContext context;
 
-            if ((argc < 3) || (argc > 8)) {
+            if (argc < 3) {
                 usage();
             } 
 
@@ -49,36 +45,25 @@ class ServiceClient {
             }
 
             cmd.set_cmd(argv[2]);
-
-            unsigned int nargs = argc - 3;
-            unsigned int p = 0;
-            while (true) {
-                if (p++ == nargs) break;
-                cmd.set_arg1(argv[p + 2]);
-                if (p++ == nargs) break;
-                cmd.set_arg2(argv[p + 2]);
-                if (p++ == nargs) break;
-                cmd.set_arg3(argv[p + 2]);
-                if (p++ == nargs) break;
-                cmd.set_arg4(argv[p + 2]);
-                if (p++ == nargs) break;
-                cmd.set_arg5(argv[p + 2]);
+            
+            for (int arg = 3; arg < argc; arg++) {
+                cmd.add_params(argv[arg]);
             }
 
             if (sync) {
                 CommandOutput output;
-                status = stub_->execute(&context, cmd, &output);
+                status = stub_->Execute(&context, cmd, &output);
                 if (status.ok()) {
-                    printf("%s\n", output.s().c_str());
+                    printf("%s\n", output.output().c_str());
                 }
                 else {
-                    printf("Error has been reached: %s\n", output.s().c_str());
+                    printf("Error has been reached: %s\n", output.output().c_str());
                 }
             } else {
-                Ticket ticket;
-                status = stub_->asynchronousTask(&context, cmd, &ticket);
+                CommandOutput output;
+                status = stub_->AsynchronousTask(&context, cmd, &output);
                 if (status.ok()) {
-                    printf("Task \"%s\" started. See results in: %s\n", cmd.cmd().c_str(), ticket.url().c_str());
+                    //TODO::print results
                 }
             }
 
@@ -88,12 +73,21 @@ class ServiceClient {
         }
 
     private:
-
-        std::unique_ptr<ServiceDefinition::Stub> stub_;
+        std::unique_ptr<OpencogServices::Stub> stub_;
 };
 
 int main(int argc, char** argv) {
-    ServiceClient guide(grpc::CreateChannel("localhost:7032", grpc::InsecureChannelCredentials()));
-    guide.doSomething(argc, argv);
+    std::string server_address = "";
+	if (char * server_port = getenv("OPENCOG_SERVER_PORT")) {
+		std::string port(server_port);
+	    server_address = "0.0.0.0:" + port ;
+	}
+	else {
+		printf("Warning: Using default OPENCOG_SERVER_PORT: 7032\n");
+	    server_address = "0.0.0.0:7032";
+	}
+
+    OpencogServicesClient opencog_services_client(grpc::CreateChannel(server_address, grpc::InsecureChannelCredentials()));
+    opencog_services_client.exec(argc, argv);
     return 0;
 }

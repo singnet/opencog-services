@@ -4,7 +4,7 @@
 #include <string>
 #include <curl/curl.h>
 
-namespace opencogservices{
+namespace opencog_services{
     CURLcode loadUrlFile(std::string &errorMessage, const std::string &rUrl, std::string &rOutputFileName);
 }
 

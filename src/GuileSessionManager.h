@@ -35,7 +35,7 @@
 #include <string>
 #include <iterator>
 
-namespace opencogservices
+namespace opencog_services
 {
 class GuileSessionManager
 {

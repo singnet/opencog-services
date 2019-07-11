@@ -3,7 +3,7 @@
 #include <signal.h>
 
 using namespace std;
-using namespace opencogservices;
+using namespace opencog_services;
 
 static void callSession(const string &rSessionProgram, 
                         const string &rReadPipe, 

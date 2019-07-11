@@ -1,7 +1,7 @@
 #include "SCMService.h"
 #include <regex>
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 SCMService::SCMService(const string &scmFileName)

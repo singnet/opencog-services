@@ -27,7 +27,7 @@
 #include <string>
 #include "opencogServicesDef.h"
 
-namespace opencogservices
+namespace opencog_services
 {
 class Session
 {

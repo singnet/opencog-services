@@ -15,6 +15,7 @@
 #include "opencog.grpc.pb.h"
 #include "OpencogSNETServiceFactory.h"
 #include "OpencogSNETService.h"
+#include "GuileSessionManager.h"
 
 // seconds
 #define ASYNCHRONOUS_API_UPDATE_INTERVAL ((unsigned int) 60)
@@ -31,10 +32,9 @@ using grpc::ServerWriter;
 using grpc::Status;
 using grpc::StatusCode;
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
-static unsigned long int nextTicketCount;
 static string baseOutputURL;
 static string baseOutputDir;
 static GuileSessionManager *gpSessionManager;
@@ -91,92 +91,70 @@ static void handleSignal(int sig)
 	exit(sig);
 }
 
-class ServiceImpl final : public ServiceDefinition::Service
+class OpencogService final : public OpencogServices::Service
 {
-
-private:
-
 public:
-
-    explicit ServiceImpl() {
-        nextTicketCount = 1;
+    explicit OpencogService() {
         baseOutputURL = ASYNCHRONOUS_API_OUTPUT_URL;
         baseOutputDir = ASYNCHRONOUS_API_OUTPUT_DIR;
-        //baseOutputURL = baseOutputDir = "/tmp/";
     }
 
-    // SERVICE_API
-
-    Status execute(ServerContext* context, const Command* input, CommandOutput* output) override {
-        bool status = exec_service(context, input, output);
-		if (status){return Status::OK;}
+    Status Execute(ServerContext* context, const Command* input, CommandOutput* output) override {
+        bool status = execService(context, input, output);
+		if (status) {
+			return Status::OK;
+		}
 		else {
-			string value = output->s();
+			string value = output->output();
 			Status(StatusCode::UNKNOWN,value);
 		}
     }
 
-    Status asynchronousTask(ServerContext* context, const Command* input, Ticket* ticket) override {
-        string suffix = input->cmd() + "-" + to_string(::getpid()) + to_string(nextTicketCount);
-        string url = baseOutputURL + suffix;
-        string fname = baseOutputDir + suffix;
-        nextTicketCount++;
-        ticket->set_url(url);
-        thread t(&ServiceImpl::threadJobManager, this, context, input, fname);
-        t.detach();
-        sleep(1);
+    Status AsynchronousTask(ServerContext* context, const Command* input, CommandOutput* output) override {
+		//TODO::reimplement with current architecture
         return Status::OK;
     }
 
-	bool exec_service(ServerContext* context, const Command* input, CommandOutput* output) {
+	bool execService(ServerContext* context, const Command* input, CommandOutput* output) {
 		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
+		
 		bool status = false;
+		
 		if (opencogService == NULL) {
-			output->set_s(input->cmd() + ": Opencog service not found");
-			return status;
+			output->set_output(input->cmd() + ": Opencog service not found");
 		} else {
 			// set process based guile session manager for this service
 			opencogService->setGuileSessionManager(gpSessionManager);
 
+			// prepare parameters
 			vector<string> args;
-			string out;
-			// The 'while (true)' is just to avoid an annoying chain of if's 
-			while (true) {
-				// feed 'args' with arguments until the first empty string
-				// is found
-				if (input->arg1() == "") break;
-				args.push_back(input->arg1());
-				if (input->arg2() == "") break;
-				args.push_back(input->arg2());
-				if (input->arg3() == "") break;
-				args.push_back(input->arg3());
-				if (input->arg4() == "") break;
-				args.push_back(input->arg4());
-				if (input->arg5() == "") break;
-				args.push_back(input->arg5());
-				// Breaks anyway after feeding 5 arguments
-				break;
+			for(int param = 0; param < input->params_size(); param++) {
+				args.push_back(input->params()[param]);
 			}
+
+			// service response
+			string out;
+
 			// hold the response in value and return it to the server to rely 
 			// this response to the clients in a meaninful manner.
 			status = opencogService->execute(out, args);
 			if (!status) {
-				output->set_s("Error in " + input->cmd() + ": " + out);
+				output->set_output("Error in " + input->cmd() + ": " + out);
 			} else {
-				output->set_s(out);
+				output->set_output(out);
 			}
 
 			// free mem
 			delete opencogService;
-			return status;
 		}
+		return status;
 	}
 
 	void threadJobManager(ServerContext* context, const Command* input, const string &fname)
 	{
-		CommandOutput output;
+		CommandOutput command_output;
 
-		auto future = std::async(std::launch::async, &ServiceImpl::exec_service, this, context, input, &output);
+		auto future = std::async(std::launch::async, &OpencogService::execService, this, context, input, &command_output);
 
 		unsigned int count = ASYNCHRONOUS_API_UPDATE_INTERVAL;
 		while (true) {
@@ -201,7 +179,7 @@ public:
 			}
 		}
 
-		string s = "Service finished. Output:\n" + output.s();
+		string s = "Service finished. Output:\n" + command_output.output();
 		FILE *f = fopen(fname.c_str(), "w");
 		fputs(s.c_str(), f);
 		fclose(f);
@@ -210,7 +188,8 @@ public:
 
 static void RunServer() {
 	std::string server_address;
-    if (char * server_port = getenv("OPENCOG_SERVER_PORT")) {
+    
+	if (char * server_port = getenv("OPENCOG_SERVER_PORT")) {
 		std::string port(server_port);
 	    server_address = "0.0.0.0:" + port ;
 	}
@@ -218,8 +197,8 @@ static void RunServer() {
 		printf("Warning: Using default OPENCOG_SERVER_PORT: 7032\n");
 	    server_address = "0.0.0.0:7032";
 	}
-    ServiceImpl service;
-
+	
+	OpencogService service;
     ServerBuilder builder;
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);

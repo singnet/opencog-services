@@ -24,7 +24,7 @@
 
 #include "OpencogSNETService.h"
 
-namespace opencogservices
+namespace opencog_services
 {
 
 /**

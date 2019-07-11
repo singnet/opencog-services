@@ -23,7 +23,6 @@
 #include "opencogServicesDef.h"
 #include <fcntl.h>
 #include <vector>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <thread>
 #include <unistd.h>
@@ -38,8 +37,6 @@
 
 using namespace opencog;
 using namespace std;
-
-using json = nlohmann::json;
 
 static vector<string> modules;
 static vector<string> agents;
@@ -165,32 +162,24 @@ static void session(int argc, char *argv[])
 
         string output_mgs = "";
 
-        if (load_mode) {
-            auto jasonHash = json::parse(received_command);
-            for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
-                config().set(it.key(), it.value());
-            }
-            load_mode = false;
+        if (received_command == string(GSM_HANDSHAKE_CMD)) {
+            output_mgs = GSM_HANDSHAKE_RESPONSE;
+        } else if (received_command == string(GSM_SET_CONFIG)) {
+            load_mode = true;
+        } else if (received_command == string(GSM_FINISH_CMD)) {
+            break;
         } else {
-            if (received_command == string(GSM_HANDSHAKE_CMD)) {
-                output_mgs = GSM_HANDSHAKE_RESPONSE;
-                // printf("%d: Response: %s\n", myPID, output_mgs.c_str());
-            } else if (received_command == string(GSM_SET_CONFIG)) {
-                load_mode = true;
-            } else if (received_command == string(GSM_FINISH_CMD)) {
-                break;
-            } else {
-                // execute the received command
-                output_mgs = pSchemeEval->eval(received_command);
+            // execute the received command
+            output_mgs = pSchemeEval->eval(received_command);
 
-                // remove () from response.
-                boost::remove_erase_if(output_mgs, boost::is_any_of("()"));
+            // remove \n and () from response
+            // remove () from response.
+            boost::remove_erase_if(output_mgs, boost::is_any_of("\n()"));
 
-                // need to set simple output for read lock
-                if (output_mgs.length() == 0) {
-                    // printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
-                    output_mgs.append("NOTHING");
-                }
+            // need to set simple output for read lock
+            if (output_mgs.length() == 0) {
+                // printf("%d: Response: %s\n", my_pid, output_mgs.c_str());
+                output_mgs.append("NOTHING");
             }
         }
 

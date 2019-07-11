@@ -1,7 +1,7 @@
 #include "OpencogSNETService.h"
 #include "utils.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 OpencogSNETService::OpencogSNETService()

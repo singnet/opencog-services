@@ -3,7 +3,7 @@
 #include "cpp-services/Echo.h"
 #include "cpp-services/Ghost.h"
 
-using namespace opencogservices;
+using namespace opencog_services;
 using namespace std;
 
 OpencogSNETService *OpencogSNETServiceFactory::factory(const string &serviceName) 

@@ -3,15 +3,17 @@ syntax = "proto3";
 package opencog_services;
 
 message Command {
-   string cmd = 1;
-   repeated string params = 2;
+    string service = 1;
+    string cmd = 2;
+    int32 session_id = 3;
+    repeated string params = 4;
 }
 
 message CommandOutput {
-   string output = 1;
+    string output = 1;
 }
 
 service OpencogServices {
-   rpc Execute(Command) returns (CommandOutput) {}
-   rpc AsynchronousTask(Command) returns (CommandOutput) {}
+    rpc Execute(Command) returns (CommandOutput) {}
+    rpc AsynchronousTask(Command) returns (CommandOutput) {}
 }

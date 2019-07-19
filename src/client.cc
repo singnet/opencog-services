@@ -45,8 +45,9 @@ class OpencogServicesClient {
             }
 
             cmd.set_cmd(argv[2]);
+            cmd.set_session_id(atoi(argv[3]));
             
-            for (int arg = 3; arg < argc; arg++) {
+            for (int arg = 4; arg < argc; arg++) {
                 cmd.add_params(argv[arg]);
             }
 

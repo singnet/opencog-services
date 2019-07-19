@@ -133,7 +133,7 @@ public:
 			args.push_back(input->cmd());
 
 			// push ID, this parameter can be null
-			args.push_back(input->session_id());
+			args.push_back(to_string(input->session_id()));
 
 			// push all arguments
 			for(int param = 0; param < input->params_size(); param++) {

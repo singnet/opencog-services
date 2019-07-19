@@ -116,18 +116,26 @@ public:
     }
 
 	bool execService(ServerContext* context, const Command* input, CommandOutput* output) {
-		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
+		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->service());
 		
 		bool status = false;
 		
 		if (opencogService == NULL) {
-			output->set_output(input->cmd() + ": Opencog service not found");
+			output->set_output(input->service() + ": Opencog service not found");
 		} else {
 			// set process based guile session manager for this service
 			opencogService->setGuileSessionManager(gpSessionManager);
 
 			// prepare parameters
 			vector<string> args;
+
+			// push commmand must be specified
+			args.push_back(input->cmd());
+
+			// push ID, this parameter can be null
+			args.push_back(input->session_id());
+
+			// push all arguments
 			for(int param = 0; param < input->params_size(); param++) {
 				args.push_back(input->params()[param]);
 			}

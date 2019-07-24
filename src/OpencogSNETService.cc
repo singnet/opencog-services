@@ -117,16 +117,16 @@ void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine,
     rOutput.push_back('\n');
 }
 
-void OpencogSNETService::createGuileSession(int &rOutputSessionToken, vector<string> *modules, vector<string> *agents)
+void OpencogSNETService::createGuileSession(int &rOutputSessionToken, vector<string> *modules, vector<string> *agents, int *pInGhostID)
 {
-    int status = _sessionManager->startSession(rOutputSessionToken, modules, agents);
+    int status = _sessionManager->startSession(rOutputSessionToken, pInGhostID, modules, agents);
 
     //TODO::raise exception
 }
 
-void OpencogSNETService::closeGuileSession(const int sessionToken)
+void OpencogSNETService::closeGuileSession(const int sessionToken, bool free)
 {
-    int status = _sessionManager->endSession(sessionToken);
+    int status = _sessionManager->endSession(sessionToken, free);
 
     //TODO::raise exception
 }

@@ -68,8 +68,8 @@ public:
     GuileSessionManager(const char *guileSessionExePath);
     ~GuileSessionManager();
 
-    int startSession(int &rOutputToken, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
-    int endSession(const int token);
+    int startSession(int &rOutputToken, int *pInGhostID = nullptr, std::vector<std::string> *modules = nullptr, std::vector<std::string> *agents = nullptr);
+    int endSession(const int token, bool free = true);
     int sendCommand(const int token, const char *pCmd);
     int sync(const int token);
     int receiveResponse(const int token, std::string &rOutput);

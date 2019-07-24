@@ -99,10 +99,18 @@ void GuileSessionManager::buildConfigArgs(std::vector<std::string> *modules, std
     }
 }
 
-int GuileSessionManager::startSession(int &rOutputToken, vector<string> *modules, vector<string> *agents)
+int GuileSessionManager::startSession(int &rOutputToken, int *pInGhostID, vector<string> *modules, vector<string> *agents)
 {
     // generate an ID for this session
-    int id = genId();
+    int id = 0;
+    
+    if(pInGhostID == nullptr) 
+    {
+        id = genId();
+    }else
+    {
+        id = *pInGhostID;
+    }
 
     // prepare args, first arg
     string first_arg = _sessionAbsoluteExePath + string(GSM_SESSION_CLIENT);
@@ -163,7 +171,7 @@ int GuileSessionManager::startSession(int &rOutputToken, vector<string> *modules
     return GSM_OP_SESSION_CREATED;
 }
 
-int GuileSessionManager::endSession(const int token)
+int GuileSessionManager::endSession(const int token, bool free)
 {
     // check if session token is positive and if session exists
     if (_sessions.find(token) == _sessions.end()) {
@@ -204,7 +212,10 @@ int GuileSessionManager::endSession(const int token)
     fclose(closed_pid_file);
 
     // free id
-    freeId(token);
+    if(free)
+    {
+        freeId(token);
+    }
 
     return GSM_OP_SESSION_ENDED;
 }

@@ -45,7 +45,7 @@ vpath %.proto $(PROTOS_PATH)
 
 # Opencog
 
-CXXFLAGS += -I/usr/local/include/guile/2.2 -DHAVE_GUILE
+CXXFLAGS += -I/usr/include/guile/2.2 -DHAVE_GUILE
 CXXFLAGS += -I/usr/local/include/opencog/
 CXXFLAGS += $(shell curl-config --cflags)
 LDFLAGS += -L/usr/local/lib/opencog -L/usr/local/lib/opencog/modules -L/usr/local/lib

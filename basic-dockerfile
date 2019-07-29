@@ -117,13 +117,7 @@ RUN cd ${SINGNET_REPOS} && \
     make && \
     make install
 
-RUN cd ${SINGNET_REPOS} && \
-    ldconfig &&\
-    git clone https://github.com/singnet/snet-cli.git && \
-    cd snet-cli && \
-    cat ./scripts/blockchain | sed "s/python3 /python3.6 /g" > ./scripts/blockchain && \
-    ./scripts/blockchain install && \
-    pip3 install -e .
+RUN pip3 install snet-cli
 
 RUN cd ${SINGNET_REPOS} && \
     mkdir snet-daemon && \

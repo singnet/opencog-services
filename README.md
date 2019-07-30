@@ -34,15 +34,18 @@ code and scripts required to build and deploy the Opencog services.
 
 ### Building and testing services locally (without blockchain)
 
-We suggest you to build in a docker container with all the required packages
-using the command lines below. Having a docker container is useful because the
-Opencog Services uses C++ gRPC bindings which requires a lot of pre-requisite
-packages to be installed.
+The below setup requires docker and will build docker images with all the required packages.
+Having a docker container is useful because the Opencog Services uses C++ gRPC bindings
+which requires a lot of pre-requisite packages to be installed.
 
 ```
-$ docker image build -t opencog_services_basic https://raw.githubusercontent.com/singnet/opencog-services/master/basic-dockerfile
-$ docker image build -t opencog_services https://raw.githubusercontent.com/singnet/opencog-services/master/Dockerfile
-$ docker run --name OPENCOG_SERVICE_DEV -ti opencog_services /bin/bash
+git clone git@github.com:singnet/opencog-services.git
+cd opencog-services
+# make sure you have the latest base image
+docker pull opencog/opencog-dev:cli
+docker image build -t opencog_services_basic -f basic-dockerfile .
+docker image build -t opencog_services -f Dockerfile .
+docker run --name OPENCOG_SERVICE_DEV -ti opencog_services /bin/bash
 ```
 
 Find `server` and `client` executables in `bin/`
@@ -63,7 +66,7 @@ foo bar
 The command line above is requesting the execution of the service `Echo`,
 passing two arguments `foo` and `bar`. The service just echoes the passed input.
 
-The keyword `sync` before the service name sates that the call should be
+The keyword `sync` before the service name states that the call should be
 synchronous. So the `client` command will wait for the service to finish before
 returning. You can make an asynchronous call using
 

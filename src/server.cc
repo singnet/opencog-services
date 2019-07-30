@@ -39,21 +39,22 @@ static string baseOutputURL;
 static string baseOutputDir;
 static GuileSessionManager *gpSessionManager;
 
-static void initGuileSessionManager(char *execPath)
+static void initGuileSessionManager(const char *execPath)
 {
-	// TODO::check better way to do it
-    char path_save[PATH_MAX];
-    char abs_exe_path[PATH_MAX];
-    char *p;
+	char path_save[PATH_MAX];
+	char abs_exe_path[PATH_MAX];
+	char *p;
+	strncpy(abs_exe_path, execPath, strlen(execPath));
 
-	// TODO::check better way to do it
-	if (!(p = strrchr(execPath, '/'))) {
+	if (!(p = strrchr(abs_exe_path, '/'))) {
 		getcwd(abs_exe_path, sizeof(abs_exe_path));
 	} else {
 		*p = '\0';
 		getcwd(path_save, sizeof(path_save));
-		chdir(execPath);
-		getcwd(abs_exe_path, sizeof(abs_exe_path));
+		if(!chdir(abs_exe_path)) {
+			printf("Failed to change to directory %s\n", abs_exe_path);
+		}
+		
 		chdir(path_save);
 	}
 

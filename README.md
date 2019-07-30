@@ -66,7 +66,7 @@ foo bar
 The command line above is requesting the execution of the service `Echo`,
 passing two arguments `foo` and `bar`. The service just echoes the passed input.
 
-The keyword `sync` before the service name sates that the call should be
+The keyword `sync` before the service name states that the call should be
 synchronous. So the `client` command will wait for the service to finish before
 returning. You can make an asynchronous call using
 

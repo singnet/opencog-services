@@ -113,7 +113,7 @@ int GuileSessionManager::startSession(int &rOutputToken, int *pInGhostID, vector
     }
 
     // prepare args, first arg
-    string first_arg = _sessionAbsoluteExePath + string(GSM_SESSION_CLIENT);
+    string first_arg = _sessionAbsoluteExePath + "/" + string(GSM_SESSION_CLIENT);
 
     // second arg, with pipe name
     string second_arg_read_pipe  = GSM_SESSION_PIPE_NAME_PREFIX + to_string(id) + "_read";

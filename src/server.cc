@@ -51,13 +51,14 @@ static void initGuileSessionManager(const char *execPath)
 	} else {
 		*p = '\0';
 		getcwd(path_save, sizeof(path_save));
-		if(!chdir(abs_exe_path)) {
-			printf("Failed to change to directory %s\n", abs_exe_path);
-		}
 		
+		if(int chdir_err = chdir(abs_exe_path)) {
+			printf("Failed to change to directory %s - %d\n", abs_exe_path, chdir_err);
+		}
+		getcwd(abs_exe_path, sizeof(abs_exe_path));
 		chdir(path_save);
 	}
-
+	
 	// initialize guile session manager and set the guile session absolute executable path
 	gpSessionManager = new GuileSessionManager(abs_exe_path);
 }

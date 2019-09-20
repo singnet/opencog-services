@@ -82,7 +82,7 @@ jobs:
                 docker network rm $NETWORK || true
 
                 # run fast deployment script in the staging folder
-                cd $WORKING_DIR
+                cd $WORKING_DIR/opencog-services
                 /bin/bash setup.sh
               else
                   echo "Repository: $CIRCLE_REPOSITORY_URL"

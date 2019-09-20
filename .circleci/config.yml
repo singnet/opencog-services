@@ -36,8 +36,8 @@ jobs:
             cd $WORKING_DIR
             git clone https://github.com/$CIRCLE_USERNAME/opencog-services.git -b $CIRCLE_BRANCH
             cd opencog-services
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f OpenCogServices .
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX -f OpenCogRelex .
+            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f $WORKING_DIR/OpenCogServices .
+            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX -f $WORKING_DIR/OpenCogRelex .
           EOF
     - run:
         name: Run

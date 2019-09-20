@@ -11,8 +11,8 @@ docker rmi opencog_services_relex_image
 docker rmi opencog_services_image
 
 # build dependencies
-docker build -t opencog_services_relex_image -f ./dependencies/dockerfiles/OpenCogRelex .
-docker build -t opencog_services_image -f ./dependencies/dockerfiles/OpenCogServices .
+docker build -t opencog_services_relex_image -f OpenCogRelex .
+docker build -t opencog_services_image -f OpenCogServices .
 
 # setup network
 docker network rm opencog_services_network

@@ -108,6 +108,15 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
 
 COPY . /opencog-services
 
+# install snet daemon
+RUN mkdir snet-daemon && \
+    cd snet-daemon && \
+    wget -q https://github.com/singnet/snet-daemon/releases/download/v2.0.2/snet-daemon-v2.0.2-linux-amd64.tar.gz && \
+    tar -xvzf snet-daemon-v2.0.2-linux-amd64.tar.gz && \
+    mv ./snet-daemon-v2.0.2-linux-amd64/snetd /usr/bin/snetd && \
+    cd .. && \
+    rm -rf snet-daemon
+
 # configure library path for opencog
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/opencog:/usr/local/lib/opencog/modules
 ENV GUILE_AUTO_COMPILE=0

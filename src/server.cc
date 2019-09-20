@@ -102,8 +102,8 @@ public:
     }
 
     Status Execute(ServerContext* context, const Command* input, CommandOutput* output) override {
-        bool status = execService(context, input, output);
-		if (status) {
+        int status = execService(context, input, output);
+		if (status == 0) {
 			return Status::OK;
 		}
 		else {
@@ -117,29 +117,28 @@ public:
         return Status::OK;
     }
 
-	bool execService(ServerContext* context, const Command* input, CommandOutput* output) {
-		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->service());
+	int execService(ServerContext* context, const Command* args, CommandOutput* output) {
+		// set basic call parameters
+		string service_name = args->input()[0];
+
+		OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(service_name);
 		
-		bool status = false;
+		int status;
 		
 		if (opencogService == NULL) {
-			output->set_output(input->service() + ": Opencog service not found");
+			output->set_output(service_name + ": Opencog service not found");
+			return 1;
 		} else {
 			// set process based guile session manager for this service
 			opencogService->setGuileSessionManager(gpSessionManager);
 
 			// prepare parameters
-			vector<string> args;
+			vector<string> service_args;
 
-			// push commmand must be specified
-			args.push_back(input->cmd());
-
-			// push ID, this parameter can be null
-			args.push_back(to_string(input->session_id()));
-
-			// push all arguments
-			for(int param = 0; param < input->params_size(); param++) {
-				args.push_back(input->params()[param]);
+			// push all other arguments
+			for(int arg = 1; arg < args->input_size(); arg++) {
+				service_args.push_back(args->input()[arg]);
+				printf("%s \n", args->input()[arg].c_str());
 			}
 
 			// service response
@@ -147,17 +146,19 @@ public:
 
 			// hold the response in value and return it to the server to rely 
 			// this response to the clients in a meaninful manner.
-			status = opencogService->execute(out, args);
-			if (!status) {
-				output->set_output("Error in " + input->cmd() + ": " + out);
-			} else {
-				output->set_output(out);
-			}
-
+			status = opencogService->execute(out, service_args);
+			
 			// free mem
 			delete opencogService;
+
+			if (status != 0) {
+				output->set_output("Error in " + service_name + ": " + out);
+				return 1;
+			} else {
+				output->set_output(out);
+				return 0;
+			}
 		}
-		return status;
 	}
 
 	void threadJobManager(ServerContext* context, const Command* input, const string &fname)

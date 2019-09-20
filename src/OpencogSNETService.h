@@ -60,7 +60,7 @@ public:
      * (synchronously) everything the service does. Return 'true' if some error
      * occurred or 'false' otherwise.
      */
-    virtual bool execute(std::string &output, const std::vector<std::string> &args) = 0;
+    virtual int execute(std::string &output, const std::vector<std::string> &args) = 0;
 
 
     // ************************************************************
@@ -74,7 +74,7 @@ public:
      * Returns 'true' if an error occured or 'false' otherwise. When 'true' is
      * returned, an error message is written in 'errorMessage'.
      */
-    bool loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
+    int loadAtomeseFile(std::string &output, const std::string &url, const int token = -1);
 
     /*
      * Uses `schemeEval` to evaluate the passed Scheme string.

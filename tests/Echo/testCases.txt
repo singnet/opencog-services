@@ -1,9 +1,9 @@
 {"test-cases": [
-{"input": "", "output": "t0.txt"},
-{"input": "1", "output": "t1.txt"},
-{"input": "1 2", "output": "t2.txt"},
-{"input": "1 2 3", "output": "t3.txt"},
-{"input": "1 2 3 4", "output": "t4.txt"},
-{"input": "1 2 3 4 5", "output": "t5.txt"},
-{"input": "1 2 3 4 5 6", "output": "t6.txt"}
+{"input": "\"\"", "output": "t0.txt"},
+{"input": "\"1\"", "output": "t1.txt"},
+{"input": "\"1 2\"", "output": "t2.txt"},
+{"input": "\"1 2 3\"", "output": "t3.txt"},
+{"input": "\"1 2 3 4\"", "output": "t4.txt"},
+{"input": "\"1 2 3 4 5\"", "output": "t5.txt"},
+{"input": "\"1 2 3 4 5 6\"", "output": "t6.txt"}
 ]}

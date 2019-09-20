@@ -2,9 +2,9 @@
 {"input": "start_session https://raw.githubusercontent.com/Ophien/rulefiles/master/test.scm", "output": "t1.txt"},
 {"input": "start_session https://raw.githubusercontent.com/Ophien/rulefiles/master/testB.scm", "output": "t2.txt"},
 {"input": "start_session https://raw.githubusercontent.com/Ophien/rulefiles/master/testC.scm", "output": "t3.txt"},
-{"input": "utterance 3 hello", "output": "t4.txt"},
-{"input": "utterance 4 hi", "output": "t5.txt"},
+{"input": "utterance 3 \"hello\"", "output": "t4.txt"},
+{"input": "utterance 4 \"hi\"", "output": "t5.txt"},
 {"input": "utterance 5 \"What is your name\"", "output": "t6.txt"},
-{"input": "utterance 5 hi", "output": "t7.txt"},
-{"input": "utterance 5 hello", "output": "t8.txt"}
+{"input": "utterance 5 \"hi\"", "output": "t7.txt"},
+{"input": "utterance 5 \"hello\"", "output": "t8.txt"}
 ]}

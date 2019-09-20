@@ -11,7 +11,7 @@ Echo::~Echo()
 {
 }
 
-bool Echo::execute(string &output, const vector<std::string> &args)
+int Echo::execute(string &output, const vector<std::string> &args)
 {
     string out;
     for (unsigned int i = 0; i < args.size(); i++) {
@@ -21,8 +21,8 @@ bool Echo::execute(string &output, const vector<std::string> &args)
         }
     }
     //out += "\n";
-
+	printf("TEST: %s\n", args[0].c_str());
     output.assign(out);
-    return false;
+    return 0;
 }
 

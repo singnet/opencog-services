@@ -82,7 +82,7 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
         printf("Using default value as set by: https://git.io/fjuql");
     }
 
-    evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
+    // evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
 
     // load url rule file
     loadRuleFile(rOutput, session_token, rUrl);
@@ -112,7 +112,7 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
         auto end = chrono::steady_clock::now();
         auto elapsed = end - start;
 
-          elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
+        elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
     }
 
     rOutput.assign("I have nothing to say...");
@@ -154,7 +154,7 @@ int Ghost::getCommand(const string &rCmdStr)
     return command;
 }
 
-bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
+int Ghost::execute(string &rOutput, const vector<string> &rArgs)
 {
     // bot response
     string response = "";
@@ -177,12 +177,13 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 -Output: String - GHOST response string. \n\n"
         );
 
-        return false;
+        return 0;
     }
 
     // try to parse command if any is received
     int command = getCommand(rArgs[0]);
-    bool status = true;
+	printf("COMAND: %d\n", command);
+    int status = 0;
 
     switch (command) {
         case TALK:
@@ -192,7 +193,6 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n \
                     -Output: String - GHOST response string. \n\n";
-                status = false;
             } else {
                 // Check whether id is integer. There is another means to fix this
                 try {
@@ -201,7 +201,7 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 }
                 catch (const boost::bad_lexical_cast& e){
                     // TODO this error doesn't get caught but instead propagates to be bad_alloc error.
-                    status = false;
+                    status = 1;
                 }
             }
             break;
@@ -211,7 +211,6 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost start_session <url> \n \
                     -Param: <url> - url containing a GHOST rules file. \n \
                     -Output: Integer - session ID integer representing the oppened session ID. \n\n";
-                status = false;
             } else {
                 ghostStartSession(rArgs[1], response);
             }
@@ -222,14 +221,13 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost end_session <session_id> \n \
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Output: String - Session ended message. \n\n ";
-                status = false;
             } else {
                 ghostEndSession(atoi(rArgs[1].c_str()), response);
             }
             break;
         default:
             response = string(GHOST_MSG_ERROR_INVALID_COMMAND);
-            status = false;
+	    status = 1;
             break;
     }
 

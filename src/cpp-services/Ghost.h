@@ -42,7 +42,7 @@ public:
     Ghost();
     ~Ghost();
 
-    bool execute(std::string &rOutput, const std::vector<std::string> &rArgs) override;
+    int execute(std::string &rOutput, const std::vector<std::string> &rArgs) override;
 
 private:
     void getGhostResponse(const int token, std::string &rOutput, double attempts_time);

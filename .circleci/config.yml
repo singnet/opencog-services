@@ -14,6 +14,7 @@ jobs:
       NETWORK: stating_ocs_network
       DEPLOYMENT_GIT_OWNER: singnet
       DEPLOYMENT_BRANCH: master
+      WORKING_DIR: /tmp/opencog-services-deployment-tmp
     steps:
     - run:
         name: Setup
@@ -25,11 +26,14 @@ jobs:
             docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX || true
             docker network rm $NETWORK || true
             docker network create $NETWORK || true
+            rm -rf $WORKING_DIR || true
+            mkdir $WORKING_DIR || true
           EOF
     - run:
         name: Build
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            cd $WORKING_DIR
             git clone https://github.com/$CIRCLE_USERNAME/opencog-services.git -b $CIRCLE_BRANCH
             cd opencog-services
             docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f OpenCogServices .
@@ -77,7 +81,8 @@ jobs:
                 docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX || true
                 docker network rm $NETWORK || true
 
-                # run fast deployment script
+                # run fast deployment script in the staging folder
+                cd $WORKING_DIR
                 /bin/bash setup.sh
               else
                   echo "Repository: $CIRCLE_REPOSITORY_URL"

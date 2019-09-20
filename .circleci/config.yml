@@ -32,8 +32,8 @@ jobs:
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
             git clone https://github.com/$CIRCLE_USERNAME/opencog-services.git -b $CIRCLE_BRANCH
             cd opencog-services
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f ./dependencies/dockerfiles/OpenCogServices .
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX -f ./dependencies/dockerfiles/OpenCogRelex .
+            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f OpenCogServices .
+            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX -f OpenCogRelex .
           EOF
     - run:
         name: Run

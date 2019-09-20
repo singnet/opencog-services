@@ -50,27 +50,29 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 
     // build modules to be used by this guile session
     vector<string> modules;
-    modules.push_back("/usr/local/lib/opencog/libattention.so");
+    //modules.push_back("/usr/local/lib/opencog/libattention.so");
 
     // set agents to be used by this guile session
     vector<string> agents;
-    agents.push_back("opencog::AFImportanceDiffusionAgent");
-    agents.push_back("opencog::WAImportanceDiffusionAgent");
-    agents.push_back("opencog::AFRentCollectionAgent");
-    agents.push_back("opencog::WARentCollectionAgent");
+    //agents.push_back("opencog::AFImportanceDiffusionAgent");
+    //agents.push_back("opencog::WAImportanceDiffusionAgent");
+    //agents.push_back("opencog::AFRentCollectionAgent");
+    //agents.push_back("opencog::WARentCollectionAgent");
 
     // try to start a new session
     createGuileSession(session_token, &modules, &agents);
 
     // initialize ghost in this session
     string scheme_out = "";
-    evaluateScheme(scheme_out, string("(use-modules (opencog))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog nlp) (opencog nlp lg-dict) (opencog nlp relex2logic) (opencog nlp chatbot))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog nlp sureal) (opencog nlp microplanning))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog nlp aiml) (opencog openpsi))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog ghost))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog ghost procedures))"), session_token);
-    evaluateScheme(scheme_out, string("(use-modules (opencog cogserver))"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog nlp) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog nlp relex2logic) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog openpsi) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog ghost) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog ghost procedures) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog exec) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog logger) )"), session_token);
+    evaluateScheme(scheme_out, string("(use-modules (opencog persist-sql) )"), session_token);
 
     if(const char* relex_container_name = std::getenv("RELEX_CONTAINER_NAME"))
     {
@@ -82,8 +84,10 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
         printf("Using default value as set by: https://git.io/fjuql");
     }
 
-    evaluateScheme(scheme_out, string("(ecan-based-ghost-rules #t)"), session_token);
-
+    // Disable ECAN
+    evaluateScheme(scheme_out, string("(ghost-set-sti-weight 0)"), session_token);
+    evaluateScheme(scheme_out, string("(ghost-af-only #f)"), session_token);
+    
     // load url rule file
     loadRuleFile(rOutput, session_token, rUrl);
 
@@ -102,9 +106,10 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
     while(elapsed_secs < wait_for_response_secs) {
         auto start = chrono::steady_clock::now();
 
-          evaluateScheme(output, string("(map cog-name (ghost-get-result))"), token);
+        // Observation: this opencog function is inserting an extra \n to the output
+        evaluateScheme(output, string("(map cog-name (ghost-get-result))"), token);
 
-        if (output.length() > 3 && output != "NOTHING") {
+        if (strcmp(output.c_str(), "NOTHING\n") != 0) {
             rOutput.assign(output);
             return;
         }
@@ -112,7 +117,7 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
         auto end = chrono::steady_clock::now();
         auto elapsed = end - start;
 
-          elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
+        elapsed_secs += chrono::duration <double, milli> (elapsed).count() / 1000.0;
     }
 
     rOutput.assign("I have nothing to say...");
@@ -154,7 +159,7 @@ int Ghost::getCommand(const string &rCmdStr)
     return command;
 }
 
-bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
+int Ghost::execute(string &rOutput, const vector<string> &rArgs)
 {
     // bot response
     string response = "";
@@ -177,12 +182,12 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 -Output: String - GHOST response string. \n\n"
         );
 
-        return false;
+        return 0;
     }
 
     // try to parse command if any is received
     int command = getCommand(rArgs[0]);
-    bool status = true;
+    int status = 0;
 
     switch (command) {
         case TALK:
@@ -192,7 +197,6 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Param: <utterance_string> - utterance string between \"\" to send to the specified session ID.\n \
                     -Output: String - GHOST response string. \n\n";
-                status = false;
             } else {
                 // Check whether id is integer. There is another means to fix this
                 try {
@@ -201,7 +205,7 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 }
                 catch (const boost::bad_lexical_cast& e){
                     // TODO this error doesn't get caught but instead propagates to be bad_alloc error.
-                    status = false;
+                    status = 1;
                 }
             }
             break;
@@ -211,7 +215,6 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost start_session <url> \n \
                     -Param: <url> - url containing a GHOST rules file. \n \
                     -Output: Integer - session ID integer representing the oppened session ID. \n\n";
-                status = false;
             } else {
                 ghostStartSession(rArgs[1], response);
             }
@@ -222,14 +225,13 @@ bool Ghost::execute(string &rOutput, const vector<string> &rArgs)
                 Ghost end_session <session_id> \n \
                     -Param: <session_id> - integer representing a oppened session ID. \n \
                     -Output: String - Session ended message. \n\n ";
-                status = false;
             } else {
                 ghostEndSession(atoi(rArgs[1].c_str()), response);
             }
             break;
         default:
             response = string(GHOST_MSG_ERROR_INVALID_COMMAND);
-            status = false;
+	    status = 1;
             break;
     }
 

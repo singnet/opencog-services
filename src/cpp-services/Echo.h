@@ -35,7 +35,7 @@ class Echo : public OpencogSNETService
 
 public:
 
-    bool execute(std::string &output, const std::vector<std::string> &args);
+    int execute(std::string &output, const std::vector<std::string> &args);
 
     Echo();
     ~Echo();

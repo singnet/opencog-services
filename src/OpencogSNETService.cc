@@ -46,7 +46,7 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
     }
 }
 
-bool OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl, const int token)
+int OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl, const int token)
 {
     int access_token = _sessionToken;
     if (token > 0) {
@@ -63,7 +63,7 @@ bool OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl
 
     if (error_code) {
         output.assign(error_msg);
-        return true;
+        return 1;
     } else {
         // prepare commands to load
         string command = "(primitive-load \"" + atomese_file_name + "\")";
@@ -89,7 +89,7 @@ bool OpencogSNETService::loadAtomeseFile(std::string &output, const string &rUrl
 
     // assign final output
     output.assign(out_msg);
-    return false;
+    return 0;
 }
 
 void OpencogSNETService::evaluateScheme(string &rOutput, const string &rScmLine, const int token)

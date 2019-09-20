@@ -13,7 +13,7 @@ SCMService::~SCMService()
 {
 }
 
-bool SCMService::execute(string &output, const vector<string> &args)
+int SCMService::execute(string &output, const vector<string> &args)
 {
     std::regex url_regex (
         R"(^http|https:(//([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?)",
@@ -30,7 +30,7 @@ bool SCMService::execute(string &output, const vector<string> &args)
 			string errorMessage;
 			if(loadAtomeseFile(errorMessage, args.at(i))) {
                 output.assign(errorMessage);
-                return true;
+                return 1;
             }
         } else {
             cmd += args.at(i);
@@ -42,6 +42,6 @@ bool SCMService::execute(string &output, const vector<string> &args)
     cmd += "))";
     printf("Scheme command: <%s>\n", cmd.c_str());
     evaluateScheme(output, cmd);
-    return false;
+    return 0;
 }
 

@@ -1,19 +1,109 @@
-ARG BASIC_IMAGE=opencog_services_basic
-FROM $BASIC_IMAGE
+FROM opencog/opencog-deps
 
-ENV SINGNET_INSTALL=/opt/singnet
-ENV GOPATH=${SINGNET_INSTALL}/go
-ENV PATH=$PATH:${SINGNET_INSTALL}/go/bin:/usr/lib/go-1.10/bin
-ENV GUILE_AUTO_COMPILE=0
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/opencog:/usr/local/lib/opencog/modules
-ENV RELEX_CONTAINER_NAME="172.18.0.2"
-ENV OPENCOG_SERVER_PORT="7032"
+RUN apt-get update && apt-get -y upgrade
 
-RUN mkdir -p $SINGNET_INSTALL
+RUN apt-get install -y \
+            nlohmann-json-dev \
+            libcurl4-gnutls-dev \
+            cxxtest \
+            build-essential \
+            autoconf \
+            libtool \
+            pkg-config \
+            libgflags-dev \
+            libgtest-dev \
+            clang \
+            libc++-dev \
+            git \
+            curl \
+            nano \
+            wget \
+            libudev-dev \
+            libusb-1.0-0-dev \
+            nodejs \
+            npm \
+            python3 \
+            python3-pip \
+            libboost-all-dev
 
-COPY ./ ${SINGNET_INSTALL}/opencog-services 
+RUN cd / && \
+    git clone https://github.com/opencog/cogutil.git && \
+    cd cogutil && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
 
-RUN cd ${SINGNET_INSTALL}/opencog-services && \
-    ./scripts/build.sh
+RUN cd / && \
+    git clone https://github.com/opencog/atomspace.git && \
+    cd atomspace && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
 
-WORKDIR ${SINGNET_INSTALL}/opencog-services
+RUN cd / && \
+    git clone https://github.com/opencog/ure.git && \
+    cd ure && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
+RUN cd / && \
+    git clone https://github.com/opencog/cogserver.git && \
+    cd cogserver && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
+RUN cd / && \
+    git clone https://github.com/opencog/attention.git && \
+    cd attention && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
+RUN cd / && \
+    git clone https://github.com/aconchillo/guile-json.git && \
+    cd /guile-json && \
+    apt-get install -y dh-autoreconf && \
+    autoreconf -vif && \
+    ./configure --prefix=/usr --libdir=/usr/lib && \
+    make && \
+    make install && \
+    ldconfig
+
+RUN cd / && \
+    git clone https://github.com/opencog/opencog.git && \
+    cd /opencog && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
+RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc /var/local/git/grpc && \
+    cd /var/local/git/grpc && \
+    git submodule update --init && \
+    make -j$(nproc) && make install && ldconfig && \
+    cd third_party/protobuf && \
+    make install && make clean && ldconfig && \
+    cd /var/local/git/grpc && make clean && \
+    cd / && \
+    rm -rf /var/local/git/grpc
+
+WORKDIR /

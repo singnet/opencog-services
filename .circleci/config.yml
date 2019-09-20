@@ -26,6 +26,7 @@ jobs:
             docker network rm $NETWORK || true
             docker network create $NETWORK || true
           EOF
+    - run:
         name: Build
         command: |
           ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF

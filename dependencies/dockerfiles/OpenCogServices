@@ -106,4 +106,16 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
     cd / && \
     rm -rf /var/local/git/grpc
 
-WORKDIR /
+COPY . /opencog-services
+
+# configure library path for opencog
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/opencog:/usr/local/lib/opencog/modules
+ENV GUILE_AUTO_COMPILE=0
+
+# set working directory
+WORKDIR /opencog-services
+
+# compile source
+RUN cd src && \
+    make && \
+    cd ..

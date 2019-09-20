@@ -138,7 +138,6 @@ public:
 			// push all other arguments
 			for(int arg = 1; arg < args->input_size(); arg++) {
 				service_args.push_back(args->input()[arg]);
-				printf("%s \n", args->input()[arg].c_str());
 			}
 
 			// service response

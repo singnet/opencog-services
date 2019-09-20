@@ -21,7 +21,6 @@ int Echo::execute(string &output, const vector<std::string> &args)
         }
     }
     //out += "\n";
-	printf("TEST: %s\n", args[0].c_str());
     output.assign(out);
     return 0;
 }

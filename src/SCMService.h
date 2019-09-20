@@ -38,7 +38,7 @@ public:
     SCMService(const std::string &scmFileName);
     ~SCMService();
 
-    bool execute(std::string &output, const std::vector<std::string> &args);
+    int execute(std::string &output, const std::vector<std::string> &args);
 
 private:
 

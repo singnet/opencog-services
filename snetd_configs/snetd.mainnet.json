@@ -1,7 +1,7 @@
 {
     "blockchain_network_selected": "main",
-    "daemon_end_point": "0.0.0.0:7031",
-    "free_call_signer_address": "REPLACE",
+    "daemon_end_point": "0.0.0.0:7093",
+    "free_call_signer_address": "0x3Bb9b2499c283cec176e7C707Ecb495B7a961ebf",
     "ipfs_end_point": "http://ipfs.singularitynet.io:80",
     "log": {
         "level": "debug",
@@ -20,8 +20,8 @@
     "payent_channel_ca_path": "/opt/singnet/.certs/ca.pem",
     "payent_channel_cert_path": "/opt/singnet/.certs/client.pem",
     "payent_channel_key_path": "/opt/singnet/.certs/client-key.pem",
-    "pvt_key_for_metering": "REPLACE",
-    "service_id": "opencog-services",
+    "pvt_key_for_metering": "66ca1357439ad12502f025f7d52e5bc3ebd810164c8b5c2edadfc06f6f058f26",
+    "service_id": "opencog",
     "ssl_cert": "/opt/singnet/.certs/fullchain.pem",
     "ssl_key": "/opt/singnet/.certs/privkey.pem"
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # configuration
-OC_SERVICES_PORT=7031
-RELEX_PORT=7034
+OC_SERVICES_PORT_MAINNET=7093
+RELEX_PORT=7094
 
 # remove old images and containers
 docker rm -f opencog_services_relex_container

@@ -27,10 +27,10 @@ docker run --name opencog_services_relex_container \
 
 docker run --name opencog_services_container \
            --env RELEX_CONTAINER_NAME=opencog_services_relex_container \
-           --env OPENCOG_SERVER_PORT=$OC_SERVICES_PORT \
+           --env OPENCOG_SERVER_PORT=$OC_SERVICES_PORT_MAINNET \
            --restart unless-stopped \
            --network opencog_services_network \
-           -p $OC_SERVICES_PORT:$OC_SERVICES_PORT \
+           -p $OC_SERVICES_PORT_MAINNET:$OC_SERVICES_PORT_MAINNET \
            -di opencog_services_image tail -f /dev/null
 
 # start service

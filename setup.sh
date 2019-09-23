@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # configuration
-OC_SERVICES_PORT_MAINNET=7093
+OC_SERVICES_PORT_MAINNET=7095
 RELEX_PORT=7094
 
 # remove old images and containers

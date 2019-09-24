@@ -6,17 +6,17 @@ OC_SERVICES_PORT_MAINNET=7095
 RELEX_PORT=7094
 
 # remove old images and containers
-docker rm -f opencog_services_relex_container
-docker rm -f opencog_services_container
-docker rmi opencog_services_relex_image
-docker rmi opencog_services_image
+docker rm -f opencog_services_relex_container || true
+docker rm -f opencog_services_container || true
+docker rmi opencog_services_relex_image || true
+docker rmi opencog_services_image || true
 
 # build dependencies
 docker build -t opencog_services_relex_image -f OpenCogRelex .
 docker build -t opencog_services_image -f OpenCogServices .
 
 # setup network
-docker network rm opencog_services_network
+docker network rm opencog_services_network || true
 docker network create opencog_services_network
 
 # run containers

@@ -106,6 +106,16 @@ RUN cd / && \
     make install && \
     ldconfig
 
+RUN cd / && \
+    git clone https://github.com/opencog/agi-bio.git && \
+    cd /agi-bio && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig
+
 RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc /var/local/git/grpc && \
     cd /var/local/git/grpc && \
     git submodule update --init && \

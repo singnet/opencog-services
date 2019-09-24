@@ -1,4 +1,5 @@
 (use-modules (opencog miner))
+(use-modules (opencog bioscience))
 
 (define (execute args)
     (define mf (if (> (length args) 0) (car args) 0.1))

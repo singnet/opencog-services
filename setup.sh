@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # configuration
+PASSTHROUGH_ENDPOINT=7055
 OC_SERVICES_PORT_MAINNET=7095
 RELEX_PORT=7094
 
@@ -27,9 +28,10 @@ docker run --name opencog_services_relex_container \
 
 docker run --name opencog_services_container \
            --env RELEX_CONTAINER_NAME=opencog_services_relex_container \
-           --env OPENCOG_SERVER_PORT=$OC_SERVICES_PORT_MAINNET \
+           --env OPENCOG_SERVER_PORT=$PASSTHROUGH_ENDPOINT \
            --restart unless-stopped \
            --network opencog_services_network \
+           -v ~/singnet/.certs:/opt/singnet/.certs \
            -p $OC_SERVICES_PORT_MAINNET:$OC_SERVICES_PORT_MAINNET \
            -di opencog_services_image tail -f /dev/null
 

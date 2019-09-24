@@ -21,22 +21,29 @@ int SCMService::execute(string &output, const vector<string> &args)
     );
     std::smatch url_match_result;
 
-	string scheme_out = "";
-	evaluateScheme(scheme_out, "(load \"" + schemeFileName + "\")");
+    string scheme_out = "";
+    evaluateScheme(scheme_out, "(load \"" + schemeFileName + "\")");
+
+    bool arg_is_url = false;
+    if (std::regex_match(args.at(0), url_match_result, url_regex)) {
+        printf("Fetching and loading into Atomspace: %s\n", args.at(0).c_str());
+        string errorMessage;
+        if(loadAtomeseFile(errorMessage, args.at(0))) {
+            output.assign(errorMessage);
+            return 1;
+        }
+        arg_is_url = true;
+    }
+
+    unsigned int arg_index = 0;
+    if(arg_is_url)
+        arg_index = 1;
+
     string cmd = "(execute (list ";
-    for (unsigned int i = 0; i < args.size(); i++) {
-        if (std::regex_match(args.at(i), url_match_result, url_regex)) {
-            printf("Fetching and loading into Atomspace: %s\n", args.at(i).c_str());
-			string errorMessage;
-			if(loadAtomeseFile(errorMessage, args.at(i))) {
-                output.assign(errorMessage);
-                return 1;
-            }
-        } else {
-            cmd += args.at(i);
-            if (i != (args.size() - 1)) {
-                cmd += " ";
-            }
+    for (; arg_index < args.size(); arg_index++) {
+        cmd += args.at(arg_index);
+        if (arg_index != (args.size() - 1)) {
+            cmd += " ";
         }
     }
     cmd += "))";
@@ -44,4 +51,3 @@ int SCMService::execute(string &output, const vector<string> &args)
     evaluateScheme(output, cmd);
     return 0;
 }
-

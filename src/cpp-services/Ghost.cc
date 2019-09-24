@@ -1,5 +1,7 @@
 #include "Ghost.h"
 #include <ctime>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/range/algorithm_ext/erase.hpp>
 #include "../utils.h"
 
 using namespace opencog_services;
@@ -109,7 +111,11 @@ void Ghost::getGhostResponse(const int token, std::string &rOutput, double wait_
         // Observation: this opencog function is inserting an extra \n to the output
         evaluateScheme(output, string("(map cog-name (ghost-get-result))"), token);
 
-        if (strcmp(output.c_str(), "NOTHING\n") != 0) {
+        // remove \n and () from response
+        // remove () from response.
+        boost::remove_erase_if(output, boost::is_any_of("\n()"));
+
+        if (strcmp(output.c_str(), "NOTHING\n") != 0 && output.length() > 0) {
             rOutput.assign(output);
             return;
         }

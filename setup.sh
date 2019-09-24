@@ -34,6 +34,6 @@ docker run --name opencog_services_container \
            -di opencog_services_image tail -f /dev/null
 
 # start service
-docker exec opencog_services_relex_container bash opencog-server.sh
-docker exec opencog_services_container ./bin/server
-docker exec opencog_services_container snetd --config ./snetd_configs/snetd.mainnet.json
+docker exec -d opencog_services_relex_container bash opencog-server.sh
+docker exec -d opencog_services_container ./bin/server
+docker exec -d opencog_services_container snetd --config ./snetd_configs/snetd.mainnet.json

@@ -3,6 +3,7 @@
 # configuration
 PASSTHROUGH_ENDPOINT=7055
 OC_SERVICES_PORT_MAINNET=7095
+OC_SERVICES_PORT_ROPSTEN=7096
 RELEX_PORT=7094
 
 # remove old images and containers
@@ -33,9 +34,11 @@ docker run --name opencog_services_container \
            --network opencog_services_network \
            -v ~/singnet/.certs:/opt/singnet/.certs \
            -p $OC_SERVICES_PORT_MAINNET:$OC_SERVICES_PORT_MAINNET \
+           -p $OC_SERVICES_PORT_ROPSTEN:$OC_SERVICES_PORT_ROPSTEN \
            -di opencog_services_image tail -f /dev/null
 
 # start service
 docker exec -d opencog_services_relex_container bash opencog-server.sh
 docker exec -d opencog_services_container ./bin/server
 docker exec -d opencog_services_container snetd --config ./snetd_configs/snetd.mainnet.json
+docker exec -d opencog_services_container snetd --config ./snetd_configs/snetd.ropsten.json

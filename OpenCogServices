@@ -1,4 +1,4 @@
-FROM opencog/opencog-deps
+FROM singularitynet/opencog-deps
 
 RUN apt-get update && apt-get -y upgrade
 
@@ -27,7 +27,7 @@ RUN apt-get install -y \
             libboost-all-dev
 
 RUN cd / && \
-    git clone https://github.com/opencog/cogutil.git && \
+    git clone https://github.com/singnet/cogutil.git && \
     cd cogutil && \
     mkdir build && \
     cd build && \
@@ -37,7 +37,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/atomspace.git && \
+    git clone https://github.com/singnet/atomspace.git && \
     cd atomspace && \
     mkdir build && \
     cd build && \
@@ -47,7 +47,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/ure.git && \
+    git clone https://github.com/singnet/ure.git && \
     cd ure && \
     mkdir build && \
     cd build && \
@@ -57,7 +57,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/cogserver.git && \
+    git clone https://github.com/singnet/cogserver.git && \
     cd cogserver && \
     mkdir build && \
     cd build && \
@@ -67,7 +67,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/attention.git && \
+    git clone https://github.com/singnet/attention.git && \
     cd attention && \
     mkdir build && \
     cd build && \
@@ -87,7 +87,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/opencog.git && \
+    git clone https://github.com/singnet/opencog.git && \
     cd /opencog && \
     mkdir build && \
     cd build && \
@@ -97,7 +97,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/miner.git && \
+    git clone https://github.com/singnet/miner.git && \
     cd /miner && \
     mkdir build && \
     cd build && \
@@ -107,7 +107,7 @@ RUN cd / && \
     ldconfig
 
 RUN cd / && \
-    git clone https://github.com/opencog/agi-bio.git && \
+    git clone https://github.com/singnet/agi-bio.git && \
     cd /agi-bio && \
     mkdir build && \
     cd build && \

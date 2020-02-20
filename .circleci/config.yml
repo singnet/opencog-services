@@ -29,6 +29,7 @@ jobs:
       # general config
       DEPLOYMENT_GIT_OWNER: singnet
       DEPLOYMENT_BRANCH: master
+      WORKDIR: /tmp
     steps:
     - run:
         name: Staging Build
@@ -76,6 +77,13 @@ jobs:
                 docker rmi -f ${CIRCLE_USERNAME}_${IMAGE} || true
                 docker rmi -f ${CIRCLE_USERNAME}_${IMAGE_RELEX} || true
 
+                # rm old git repo 
+                # TODO: check if the repository exists and just do git pull
+                cd ${WORKDIR}
+                rm -rf opencog-services || true
+                git clone https://github.com/${DEPLOYMENT_GIT_OWNER}/opencog-services.git
+                cd opencog-services
+
                 # build new images
                 docker build -t ${CIRCLE_USERNAME}_${IMAGE} \
                   --no-cache \
@@ -83,6 +91,7 @@ jobs:
                   --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
                   --build-arg etcd_end_point=${ETCD_END_POINT} \
                   -f OpenCogServices .
+
                 docker build -t ${CIRCLE_USERNAME}_${IMAGE_RELEX} \
                   --no-cache \
                   -f OpenCogRelex .

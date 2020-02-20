@@ -11,7 +11,6 @@ jobs:
       PASSTHROUGH_ENDPOINT: 7055
       OC_SERVICES_PORT_MAINNET: 7095
       OC_SERVICES_PORT_ROPSTEN: 7096
-      RELEX_PORT: 7094
 
       # docker network
       NETWORK: opencog_services_network

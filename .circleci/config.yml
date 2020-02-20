@@ -11,6 +11,7 @@ jobs:
       PASSTHROUGH_ENDPOINT: 7055
       OC_SERVICES_PORT_MAINNET: 7095
       OC_SERVICES_PORT_ROPSTEN: 7096
+      RELEX_PORT: 7094
 
       # docker network
       NETWORK: opencog_services_network
@@ -29,53 +30,52 @@ jobs:
       DEPLOYMENT_GIT_OWNER: singnet
       DEPLOYMENT_BRANCH: master
       WORKDIR: /tmp
-      USER: ${CIRCLE_USERNAME,,}
     steps:
     - run:
         name: Staging Build
         command: |
           git clone https://github.com/${DEPLOYMENT_GIT_OWNER}/opencog-services.git
           cd opencog-services
-          docker build -t ${USER}_${IMAGE} \
+          docker build -t ${CIRCLE_USERNAME}_${IMAGE} \
             --build-arg snetd_version=${SNETD_VERSION} \
             --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
             --build-arg etcd_end_point=${ETCD_END_POINT} \
             -f OpenCogServices .
-          docker build -t ${USER}_${IMAGE_RELEX} -f OpenCogRelex .
+          docker build -t ${CIRCLE_USERNAME}_${IMAGE_RELEX} -f OpenCogRelex .
     - run:
         name: Staging Run
         command: |
-          docker run --name ${USER}_${STAGING_CONTAINER_RELEX} \
+          docker run --name ${CIRCLE_USERNAME}_${STAGING_CONTAINER_RELEX} \
             --restart unless-stopped \
             --network ${NETWORK} \
             -p ${RELEX_PORT}:$4444 \
-            -di ${USER}_${IMAGE_RELEX} /bin/sh opencog-server.sh
+            -di ${CIRCLE_USERNAME}_${IMAGE_RELEX} /bin/sh opencog-server.sh
 
-          docker run --name ${USER}_${STAGING_CONTAINER} \
-            --env RELEX_CONTAINER_NAME=${USER}_${STAGING_CONTAINER_RELEX} \
+          docker run --name ${CIRCLE_USERNAME}_${STAGING_CONTAINER} \
+            --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME}_${STAGING_CONTAINER_RELEX} \
             --env OPENCOG_SERVER_PORT=${OC_SERVICES_PORT} \
             --restart unless-stopped \
             --network ${NETWORK} \
             -p ${OC_SERVICES_PORT}:${OC_SERVICES_PORT} \
-            -di ${USER}_${IMAGE} tail -f /dev/null
+            -di ${CIRCLE_USERNAME}_${IMAGE} tail -f /dev/null
     - run:
         name: Staging Tests
         command: |
-          docker exec -i ${USER}_${STAGING_CONTAINER} ./bin/runTests
+          docker exec -i $CIRCLE_USERNAME_$STAGING_CONTAINER ./bin/runTests
     - run:
         name: Staging Compliance Check
         command: |
-          docker exec -i ${USER}_${STAGING_CONTAINER} scripts/compliance_check.sh
+          docker exec -i ${CIRCLE_USERNAME}_${STAGING_CONTAINER} scripts/compliance_check.sh
     - run:
         name: Deploy
         command: |
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
               if [ ${CIRCLE_REPOSITORY_URL} = "git@github.com:${DEPLOYMENT_GIT_OWNER}/opencog-services.git" ] && [ ${CIRCLE_BRANCH} = "${DEPLOYMENT_BRANCH}" ] ; then
                 # clean environment from old deploy
-                docker rm -f ${USER}_${CONTAINER} || true
-                docker rm -f ${USER}_${CONTAINER_RELEX} || true
-                docker rmi -f ${USER}_${IMAGE} || true
-                docker rmi -f ${USER}_${IMAGE_RELEX} || true
+                docker rm -f ${CIRCLE_USERNAME}_${CONTAINER} || true
+                docker rm -f ${CIRCLE_USERNAME}_${CONTAINER_RELEX} || true
+                docker rmi -f ${CIRCLE_USERNAME}_${IMAGE} || true
+                docker rmi -f ${CIRCLE_USERNAME}_${IMAGE_RELEX} || true
 
                 # rm old git repo 
                 # TODO: check if the repository exists and just do git pull
@@ -85,33 +85,33 @@ jobs:
                 cd opencog-services
 
                 # build new images
-                docker build -t ${USER}_${IMAGE} \
+                docker build -t ${CIRCLE_USERNAME}_${IMAGE} \
                   --no-cache \
                   --build-arg snetd_version=${SNETD_VERSION} \
                   --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
                   --build-arg etcd_end_point=${ETCD_END_POINT} \
                   -f OpenCogServices .
 
-                docker build -t ${USER}_${IMAGE_RELEX} \
+                docker build -t ${CIRCLE_USERNAME}_${IMAGE_RELEX} \
                   --no-cache \
                   -f OpenCogRelex .
 
                 # run servers, relex and opencog
-                docker run --name ${USER}_${CONTAINER_RELEX} \
+                docker run --name ${CIRCLE_USERNAME}_${CONTAINER_RELEX} \
                   --restart unless-stopped \
                   --network ${NETWORK} \
                   --p ${RELEX_PORT}:4444 \
-                  -di ${USER}_${IMAGE_RELEX} bash -c 'opencog-server.sh'
+                  -di ${CIRCLE_USERNAME}_${IMAGE_RELEX} bash -c 'opencog-server.sh'
 
-               docker run --name ${USER}_${CONTAINER} \
-                 --env RELEX_CONTAINER_NAME=${USER}_${CONTAINER_RELEX} \
+               docker run --name ${CIRCLE_USERNAME_$CONTAINER} \
+                 --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME}_${CONTAINER_RELEX} \
                  --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
                  --restart unless-stopped \
                  --network ${NETWORK} \
                  -v ${CERTIFICATES_FOLDER} \
                  -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
                  -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
-                 -di ${USER}_${IMAGE} bash -c 'run.sh'
+                 -di ${CIRCLE_USERNAME}_${IMAGE} bash -c 'run.sh'
                  
               else
                   echo "Repository: ${CIRCLE_REPOSITORY_URL}"

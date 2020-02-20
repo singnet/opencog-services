@@ -14,7 +14,8 @@ jobs:
 
       # docker network
       NETWORK: opencog_services_network
-      
+      STAGING_NETWORK: staging_opencog_services_network      
+
       # docker containers
       CONTAINER: opencog_services_container
       CONTAINER_RELEX: opencog_services_relex_container
@@ -24,39 +25,77 @@ jobs:
       # docker images
       IMAGE: opencog_services_image
       IMAGE_RELEX: opencog_services_relex_image
+      STAGING_IMAGE: staging_opencog_services_image
+      STAGING_IMAGE_RELEX: staging_opencog_relex
 
       # general config
       DEPLOYMENT_GIT_OWNER: singnet
       DEPLOYMENT_BRANCH: master
-      WORKDIR: /tmp
+      WORKDIR: /tmp/opencog-services
     steps:
+    - run:
+        name: Setup
+        command: |
+          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
+            
+            # remove staging images and containers
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
+            docker rmi ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
+            docker rmi ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
+
+            # re-create staging network
+            docker network rm ${STAGING_NETWORK} || true
+            docker network create ${STAGING_NETWORK} || true
+            
+            # clear workdir
+            rm -rf ${WORKDIR} || true
+            mkdir ${WORKDIR} || true
+
+          EOF
     - run:
         name: Staging Build
         command: |
-          git clone https://github.com/${DEPLOYMENT_GIT_OWNER}/opencog-services.git
-          cd opencog-services
-          docker build -t ${CIRCLE_USERNAME,,}_${IMAGE} \
-            --build-arg snetd_version=${SNETD_VERSION} \
-            --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
-            --build-arg etcd_end_point=${ETCD_END_POINT} \
-            -f OpenCogServices .
-          docker build -t ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} -f OpenCogRelex .
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+           
+            # get source
+            cd ${WORKDIR}
+            git clone https://github.com/${DEPLOYMENT_GIT_OWNER}/opencog-services.git
+            cd opencog-services
+
+            # build images, relex and opencog
+            docker build -t ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} \
+              --no-cache \
+              --build-arg snetd_version=${SNETD_VERSION} \
+              --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
+              --build-arg etcd_end_point=${ETCD_END_POINT} \
+              -f OpenCogServices .
+
+            docker build -t ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} \
+              --no-cache 
+              -f OpenCogRelex .
+
+          EOF
     - run:
         name: Staging Run
         command: |
-          docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
-            --restart unless-stopped \
-            --network ${NETWORK} \
-            -p ${RELEX_PORT}:$4444 \
-            -di ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} /bin/sh opencog-server.sh
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF        
 
-          docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} \
-            --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
-            --env OPENCOG_SERVER_PORT=${OC_SERVICES_PORT} \
-            --restart unless-stopped \
-            --network ${NETWORK} \
-            -p ${OC_SERVICES_PORT}:${OC_SERVICES_PORT} \
-            -di ${CIRCLE_USERNAME,,}_${IMAGE} tail -f /dev/null
+            docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
+              --restart unless-stopped \
+              --network ${STAGING_NETWORK} \
+              -p ${RELEX_PORT}:$4444 \
+              -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} /bin/sh opencog-server.sh
+
+            docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} \
+              --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
+              --env OPENCOG_SERVER_PORT=${OC_SERVICES_PORT} \
+              --restart unless-stopped \
+              --network ${STAGING_NETWORK} \
+              -p ${OC_SERVICES_PORT}:${OC_SERVICES_PORT} \
+              -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} tail -f /dev/null
+
+          EOF
     - run:
         name: Staging Tests
         command: |
@@ -73,26 +112,21 @@ jobs:
                 # clean environment from old deploy
                 docker rm -f ${CIRCLE_USERNAME,,}_${CONTAINER} || true
                 docker rm -f ${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} || true
+                docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
+                docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
                 docker rmi -f ${CIRCLE_USERNAME,,}_${IMAGE} || true
                 docker rmi -f ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} || true
-
-                # rm old git repo 
-                # TODO: check if the repository exists and just do git pull
-                cd ${WORKDIR}
-                rm -rf opencog-services || true
-                git clone https://github.com/${DEPLOYMENT_GIT_OWNER}/opencog-services.git
-                cd opencog-services
+                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
+                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
 
                 # build new images
                 docker build -t ${CIRCLE_USERNAME,,}_${IMAGE} \
-                  --no-cache \
                   --build-arg snetd_version=${SNETD_VERSION} \
                   --build-arg private_key_for_metering=${PRIVATE_KEY_FOR_METERING} \
                   --build-arg etcd_end_point=${ETCD_END_POINT} \
                   -f OpenCogServices .
 
                 docker build -t ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} \
-                  --no-cache \
                   -f OpenCogRelex .
 
                 # run servers, relex and opencog

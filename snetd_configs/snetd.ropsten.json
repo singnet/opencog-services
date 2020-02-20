@@ -13,14 +13,14 @@
             "type": "file"
         }
     },
-    "metering_end_point": "https://ropsten-marketplace.singularitynet.io/metering",
+    "metering_end_point": "__METERING_END_POINT__",
+    "pvt_key_for_metering": "__PRIVATE_KEY_FOR_METERING__",
     "organization_id": "snet",
     "passthrough_enabled": true,
     "passthrough_endpoint": "http://localhost:7055",
     "payent_channel_ca_path": "/opt/singnet/.certs/ca.pem",
     "payent_channel_cert_path": "/opt/singnet/.certs/client.pem",
     "payent_channel_key_path": "/opt/singnet/.certs/client-key.pem",
-    "pvt_key_for_metering": "66ca1357439ad12502f025f7d52e5bc3ebd810164c8b5c2edadfc06f6f058f26",
     "service_id": "opencog-miner",
     "ssl_cert": "/opt/singnet/.certs/fullchain.pem",
     "ssl_key": "/opt/singnet/.certs/privkey.pem"

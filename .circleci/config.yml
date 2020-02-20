@@ -1,103 +1,13 @@
-version: 2
-jobs:
-  service_up:
-    docker:
-    - image: circleci/python:3.6.6-node
-    working_directory: ~/singnet
-    environment:
-      OC_SERVICES_PORT: 7031
-      RELEX_PORT: 7034
-      STAGING_DOCKER_IMAGE: staging_ocs
-      STAGING_DOCKER_CONTAINER: staging_ocs_container
-      STAGING_DOCKER_IMAGE_RELEX: stating_ocs_opencog_relex
-      STAGING_DOCKER_CONTAINER_RELEX: stating_ocs_opencog_relex_container
-      NETWORK: stating_ocs_network
-      DEPLOYMENT_GIT_OWNER: singnet
-      DEPLOYMENT_BRANCH: master
-      WORKING_DIR: /tmp/opencog-services-deployment-tmp
-    steps:
-    - run:
-        name: Setup
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker rm -f $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER || true
-            docker rm -f $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER_RELEX || true
-            docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE || true
-            docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX || true
-            docker network rm $NETWORK || true
-            docker network create $NETWORK || true
-            rm -rf $WORKING_DIR || true
-            mkdir $WORKING_DIR || true
-          EOF
-    - run:
-        name: Build
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            cd $WORKING_DIR
-            git clone https://github.com/$DEPLOYMENT_GIT_OWNER/opencog-services.git
-            cd opencog-services
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE -f OpenCogServices .
-            docker build -t $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX -f OpenCogRelex .
-          EOF
-    - run:
-        name: Run
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker run --name $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER_RELEX \
-              --restart unless-stopped \
-              --network $NETWORK \
-              -p $RELEX_PORT:$4444 \
-              -di $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX /bin/sh opencog-server.sh
-
-            docker run --name $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER \
-              --env RELEX_CONTAINER_NAME=$CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER_RELEX \
-              --env OPENCOG_SERVER_PORT=$OC_SERVICES_PORT \
-              --restart unless-stopped \
-              --network $NETWORK \
-              -p $OC_SERVICES_PORT:$OC_SERVICES_PORT \
-              -di $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE
-          EOF
-    - run:
-        name: Tests
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker exec -i $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER ./bin/runTests
-          EOF
-    - run:
-        name: Execute compliance check
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-            docker exec -i $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER scripts/compliance_check.sh
-          EOF
-    - run:
-        name: Deploy
-        command: |
-          ssh -o "StrictHostKeyChecking no" $SSH_USER@$SSH_HOST << EOF
-              if [ $CIRCLE_REPOSITORY_URL = "git@github.com:$DEPLOYMENT_GIT_OWNER/opencog-services.git" ] && [ $CIRCLE_BRANCH = "$DEPLOYMENT_BRANCH" ] ; then
-                # clean environment from staging containers
-                docker rm -f $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER || true
-                docker rm -f $CIRCLE_USERNAME_$STAGING_DOCKER_CONTAINER_RELEX || true
-                docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE || true
-                docker rmi $CIRCLE_USERNAME_$STAGING_DOCKER_IMAGE_RELEX || true
-                docker network rm $NETWORK || true
-
-                # run fast deployment script in the staging folder
-                cd $WORKING_DIR/opencog-services
-                /bin/bash setup.sh
-              else
-                  echo "Repository: $CIRCLE_REPOSITORY_URL"
-                  echo "Branch: $CIRCLE_BRANCH"
-                  echo "================================================================================"
-                  echo "                        Service WILL NOT be deployed"
-                  echo "================================================================================"
-                  docker stop $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rm $CIRCLE_USERNAME$DOCKER_CONTAINER_NAME_STAGING
-                  docker rmi $CIRCLE_USERNAME$DOCKER_IMAGE_NAME_STAGING
-              fi
-          EOF
-
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
 workflows:
-  version: 2
-  build-and-deploy:
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - service_up
+      - welcome/run

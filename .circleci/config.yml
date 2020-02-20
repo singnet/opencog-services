@@ -99,11 +99,19 @@ jobs:
     - run:
         name: Staging Tests
         command: |
-          docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} ./bin/runTests
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+
+            docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} ./bin/runTests
+
+          EOF
     - run:
         name: Staging Compliance Check
         command: |
-          docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} scripts/compliance_check.sh
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+
+            docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} scripts/compliance_check.sh
+
+          EOF
     - run:
         name: Deploy
         command: |

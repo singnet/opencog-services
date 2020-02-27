@@ -140,13 +140,13 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
 COPY . /opencog-services
 
 # install snet daemon
-RUN SNETD_GIT_VERSION=`curl -s https://api.github.com/repos/singnet/snet-daemon/releases/latest | grep -oP '$ && \
-    SNETD_VERSION=${snetd_version:-${SNETD_GIT_VERSION}} && \
+RUN export SNETD_GIT_VERSION=`curl -s https://api.github.com/repos/singnet/snet-daemon/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' || echo "v2.0.2"` \
+    export SNETD_VERSION=${snetd_version:-${SNETD_GIT_VERSION}} && \
     mkdir snet-daemon && \
     cd snet-daemon && \
-    wget -q https://github.com/singnet/snet-daemon/releases/download/$SNETD_VERSION/snet-daemon-$SNETD_VERSION-linux-amd64.tar.gz && \
-    tar -xvzf snet-daemon-$SNETD_VERSION-linux-amd64.tar.gz && \
-    mv ./snet-daemon-$SNETD_VERSION-linux-amd64/snetd /usr/bin/snetd && \
+    wget -q https://github.com/singnet/snet-daemon/releases/download/${SNETD_VERSION}/snet-daemon-${SNETD_VERSION}-linux-amd64.tar.gz && \
+    tar -xvzf snet-daemon-${SNETD_VERSION}-linux-amd64.tar.gz && \
+    mv ./snet-daemon-${SNETD_VERSION}-linux-amd64/snetd /usr/bin/snetd && \
     cd .. && \
     rm -rf snet-daemon*
 

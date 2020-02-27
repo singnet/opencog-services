@@ -33,6 +33,7 @@ RUN apt-get install -y \
 RUN cd / && \
     git clone https://github.com/singnet/cogutil.git && \
     cd cogutil && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -43,6 +44,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/atomspace.git && \
     cd atomspace && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -53,6 +55,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/ure.git && \
     cd ure && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -63,6 +66,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/cogserver.git && \
     cd cogserver && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -73,6 +77,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/attention.git && \
     cd attention && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -93,6 +98,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/opencog.git && \
     cd /opencog && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -103,6 +109,7 @@ RUN cd / && \
 RUN cd / && \
     git clone https://github.com/singnet/miner.git && \
     cd /miner && \
+    git checkout release-20200129 && \
     mkdir build && \
     cd build && \
     cmake .. && \

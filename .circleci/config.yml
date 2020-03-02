@@ -144,7 +144,7 @@ jobs:
                 docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} \
                   --restart unless-stopped \
                   --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
-                  --p ${RELEX_PORT}:4444 \
+                  -p ${RELEX_PORT}:4444 \
                   -di ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} bash -c 'opencog-server.sh'
 
                docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER} \
@@ -152,7 +152,11 @@ jobs:
                  --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
                  --restart unless-stopped \
                  --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
-                 -v ${CERTIFICATES_FOLDER} \
+                 -v /home/ubuntu/opencog-services/config:/config \
+                 -v /home/ubuntu/opencog-services/etcd:/etcd \
+                 -v /home/ubuntu/opencog-services/storage-data-dir-1.etcd:/storage-data-dir-1.etcd \
+                 -v /etc/letsencrypt:/etc/letsencrypt \
+                 -v ~/singnet/.certs:/opt/singnet/.certs \
                  -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
                  -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
                  -di ${CIRCLE_USERNAME,,}_${IMAGE} bash -c 'run.sh'

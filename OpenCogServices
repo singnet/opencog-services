@@ -1,6 +1,5 @@
 FROM singularitynet/opencog-deps
 
-<<<<<<< HEAD
 ARG snetd_version
 
 ARG network
@@ -8,8 +7,6 @@ ARG ethereum_json_rpc_endpoint
 ARG free_call_signer_address
 ARG pvt_key_for_metering
 
-=======
->>>>>>> f1985ad1544e77501e94c35138eed1a02ed43046
 RUN apt-get update && apt-get -y upgrade
 
 RUN apt-get install -y \
@@ -146,7 +143,6 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
 COPY . /opencog-services
 
 # install snet daemon
-<<<<<<< HEAD
 RUN export SNETD_GIT_VERSION=`curl -s https://api.github.com/repos/singnet/snet-daemon/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' || echo "v2.0.2"` \
     export SNETD_VERSION=${snetd_version:-${SNETD_GIT_VERSION}} && \
     mkdir snet-daemon && \
@@ -154,15 +150,8 @@ RUN export SNETD_GIT_VERSION=`curl -s https://api.github.com/repos/singnet/snet-
     wget -q https://github.com/singnet/snet-daemon/releases/download/${SNETD_VERSION}/snet-daemon-${SNETD_VERSION}-linux-amd64.tar.gz && \
     tar -xvzf snet-daemon-${SNETD_VERSION}-linux-amd64.tar.gz && \
     mv ./snet-daemon-${SNETD_VERSION}-linux-amd64/snetd /usr/bin/snetd && \
-=======
-RUN mkdir snet-daemon && \
-    cd snet-daemon && \
-    wget -q https://github.com/singnet/snet-daemon/releases/download/v2.0.2/snet-daemon-v2.0.2-linux-amd64.tar.gz && \
-    tar -xvzf snet-daemon-v2.0.2-linux-amd64.tar.gz && \
-    mv ./snet-daemon-v2.0.2-linux-amd64/snetd /usr/bin/snetd && \
->>>>>>> f1985ad1544e77501e94c35138eed1a02ed43046
     cd .. && \
-    rm -rf snet-daemon
+    rm -rf snet-daemon*
 
 # configure library path for opencog
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/opencog:/usr/local/lib/opencog/modules
@@ -171,16 +160,15 @@ ENV GUILE_AUTO_COMPILE=0
 # set working directory
 WORKDIR /opencog-services
 
-<<<<<<< HEAD
 # set private key for metering and etcd end-point
 RUN cat ./snetd_configs/snetd.mainnet.json | sed "s/__FREE_CALL_SIGNET_ADDRESS__/${free_call_signer_address}/g" > ./snetd_configs/snetd.mainnet.json.tmp && mv ./snetd_configs/snetd.mainnet.json.tmp ./snetd_configs/snetd.mainnet.json
 RUN cat ./snetd_configs/snetd.mainnet.json | sed "s/__ETHEREUM_JSON_RPC_ENDPOINT__/${ethereum_json_rpc_endpoint}/g" > ./snetd_configs/snetd.mainnet.json.tmp && mv ./snetd_configs/snetd.mainnet.json.tmp ./snetd_configs/snetd.mainnet.json
 RUN cat ./snetd_configs/snetd.mainnet.json | sed "s/__NETWORK__/${network}/g" > ./snetd_configs/snetd.mainnet.json.tmp && mv ./snetd_configs/snetd.mainnet.json.tmp ./snetd_configs/snetd.mainnet.json
 RUN cat ./snetd_configs/snetd.mainnet.json | sed "s/__PVT_KEY_FOR_METERING__/${pvt_key_for_metering}/g" > ./snetd_configs/snetd.mainnet.json.tmp && mv ./snetd_configs/snetd.mainnet.json.tmp ./snetd_configs/snetd.mainnet.json
 
-=======
->>>>>>> f1985ad1544e77501e94c35138eed1a02ed43046
 # compile source
 RUN cd src && \
-    make && \
-    cd ..
+    make
+
+# set default workdir
+WORKDIR /opencog-services

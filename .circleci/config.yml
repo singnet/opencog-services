@@ -144,7 +144,7 @@ jobs:
                 docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} \
                   --restart unless-stopped \
                   --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
-                  --p ${RELEX_PORT}:4444 \
+                  -p ${RELEX_PORT}:4444 \
                   -di ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} bash -c 'opencog-server.sh'
 
                docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER} \

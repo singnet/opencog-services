@@ -1,7 +1,6 @@
 {
     "blockchain_network_selected": "ropsten",
     "daemon_end_point": "0.0.0.0:7096",
-    "free_call_signer_address": "0x7DF35C98f41F3Af0df1dc4c7F7D4C19a71Dd059F",
     "ipfs_end_point": "http://ipfs.singularitynet.io:80",
     "log": {
         "level": "debug",
@@ -13,14 +12,16 @@
             "type": "file"
         }
     },
-    "metering_end_point": "https://ropsten-marketplace.singularitynet.io/metering",
+    "free_call_signer_address": "__FREE_CALL_SIGNER_ADDRESS__",
+    "ethereum_json_rpc_endpoint": "__INFURA_KEY__",    
+    "metering_end_point": "__METERING_END_POINT__",
+    "pvt_key_for_metering": "__PRIVATE_KEY_FOR_METERING__",
     "organization_id": "snet",
     "passthrough_enabled": true,
     "passthrough_endpoint": "http://localhost:7055",
     "payent_channel_ca_path": "/opt/singnet/.certs/ca.pem",
     "payent_channel_cert_path": "/opt/singnet/.certs/client.pem",
     "payent_channel_key_path": "/opt/singnet/.certs/client-key.pem",
-    "pvt_key_for_metering": "66ca1357439ad12502f025f7d52e5bc3ebd810164c8b5c2edadfc06f6f058f26",
     "service_id": "opencog-miner",
     "ssl_cert": "/opt/singnet/.certs/fullchain.pem",
     "ssl_key": "/opt/singnet/.certs/privkey.pem"

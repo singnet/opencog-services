@@ -121,8 +121,11 @@ int main(int argc, char *argv[])
         //closedir(dir);
     } else {
         printf("Could not open %s\n", TESTS_DIR);
-        returnCode = 1;
+        exit(1);
     }
+
+    if(returnCode != 0)
+        exit(returnCode);
 
     return returnCode;
 }

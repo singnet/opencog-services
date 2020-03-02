@@ -74,21 +74,21 @@ jobs:
     - run:
         name: Run
         command: |-
-          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF        
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
             docker network create ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} || true
 
             docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
               --restart unless-stopped \
               --network ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} \
-              -p ${RELEX_PORT}:$4444 \
-              -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} /bin/sh opencog-server.sh
+              -p 4444:4444 \
+              -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} bash opencog-server.sh
 
             docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} \
               --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
               --env OPENCOG_SERVER_PORT=${OC_SERVICES_PORT} \
+              --env RELEX_PORT=4444 \
               --restart unless-stopped \
               --network ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} \
-              -p ${OC_SERVICES_PORT}:${OC_SERVICES_PORT} \
               -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} tail -f /dev/null
           EOF
     - run:
@@ -150,6 +150,7 @@ jobs:
                docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER} \
                  --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} \
                  --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
+                 --env RELEX_PORT=${RELEX_PORT} \
                  --restart unless-stopped \
                  --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
                  -v /home/ubuntu/opencog-services/config:/config \

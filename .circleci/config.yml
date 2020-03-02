@@ -28,6 +28,9 @@ jobs:
       STAGING_IMAGE: staging_ocs_services_image
       STAGING_IMAGE_RELEX: staging_ocs_relex
 
+      # deployment branch
+      DEPLOYMENT_BRANCH: master
+
       # general config
       WORKDIR: /tmp/opencog-services
     steps:

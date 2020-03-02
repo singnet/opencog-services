@@ -53,6 +53,7 @@ LDFLAGS += $(shell ls /usr/local/lib/opencog | grep "\.so" | sed "s/lib/-l/" | s
 LDFLAGS += $(shell ls /usr/local/lib/opencog/modules | grep "\.so" | sed "s/lib/-l/" | sed "s/\.so//")
 LDFLAGS += -lcogutil
 LDFLAGS += -lboost_system
+LDFLAGS += -lpthread
 LDFLAGS += $(shell curl-config --libs)
 SERVICES = $(shell ls cpp-services/*.cc | sed "s/\.cc/\.o/")
 

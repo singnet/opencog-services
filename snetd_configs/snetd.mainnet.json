@@ -1,7 +1,6 @@
 {
     "blockchain_network_selected": "main",
     "daemon_end_point": "0.0.0.0:7095",
-    "free_call_signer_address": "0x3Bb9b2499c283cec176e7C707Ecb495B7a961ebf",
     "ipfs_end_point": "http://ipfs.singularitynet.io:80",
     "log": {
         "level": "debug",
@@ -13,8 +12,10 @@
             "type": "file"
         }
     },
-    "metering_end_point": "__METERING_END_POINT__",
-    "pvt_key_for_metering": "__PRIVATE_KEY_FOR_METERING__",
+    "free_call_signer_address": "__FREE_CALL_SIGNER_ADDRESS__",
+    "ethereum_json_rpc_endpoint": "https://__NETWORK__.infura.io/v3/__ETHEREUM_JSON_RPC_ENDPOINT__",
+    "metering_end_point": ""https://__NETWORK__-marketplace.singularitynet.io/metering",
+    "pvt_key_for_metering": "__PVT_KEY_FOR_METERING__",
     "organization_id": "snet",
     "passthrough_enabled": true,
     "passthrough_endpoint": "http://localhost:7055",

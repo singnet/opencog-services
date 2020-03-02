@@ -78,7 +78,8 @@ void Ghost::ghostStartSession(const string &rUrl, string &rOutput)
 
     if(const char* relex_container_name = std::getenv("RELEX_CONTAINER_NAME"))
     {
-        string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" 4444)");
+        strint port = std::getenv("RELEX_PORT");
+        string relex_seek_cmd = string("(use-relex-server \"") + relex_container_name + string("\" ") + port + ")";
         evaluateScheme(scheme_out, relex_seek_cmd, session_token);
     }
     else{

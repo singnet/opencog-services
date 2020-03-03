@@ -166,6 +166,7 @@ jobs:
                  -di ${CIRCLE_USERNAME,,}_${IMAGE} bash -c 'run.sh'
                  
               else
+                  echo "Deployment git owner: ${DEPLOYMENT_GIT_OWNER}"
                   echo "Repository: ${CIRCLE_REPOSITORY_URL}"
                   echo "Branch: ${CIRCLE_BRANCH}"
                   echo "================================================================================"

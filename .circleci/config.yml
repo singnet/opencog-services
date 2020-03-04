@@ -57,6 +57,7 @@ jobs:
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
             # get source
+            # need to be cloned because the dockerfile is adding files from the docker env to the projects root
             cd ${WORKDIR}
             git clone -b ${CIRCLE_BRANCH} https://github.com/${CIRCLE_USERNAME}/opencog-services.git
             cd opencog-services
@@ -113,8 +114,8 @@ jobs:
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
               if [ ${CIRCLE_REPOSITORY_URL} = "git@github.com:singnet/${REPOSITORY}.git" ] && [ ${CIRCLE_BRANCH} = "master" ] ; then
                 # clean environment from old deploy
-                docker rm -f ${CIRCLE_USERNAME,,}_${CONTAINER} || true
-                docker rm -f ${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} || true
+                docker rm -f singnet_${CONTAINER} || true
+                docker rm -f singnet_${CONTAINER_RELEX} || true
                 docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
                 docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
 
@@ -122,11 +123,14 @@ jobs:
                 # rmv old and stage images
                 docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
                 docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
-                docker rmi -f ${CIRCLE_USERNAME,,}_${IMAGE} || true
-                docker rmi -f ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} || true
+                docker rmi -f singnet_${IMAGE} || true
+                docker rmi -f singnet_${IMAGE_RELEX} || true
+
+                # need to be cloned because the dockerfile is adding files from the docker env to the projects root
+                cd ${WORKDIR}/opencog-services
 
                 # build images, relex and opencog
-                docker build -t ${CIRCLE_USERNAME,,}_${IMAGE} \
+                docker build -t singnet_${IMAGE} \
                   --no-cache \
                   --build-arg snetd_version=${SNETD_VERSION} \
                   --build-arg network=${NETWORK} \
@@ -135,28 +139,31 @@ jobs:
                   --build-arg pvt_key_for_metering=${PVT_KEY_FOR_METERING} \
                   -f OpenCogServices .
 
-                docker build -t ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} \
+                docker build -t singnet_${IMAGE_RELEX} \
                   --no-cache \
                   -f OpenCogRelex .
 
+                # rm temp files
+                rm -rf ${WORKDIR}/opencog-services
+
                 # TODO:do this in a better way
                 # reset current network
-                docker network rm ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} || true
-                docker network create ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} || true
+                docker network rm singnet_${DOCKER_NETWORK} || true
+                docker network create singnet_${DOCKER_NETWORK} || true
  
                 # run servers, relex and opencog
-                docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} \
+                docker run --name singnet_${CONTAINER_RELEX} \
                   --restart unless-stopped \
-                  --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
+                  --network singnet_${DOCKER_NETWORK} \
                   -p ${RELEX_PORT}:4444 \
-                  -di ${CIRCLE_USERNAME,,}_${IMAGE_RELEX} bash -c 'opencog-server.sh'
+                  -di singnet_${IMAGE_RELEX} bash -c 'opencog-server.sh'
 
-               docker run --name ${CIRCLE_USERNAME,,}_${CONTAINER} \
-                 --env RELEX_CONTAINER_NAME=${CIRCLE_USERNAME,,}_${CONTAINER_RELEX} \
+               docker run --name singnet_${CONTAINER} \
+                 --env RELEX_CONTAINER_NAME=singnet_${CONTAINER_RELEX} \
                  --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
                  --env RELEX_PORT=${RELEX_PORT} \
                  --restart unless-stopped \
-                 --network ${CIRCLE_USERNAME,,}_${DOCKER_NETWORK} \
+                 --network singnet_${DOCKER_NETWORK} \
                  -v /home/ubuntu/opencog-services/config:/config \
                  -v /home/ubuntu/opencog-services/etcd:/etcd \
                  -v /home/ubuntu/opencog-services/storage-data-dir-1.etcd:/storage-data-dir-1.etcd \
@@ -164,7 +171,7 @@ jobs:
                  -v ~/singnet/.certs:/opt/singnet/.certs \
                  -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
                  -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
-                 -di ${CIRCLE_USERNAME,,}_${IMAGE} bash -c 'run.sh'
+                 -di singnet_${IMAGE} bash -c 'run.sh'
                  
               else
                   echo "Deployment git owner: ${DEPLOYMENT_GIT_OWNER}"

@@ -132,29 +132,29 @@ jobs:
             docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BPK || true
           EOF
     - run:
-      name: cleaning old deploy environment
-      command: |-
-        ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-          docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER} || true
-          docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX} || true
-          docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} || true
-          docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} || true
-          docker network rm ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK} || true
-        EOF
+        name: cleaning old deploy environment
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER} || true
+            docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX} || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} || true
+            docker network rm ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK} || true
+          EOF
     - run:
-      name: rehearsal consolidation
-      command: |-
-        ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-          docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}
-          docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}
-        EOF
+        name: rehearsal consolidation
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}
+            docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}
+          EOF
     - run:
-      name: cleaning rehearsal images
-      command: |-
-        ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-          docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE}
-          docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX}
-        EOF
+        name: cleaning rehearsal images
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX}
+          EOF
     - run:
         name: deploy setup
         command: |-

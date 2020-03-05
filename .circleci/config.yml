@@ -156,7 +156,7 @@ jobs:
                   --restart unless-stopped \
                   --network singnet_${DOCKER_NETWORK} \
                   -p ${RELEX_PORT}:4444 \
-                  -di singnet_${IMAGE_RELEX} bash -c 'opencog-server.sh'
+                  -di singnet_${IMAGE_RELEX} bash opencog-server.sh
 
                docker run --name singnet_${CONTAINER} \
                  --env RELEX_CONTAINER_NAME=singnet_${CONTAINER_RELEX} \
@@ -171,7 +171,7 @@ jobs:
                  -v ~/singnet/.certs:/opt/singnet/.certs \
                  -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
                  -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
-                 -di singnet_${IMAGE} bash -c 'run.sh'
+                 -di singnet_${IMAGE} bash run.sh
                  
               else
                   echo "Deployment git owner: ${DEPLOYMENT_GIT_OWNER}"

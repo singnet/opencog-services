@@ -119,29 +119,18 @@ jobs:
                 docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
                 docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
 
-                # TODO:also remove images upon error
-                # rmv old and stage images
-                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
-                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
+                # avoid creating new images
+                # rmv old deploy images
                 docker rmi -f singnet_${IMAGE} || true
                 docker rmi -f singnet_${IMAGE_RELEX} || true
 
-                # need to be cloned because the dockerfile is adding files from the docker env to the projects root
-                cd ${WORKDIR}/opencog-services
+                # create new deploy images
+                docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} singnet_${IMAGE}
+                docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} singnet_${IMAGE_RELEX}
 
-                # build images, relex and opencog
-                docker build -t singnet_${IMAGE} \
-                  --no-cache \
-                  --build-arg snetd_version=${SNETD_VERSION} \
-                  --build-arg network=${NETWORK} \
-                  --build-arg ethereum_json_rpc_endpoint=${ETHEREUM_JSON_RPC_ENDPOINT} \
-                  --build-arg free_call_signer_address=${FREE_CALL_SIGNER_ADDRESS} \
-                  --build-arg pvt_key_for_metering=${PVT_KEY_FOR_METERING} \
-                  -f OpenCogServices .
-
-                docker build -t singnet_${IMAGE_RELEX} \
-                  --no-cache \
-                  -f OpenCogRelex .
+                # remove old staging images
+                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
+                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
 
                 # rm temp files
                 rm -rf ${WORKDIR}/opencog-services

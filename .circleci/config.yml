@@ -168,7 +168,7 @@ jobs:
                  -v /home/ubuntu/opencog-services/etcd:/etcd \
                  -v /home/ubuntu/opencog-services/storage-data-dir-1.etcd:/storage-data-dir-1.etcd \
                  -v /etc/letsencrypt:/etc/letsencrypt \
-                 -v ~/singnet/.certs:/opt/singnet/.certs \
+                 -v /home/ci/singnet/.certs:/opt/singnet/.certs \
                  -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
                  -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
                  -di singnet_${IMAGE} bash run.sh

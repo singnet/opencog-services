@@ -44,6 +44,15 @@ jobs:
         name: rehearsal setup
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF            
+            # pre-cleaning
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER}
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX}
+
+            docker network rm ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK}
+            rm -rf ${WORKDIR}
+
             # create network for this service
             docker network create ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK}
             

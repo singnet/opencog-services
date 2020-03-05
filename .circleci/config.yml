@@ -123,14 +123,14 @@ jobs:
             rm -rf ${WORKDIR}
           EOF
     - run:
-      name: create old deploy backup
-      command: |-
-        ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-          docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BKP || true
-          docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BKP || true
-          docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BPK || true
-          docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BPK || true
-        EOF
+        name: create old deploy backup
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BKP || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BKP || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BPK || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BPK || true
+          EOF
     - run:
       name: cleaning old deploy environment
       command: |-

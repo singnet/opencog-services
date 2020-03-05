@@ -39,7 +39,7 @@ jobs:
         name: info
         command: |-
           echo "User: ${CIRCLE_USERNAME,,}"
-          echo "Repository user: ${CIRCLE_PROJECT_USERNAME,,}"
+          echo "Repository owner: ${CIRCLE_PROJECT_USERNAME,,}"
     - run:
         name: rehearsal setup
         command: |-

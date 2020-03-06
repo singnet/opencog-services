@@ -37,8 +37,10 @@ jobs:
     - run:
         name: info
         command: |-
-          echo "User: ${CIRCLE_USERNAME,,}"
-          echo "Repository owner: ${CIRCLE_PROJECT_USERNAME,,}"
+          echo "pull-request source owner: ${CIRCLE_USERNAME,,}"
+          echo "pull-request target owner: ${CIRCLE_PROJECT_USERNAME,,}"
+          echo "repository url: ${CIRCLE_REPOSITORY_URL}"
+          echo "pull-request branch: ${CIRCLE_BRANCH}"
     - run:
         name: rehearsal setup
         command: |-

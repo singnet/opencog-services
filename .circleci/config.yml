@@ -191,7 +191,7 @@ jobs:
               -v /home/ci/singnet/.certs:/opt/singnet/.certs \
               $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET}" || echo "") \
               $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN}" || echo "") \
-              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} bash -c "./bin/server & snetd --config ./snetd_configs/snetd.mainnet.json &"
+              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} bash -c "./bin/server & snetd --config ./snetd_configs/snetd.mainnet.json"
           EOF
     - run:
         name: cleaning

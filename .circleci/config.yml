@@ -117,7 +117,7 @@ jobs:
         name: daemon check
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-            docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} snetd --config ./snetd_configs/snetd.mainnet.json
+            docker exec -id ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} snetd --config ./snetd_configs/snetd.mainnet.json
           EOF
     - run:
         name: cleaning rehearsal containers, networks, and folders

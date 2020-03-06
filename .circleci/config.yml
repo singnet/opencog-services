@@ -133,10 +133,10 @@ jobs:
         name: create old deploy backup
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BKP || true
-            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BKP || true
-            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_BPK || true
-            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_BPK || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_bkp || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_bkp || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_bkp || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_bkp || true
           EOF
     - run:
         name: cleaning old deploy environment
@@ -166,7 +166,7 @@ jobs:
         name: deploy setup
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-            docker create network ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK}
+            docker network create ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK}
           EOF
     - run:
         name: deploy
@@ -189,7 +189,7 @@ jobs:
               -v /home/ci/singnet/.certs:/opt/singnet/.certs \
               $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET}" || echo "") \
               $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN}" || echo "") \
-              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} bash run.sh
+              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} bash -c "./bin/server & snetd --config ./snetd_configs/snetd.mainnet.json &"
           EOF
     - run:
         name: cleaning

@@ -7,7 +7,6 @@ jobs:
     environment:
       # network
       OC_SERVICES_PORT: 7031
-      RELEX_PORT: 7034
       PASSTHROUGH_ENDPOINT: 7055
       OC_SERVICES_PORT_MAINNET: 7095
       OC_SERVICES_PORT_ROPSTEN: 7096
@@ -36,28 +35,34 @@ jobs:
       WORKDIR: /tmp/opencog-services
     steps:
     - run:
-        name: Setup
+        name: info
+        command: |-
+          echo "User: ${CIRCLE_USERNAME,,}"
+          echo "Repository owner: ${CIRCLE_PROJECT_USERNAME,,}"
+    - run:
+        name: rehearsal setup
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF            
-            # remove staging images and containers
-            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
-            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
-            docker rmi ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
-            docker rmi ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
+            # pre-cleaning
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER}
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX}
 
-            # re-create staging network
-            docker network rm ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} || true
+            docker network rm ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK}
+            rm -rf ${WORKDIR}
+
+            # create network for this service
+            docker network create ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK}
             
-            # clear workdir
-            rm -rf ${WORKDIR} || true
-            mkdir ${WORKDIR} || true
+            # create workdir
+            mkdir ${WORKDIR}
           EOF
     - run:
-        name: Build
+        name: rehearsal build
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-            # get source
-            # need to be cloned because the dockerfile is adding files from the docker env to the projects root
+            # need to be cloned because the dockerfile is adding files from the docker env to the project's root
             cd ${WORKDIR}
             git clone -b ${CIRCLE_BRANCH} https://github.com/${CIRCLE_USERNAME}/opencog-services.git
             cd opencog-services
@@ -77,15 +82,12 @@ jobs:
               -f OpenCogRelex .
           EOF
     - run:
-        name: Run
+        name: rehearsal run
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-            docker network create ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} || true
-
             docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} \
               --restart unless-stopped \
               --network ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} \
-              -p 4444:4444 \
               -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} bash opencog-server.sh
 
             docker run --name ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} \
@@ -94,84 +96,113 @@ jobs:
               --env RELEX_PORT=4444 \
               --restart unless-stopped \
               --network ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK} \
+              -v /home/ubuntu/opencog-services/config:/config \
+              -v /etc/letsencrypt:/etc/letsencrypt \
+              -v /home/ci/singnet/.certs:/opt/singnet/.certs \
               -di ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} tail -f /dev/null
           EOF
     - run:
-        name: Tests
+        name: integration tests
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
             docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} ./bin/runTests
           EOF
     - run:
-        name: Compliance Check
+        name: compliance check
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
             docker exec -i ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} scripts/compliance_check.sh
           EOF
     - run:
-        name: Deploy
+        name: daemon check
         command: |-
           ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
-              if [ ${CIRCLE_REPOSITORY_URL} = "git@github.com:singnet/${REPOSITORY}.git" ] && [ ${CIRCLE_BRANCH} = "master" ] ; then
-                # clean environment from old deploy
-                docker rm -f singnet_${CONTAINER} || true
-                docker rm -f singnet_${CONTAINER_RELEX} || true
-                docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} || true
-                docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX} || true
-
-                # avoid creating new images
-                # rmv old deploy images
-                docker rmi -f singnet_${IMAGE} || true
-                docker rmi -f singnet_${IMAGE_RELEX} || true
-
-                # create new deploy images
-                docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} singnet_${IMAGE}
-                docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} singnet_${IMAGE_RELEX}
-
-                # remove old staging images
-                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} || true
-                docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} || true
-
-                # rm temp files
-                rm -rf ${WORKDIR}/opencog-services
-
-                # TODO:do this in a better way
-                # reset current network
-                docker network rm singnet_${DOCKER_NETWORK} || true
-                docker network create singnet_${DOCKER_NETWORK} || true
- 
-                # run servers, relex and opencog
-                docker run --name singnet_${CONTAINER_RELEX} \
-                  --restart unless-stopped \
-                  --network singnet_${DOCKER_NETWORK} \
-                  -p ${RELEX_PORT}:4444 \
-                  -di singnet_${IMAGE_RELEX} bash opencog-server.sh
-
-               docker run --name singnet_${CONTAINER} \
-                 --env RELEX_CONTAINER_NAME=singnet_${CONTAINER_RELEX} \
-                 --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
-                 --env RELEX_PORT=${RELEX_PORT} \
-                 --restart unless-stopped \
-                 --network singnet_${DOCKER_NETWORK} \
-                 -v /home/ubuntu/opencog-services/config:/config \
-                 -v /home/ubuntu/opencog-services/etcd:/etcd \
-                 -v /home/ubuntu/opencog-services/storage-data-dir-1.etcd:/storage-data-dir-1.etcd \
-                 -v /etc/letsencrypt:/etc/letsencrypt \
-                 -v /home/ci/singnet/.certs:/opt/singnet/.certs \
-                 -p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET} \
-                 -p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN} \
-                 -di singnet_${IMAGE} bash run.sh
-                 
-              else
-                  echo "Deployment git owner: ${DEPLOYMENT_GIT_OWNER}"
-                  echo "Repository: ${CIRCLE_REPOSITORY_URL}"
-                  echo "Branch: ${CIRCLE_BRANCH}"
-                  echo "================================================================================"
-                  echo "                        Service WILL NOT be deployed"
-                  echo "================================================================================"
-              fi
+            docker exec -id ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER} snetd --config ./snetd_configs/snetd.mainnet.json
           EOF
+    - run:
+        name: cleaning rehearsal containers, networks, and folders
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            # remove staging containers and networks
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER}
+            docker rm -f ${CIRCLE_USERNAME,,}_${STAGING_CONTAINER_RELEX}
+            docker network rm ${CIRCLE_USERNAME,,}_${STAGING_DOCKER_NETWORK}
+            rm -rf ${WORKDIR}
+          EOF
+    - run:
+        name: create old deploy backup
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_bkp || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_bkp || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}_bkp || true
+            docker tag ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}_bkp || true
+          EOF
+    - run:
+        name: cleaning old deploy environment
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER} || true
+            docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX} || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} || true
+            docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} || true
+            docker network rm ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK} || true
+          EOF
+    - run:
+        name: rehearsal consolidation
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}
+            docker tag ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX} ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}
+          EOF
+    - run:
+        name: cleaning rehearsal images
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE}
+            docker rmi -f ${CIRCLE_USERNAME,,}_${STAGING_IMAGE_RELEX}
+          EOF
+    - run:
+        name: deploy setup
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            docker network create ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK}
+          EOF
+    - run:
+        name: deploy
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            # run servers, relex and opencog
+            docker run --name ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX} \
+              --restart unless-stopped \
+              --network ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK} \
+              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX} bash opencog-server.sh
 
+            docker run --name ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER} \
+              --env RELEX_CONTAINER_NAME=${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX} \
+              --env OPENCOG_SERVER_PORT=${PASSTHROUGH_ENDPOINT} \
+              --env RELEX_PORT=4444 \
+              --restart unless-stopped \
+              --network ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK} \
+              -v /home/ubuntu/opencog-services/config:/config \
+              -v /etc/letsencrypt:/etc/letsencrypt \
+              -v /home/ci/singnet/.certs:/opt/singnet/.certs \
+              $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_MAINNET}:${OC_SERVICES_PORT_MAINNET}" || echo "") \
+              $([ "${CIRCLE_PROJECT_USERNAME,,}" = "singnet" ] && echo "-p ${OC_SERVICES_PORT_ROPSTEN}:${OC_SERVICES_PORT_ROPSTEN}" || echo "") \
+              -di ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE} bash -c "./bin/server & snetd --config ./snetd_configs/snetd.mainnet.json &"
+          EOF
+    - run:
+        name: cleaning
+        command: |-
+          ssh -o "StrictHostKeyChecking no" ${SSH_USER}@${SSH_HOST} << EOF
+            if [ ${CIRCLE_PROJECT_USERNAME,,} = ${CIRCLE_USERNAME,,} ] ; then
+              docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER_RELEX}
+              docker rm -f ${CIRCLE_PROJECT_USERNAME,,}_${CONTAINER}
+              docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE_RELEX}
+              docker rmi -f ${CIRCLE_PROJECT_USERNAME,,}_${IMAGE}
+              docker network rm ${CIRCLE_PROJECT_USERNAME,,}_${DOCKER_NETWORK}
+            fi
+          EOF
 workflows:
   version: 2
   build-and-deploy:

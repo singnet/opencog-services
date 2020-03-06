@@ -1,4 +1,4 @@
-FROM singularitynet/opencog-deps
+FROM singularitynet/opencog-deps:release-20200129
 
 ARG snetd_version
 

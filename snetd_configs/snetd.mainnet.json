@@ -18,9 +18,9 @@
     "organization_id": "snet",
     "passthrough_enabled": true,
     "passthrough_endpoint": "http://localhost:7055",
-    "payent_channel_ca_path": "/opt/singnet/.certs/ca.pem",
-    "payent_channel_cert_path": "/opt/singnet/.certs/client.pem",
-    "payent_channel_key_path": "/opt/singnet/.certs/client-key.pem",
+    "payment_channel_ca_path": "/opt/singnet/.certs/ca.pem",
+    "payment_channel_cert_path": "/opt/singnet/.certs/client.pem",
+    "payment_channel_key_path": "/opt/singnet/.certs/client-key.pem",
     "service_id": "opencog-miner",
     "ssl_cert": "/opt/singnet/.certs/fullchain.pem",
     "ssl_key": "/opt/singnet/.certs/privkey.pem"

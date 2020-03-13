@@ -12,7 +12,6 @@
             "type": "file"
         }
     },
-    "free_call_signer_address": "__FREE_CALL_SIGNER_ADDRESS__",
     "ethereum_json_rpc_endpoint": "https://__NETWORK__.infura.io/v3/__ETHEREUM_JSON_RPC_ENDPOINT__",
     "metering_end_point": "https://__NETWORK__-marketplace.singularitynet.io/metering",
     "pvt_key_for_metering": "__PVT_KEY_FOR_METERING__",
